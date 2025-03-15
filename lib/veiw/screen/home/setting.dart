@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/test7_controller.dart';
+import '../../../controller/home_controller.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Modle>(builder: (controller) =>
+
+    return GetBuilder<HomeControllerImp>(builder: (controller) =>
         Column(
+          crossAxisAlignment:CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 50,),
-            Card(child:ListTile(title:  const Text("counter",style: TextStyle(fontSize: 20),),
-              trailing: Switch(value: controller.status,
-                onChanged: (val) {controller.setStatus(val) ;},),),
-            ),
+
             const SizedBox(height: 30,),
 
             if(Get.isDarkMode)

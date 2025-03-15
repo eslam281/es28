@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     return  GetMaterialApp(
       title: 'Demo',
       theme:ThemeData.light(),
-      darkTheme:ThemeData.dark() ,
+      // darkTheme:ThemeData.dark() ,
       home:  HomePage()  ,
     );
   }

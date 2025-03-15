@@ -1,0 +1,2 @@
+U:/StudioProjects/es28/android/app/.cxx/RelWithDebInfo/485c682q/x86_64/CMakeFiles/edit_cache.dir
+U:/StudioProjects/es28/android/app/.cxx/RelWithDebInfo/485c682q/x86_64/CMakeFiles/rebuild_cache.dir

@@ -9,34 +9,40 @@ class Times extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GetModle getcontroller = Get.find();
-    return GetBuilder<Modle>(builder: (controller) =>
+     Get.put(GetModle());
+    return GetBuilder<GetModle>(builder: (controller) =>
         Column(crossAxisAlignment:CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 50,),
 
-            if(getcontroller.data.isEmpty||!getcontroller.result||getcontroller.isLoading)
+            (controller.data == null||!controller.result||controller.isLoading)?
               Column(
                 children: [
-                if(getcontroller.result)
-                  const Text("Loading....",style:TextStyle(fontSize:50,color: Colors.blue),),
-                if(!getcontroller.result)
-                  const Text("No internet",style:TextStyle(fontSize:50,color: Colors.blue),),
-                const SizedBox(height: 50,),
-                const CircularProgressIndicator(),
-              ],
-              ),
+                (controller.isLoading)?
+                  Column(
+                    children: [
+                      const Text("Loading....",style:TextStyle(fontSize:50,color: Colors.blue),),
+                      const SizedBox(height: 50,),
+                      Center(child: const CircularProgressIndicator()),
+                    ],
+                  ):
+                (!controller.result)?
+                  const Text("No internet",style:TextStyle(fontSize:50,color: Colors.blue),):Center(),
 
-            if( getcontroller.result && !getcontroller.isLoading)
+              ],
+              )
+
+            :
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  customCard(text: " فجر   ${getcontroller.Fajr}"),
-                  customCard(text: " شروق الشمس   ${getcontroller.Sunrise}"),
-                  customCard(text: "  ظهر   ${getcontroller.Dhuhr}"),
-                  customCard(text: " عصر   ${getcontroller.Asr}"),
-                  customCard(text: " مغرب   ${getcontroller.Maghrib}"),
-                  customCard(text: " عشاء   ${getcontroller.Isha}"),
+                  customCard(text: " فجر   ${controller.data!.fajr}"),
+                  customCard(text: " شروق الشمس   ${controller.data!.sunrise}"),
+                  customCard(text: "  ظهر   ${controller.data!.dhuhr}"),
+                  customCard(text: " عصر   ${controller.data!.asr}"),
+                  customCard(text: " مغرب   ${controller.data!.maghrib}"),
+                  customCard(text: " عشاء   ${controller.data!.isha}"),
+                  customCard(text: " الثلث الاخير من الليل   ${controller.data!.lastthird}"),
                 ],
               ),
             const SizedBox(height: 20,)

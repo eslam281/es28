@@ -60,7 +60,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
           List<String> list = [];
           for (var item in selectedList) {
-            if (item is SelectedListItem) {
+            if (item is SelectedListItem &&item.name != "+" ) {
               list.add(item.name);
               widget.textEditingController.text= item.name;
             }
@@ -88,6 +88,7 @@ class _AppTextFieldState extends State<AppTextField> {
         TextFormField(
           controller: widget.textEditingController,
           cursorColor: Colors.black,
+          keyboardType:TextInputType.name,
           onTap: widget.isCitySelected
               ? () {
             FocusScope.of(context).unfocus();

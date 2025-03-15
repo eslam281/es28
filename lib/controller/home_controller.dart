@@ -12,8 +12,10 @@ class HomeControllerImp extends HomeController{
   List bodyList=[
     Counter(),
     Times(),
-    Setting(),
+    // Setting(),
   ];
+
+
   void setIndex(val){
     index =val;
     update();

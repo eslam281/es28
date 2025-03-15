@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -43,7 +42,7 @@ class customCard extends StatelessWidget{
     return Column(
       children: [
         Card(child: Container(width: 350,alignment: Alignment.center,
-            child: Text(text,style: const TextStyle(color: Colors.teal,fontSize: 30),))),
+            child: Text(text,style: const TextStyle(color: Colors.teal,fontSize: 30),textAlign: TextAlign.center,))),
         const SizedBox(height: 40,)
       ],
     );

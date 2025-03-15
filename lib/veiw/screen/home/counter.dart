@@ -1,11 +1,10 @@
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../../component/custom.dart';
 import '../../../component/dropdownlist.dart';
-import '../../../controller/test7_controller.dart';
+import '../../../controller/count_controller.dart';
 import '../../../main.dart';
 
 class Counter extends StatelessWidget {
@@ -13,14 +12,13 @@ class Counter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController textcontroll = TextEditingController();
+  Get.put(CountControllerImp());
 
-    return GetBuilder<Modle>(builder: (controller) {
-      if (controller.status)
+    return GetBuilder<CountControllerImp>(builder: (controller) {
       return  Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         SizedBox(height: 50,),
           Column(children: [
-            AppTextField(textEditingController: textcontroll,
+            AppTextField(textEditingController:controller.textcontroll,
               title: "الذكر",
               hint: "الذكر",
               isCitySelected: true,
@@ -28,17 +26,19 @@ class Counter extends StatelessWidget {
                 SelectedListItem(name: "سبحان الله"),
                 SelectedListItem(name: "الحمد الله"),
                 SelectedListItem(name: "الله اكبر",),
+                SelectedListItem(name: "+",),
               ],),
+            SizedBox(height: 5,),
             MaterialButton(onPressed: () {
-              controller.setCounter(textcontroll.text);
+              controller.setCounter(controller.textcontroll.text);
             },
                 color: Colors.green,
-                child: const Text("count", style: TextStyle(fontSize: 20,
+                child: const Text("ادخل الذكر", style: TextStyle(fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFFFFE700)),)),
           ],),
 
-          const SizedBox(height: 150,),
+          const SizedBox(height: 100,),
 
           Text("${sharedpref?.getString("counter")} ${sharedpref?.getInt("i")}",
             style: const TextStyle(fontSize: 50, color: Color(0xFFFFE700)),
