@@ -15,6 +15,7 @@ class CountControllerImp extends CountController{
   @override
   void onInit() {
     textcontroll = TextEditingController();
+     if( sharedpref!.getInt("i") != null)
     i  = sharedpref!.getInt("i")!;
     super.onInit();
   }
@@ -25,9 +26,9 @@ class CountControllerImp extends CountController{
     super.dispose();
   }
 
-  void seti (int? val){
-    i=val!;
-    sharedpref?.setInt("i", i);
+  void seti (){
+    i=0;
+    sharedpref?.setInt("i", 0);
     update();
   }
   void setCounter (String? val){

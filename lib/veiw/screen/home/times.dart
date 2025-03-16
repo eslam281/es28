@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../component/custom.dart';
-import '../../../controller/test7_controller.dart';
+import '../../../controller/times_controller.dart';
 
 class Times extends StatelessWidget {
   const Times({super.key});
 
   @override
   Widget build(BuildContext context) {
-     Get.put(GetModle());
-    return GetBuilder<GetModle>(builder: (controller) =>
+     Get.put(TimesController());
+    return GetBuilder<TimesController>(builder: (controller) =>
         Column(crossAxisAlignment:CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 50,),
 
-            (controller.data == null||!controller.result||controller.isLoading)?
+            (controller.data == null||controller.isLoading)?
               Column(
                 children: [
                 (controller.isLoading)?

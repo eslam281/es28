@@ -1,20 +1,20 @@
 class TimingModel {
-  String? fajr;
-  String? sunrise;
-  String? dhuhr;
-  String? asr;
-  String? maghrib;
-  String? isha;
-  String? lastthird;
+  late String fajr;
+  late String sunrise;
+  late String dhuhr;
+  late String asr;
+  late String maghrib;
+  late String isha;
+  late String lastthird;
 
   TimingModel(
-      {this.fajr,
-        this.sunrise,
-        this.dhuhr,
-        this.asr,
-        this.maghrib,
-        this.isha,
-        this.lastthird});
+      {required this.fajr,
+        required this.sunrise,
+        required this.dhuhr,
+        required this.asr,
+        required this.maghrib,
+        required this.isha,
+        required this.lastthird});
 
   TimingModel.fromJson(Map<String, dynamic> json) {
     fajr = json['Fajr'];

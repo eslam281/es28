@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:es28/main.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 
 import '../modle/modle.dart';
 
-class GetModle extends GetxController{
+class TimesController extends GetxController{
   bool  isLoading =true;
   bool result=false;
   TimingModel? data;
@@ -31,18 +32,38 @@ class GetModle extends GetxController{
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult.contains(ConnectivityResult.wifi)) result =true ;
     else if(connectivityResult.contains(ConnectivityResult.mobile)) result =true ;
+
     if(result){
       await getdata();
+      sharedpref?.setString("fajr", data!.fajr);
+      sharedpref?.setString("sunrise", data!.sunrise);
+      sharedpref?.setString("dhuhr", data!.dhuhr);
+      sharedpref?.setString("asr", data!.asr);
+      sharedpref?.setString("maghrib", data!.maghrib);
+      sharedpref?.setString("isha", data!.isha);
+      sharedpref?.setString("lastthird", data!.lastthird);
+    }else{
+      data =TimingModel(
+          fajr: sharedpref!.getString("fajr")!,
+          sunrise: sharedpref!.getString("sunrise")!,
+          dhuhr: sharedpref!.getString("dhuhr")!,
+          asr: sharedpref!.getString("asr")!,
+          maghrib: sharedpref!.getString("maghrib")!,
+          isha: sharedpref!.getString("isha")!,
+          lastthird: sharedpref!.getString("lastthird")!);
     }
+
     isLoading=false;
     update();
   }
+
   Future getdata() async{
     var response =await get(Uri.parse("https://api.aladhan.com/v1/timingsByCity?city=tarqaya&country=EGY&method=5#"));
     var responsebody =jsonDecode(response.body);
     data=TimingModel.fromJson(responsebody["data"]["timings"]);
     // settimes ();
   }
+
   // settimes (){
   //   Asr= convertF(data["data"]["timings"]["Asr"]);
   //   Maghrib= convertF(data["data"]["timings"]["Maghrib"]);

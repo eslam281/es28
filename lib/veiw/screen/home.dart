@@ -2,6 +2,7 @@
 import 'package:es28/veiw/screen/drawer/Aboutus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controller/count_controller.dart';
 import '../../controller/home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,24 +15,34 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-
-  // GetModle getcontroller = Get.put(GetModle());
-
-
-
   @override
   Widget build(BuildContext context) {
     Get.put(HomeControllerImp());
+    CountControllerImp controllerCount =  Get.put(CountControllerImp());
+
     return GetBuilder<HomeControllerImp>(
       builder: (controller) {
         return Scaffold(
+
+            floatingActionButton:(controller.index==0)?
+                FloatingActionButton(
+                  onPressed: () {controllerCount.seti();
+                    controllerCount.setCounter("ادخل الذكر ");
+                    },
+                  child:  Column(
+                      children: [
+                        SizedBox(height:3),
+                        Icon(Icons.settings_backup_restore_outlined,size: 30,),
+                Text("reset",style:TextStyle(color:Colors.white),)
+              ],
+                ),backgroundColor: Colors.blue
+            ):null,
+            
             appBar: AppBar(title: const Text("سبح اسم ربك الاعلى\t"),backgroundColor: Colors.blue,),
 
-            drawer: Drawer(child: Container(padding: const EdgeInsets.all(10),child: ListView(children: [
-              SizedBox(height: 50,)
-              ,const ListTile(title: Text("Homepage"),leading: Icon(Icons.home),)
-              ,const ListTile(title: Text("Account"),leading: Icon(Icons.account_balance_rounded),)
-              ,const ListTile(title: Text("order"),leading: Icon(Icons.check_box),)
+            drawer: Drawer(child: Container(padding: const EdgeInsets.all(10),child: Column(children: [
+              SizedBox(height: 100,)
+          
               ,const ListTile(title: Text("Contact Us"),leading: Icon(Icons.comment_outlined),)
 
               ,Container(alignment:Alignment.centerLeft, child: MaterialButton
@@ -49,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home),label:"الصفحة الرئسية"),
               BottomNavigationBarItem(icon: Icon(Icons.access_time),label:"أوقات الصلاة"),
-              BottomNavigationBarItem(icon: Icon(Icons.settings),label:"أعدادات"),
+              BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined),label:"الاذكار"),
             ]),
 
             body: Container(
