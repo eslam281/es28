@@ -1,3 +1,4 @@
+import 'package:es28/core/class/handlingdataview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,29 +11,19 @@ class Times extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      Get.put(TimesController());
-    return GetBuilder<TimesController>(builder: (controller) =>
-        Column(crossAxisAlignment:CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 50,),
+    return GetBuilder<TimesController>(builder: (controller) {
+      print(controller.statusRequest);
+      return Container(
+        color: Colors.black,height: double.infinity,padding:const EdgeInsets.all(20) ,
+        alignment: Alignment.center,
+        child:  SingleChildScrollView(
+        child: HandlingDataView(
+          statusRequest:controller.statusRequest,
+          widget: Column(crossAxisAlignment:CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 30,),
 
-            (controller.data == null||controller.isLoading)?
-              Column(
-                children: [
-                (controller.isLoading)?
-                  const Column(
-                    children: [
-                      Text("Loading....",style:TextStyle(fontSize:50,color: Colors.blue),),
-                      SizedBox(height: 50,),
-                      Center(child: CircularProgressIndicator()),
-                    ],
-                  ):
-                (!controller.result)?
-                  const Text("No internet",style:TextStyle(fontSize:50,color: Colors.blue),):const Center(),
-
-              ],
-              )
-
-            :
+              if (controller.data != null)
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -45,8 +36,14 @@ class Times extends StatelessWidget {
                   customCard(text: " الثلث الاخير من الليل   ${controller.data!.lastthird}"),
                 ],
               ),
-            const SizedBox(height: 20,)
-          ],),
+              const SizedBox(height: 30,)
+            ],)
+        ),
+        ),
+      );
+    }
+
+
 
     );
   }

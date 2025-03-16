@@ -6,7 +6,7 @@ class About_us extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(),body:
     Container(
-      padding:EdgeInsets.all(20),
+      padding:const EdgeInsets.all(20),
         child: const Text(
             "Hello \n I am Islam , I the developer of this app",
           style:TextStyle(fontSize:25),

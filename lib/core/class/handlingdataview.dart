@@ -1,5 +1,6 @@
 
 
+
 import 'package:es28/core/class/statusrequest.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -44,7 +45,8 @@ class HandlingDataRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     return statusRequest == StatusRequest.loading
         ? Center(
-        child: Lottie.asset(AppImageAsset.loading, width: 250, height: 250))
+        child: Lottie.asset(AppImageAsset.loading, width: 300, height: 300
+            ,alignment: Alignment.center))
 
         : statusRequest == StatusRequest.offlinefailure
         ? Center(child: Lottie.asset(AppImageAsset.offline,

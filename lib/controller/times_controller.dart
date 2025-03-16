@@ -1,16 +1,22 @@
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 // import 'package:intl/intl.dart';
 
-import '../modle/modle.dart';
+import '../core/class/statusrequest.dart';
+import '../core/functions/handlingdata.dart';
+import '../data/datasource/time_data.dart';
+import '../data/modle/modle.dart';
+
 
 class TimesController extends GetxController{
-  bool  isLoading =true;
+  TimeData timeData = TimeData(Crud());
   bool result=false;
   TimingModel? data;
+   StatusRequest statusRequest =StatusRequest.loading;
 
   late String time24;
   late String time12;
@@ -18,7 +24,7 @@ class TimesController extends GetxController{
 
   @override
   void onInit() {
-    iscontnect();
+    times();
     super.onInit();
   }
 
@@ -28,50 +34,58 @@ class TimesController extends GetxController{
   //   time12 = DateFormat("h:mm").format(dateTime);
   //   return time12;
   // }
-  Future iscontnect()async{
+
+   iscontnect()async{
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
-    if(connectivityResult.contains(ConnectivityResult.wifi)) result =true ;
-    else if(connectivityResult.contains(ConnectivityResult.mobile)) result =true ;
+    if(connectivityResult.contains(ConnectivityResult.wifi)) return true ;
+    else if(connectivityResult.contains(ConnectivityResult.mobile)) return true ;
+    else return false;
+  }
+
+   getdata() async{
+     statusRequest =StatusRequest.loading;
+     update();
+    var response =await timeData.getData("https://api.aladhan.com/v1/timingsByCity?city=tarqaya&country=EGY&method=5#");
+
+    statusRequest =handlingData(response);
+     if(statusRequest == StatusRequest.success){
+      data=TimingModel.fromJson(response["data"]["timings"]);
+
+      sharedpref?.setString("fajr", data!.fajr!);
+      sharedpref?.setString("sunrise", data!.sunrise!);
+      sharedpref?.setString("dhuhr", data!.dhuhr!);
+      sharedpref?.setString("asr", data!.asr!);
+      sharedpref?.setString("maghrib", data!.maghrib!);
+      sharedpref?.setString("isha", data!.isha!);
+      sharedpref?.setString("lastthird", data!.lastthird!);
+     }
+
+  }
+
+  times()async{
+
+    result = await iscontnect();
 
     if(result){
       await getdata();
-      sharedpref?.setString("fajr", data!.fajr);
-      sharedpref?.setString("sunrise", data!.sunrise);
-      sharedpref?.setString("dhuhr", data!.dhuhr);
-      sharedpref?.setString("asr", data!.asr);
-      sharedpref?.setString("maghrib", data!.maghrib);
-      sharedpref?.setString("isha", data!.isha);
-      sharedpref?.setString("lastthird", data!.lastthird);
-    }else if (sharedpref!.getString("fajr") != null) {
-
-      data =TimingModel(
-          fajr: sharedpref!.getString("fajr")!,
-          sunrise: sharedpref!.getString("sunrise")!,
-          dhuhr: sharedpref!.getString("dhuhr")!,
-          asr: sharedpref!.getString("asr")!,
-          maghrib: sharedpref!.getString("maghrib")!,
-          isha: sharedpref!.getString("isha")!,
-          lastthird: sharedpref!.getString("lastthird")!
-      );
+    }else{
+      getTimesOff();
     }
-
-    isLoading=false;
+    statusRequest =StatusRequest.success;
     update();
+
   }
 
-  Future getdata() async{
-    var response =await get(Uri.parse("https://api.aladhan.com/v1/timingsByCity?city=tarqaya&country=EGY&method=5#"));
-    var responsebody =jsonDecode(response.body);
-    data=TimingModel.fromJson(responsebody["data"]["timings"]);
-    // settimes ();
+  getTimesOff(){
+    if (sharedpref!.getString("fajr") != null)
+    data = TimingModel(
+        fajr: sharedpref!.getString("fajr")!,
+        sunrise: sharedpref!.getString("sunrise")!,
+        dhuhr: sharedpref!.getString("dhuhr")!,
+        asr: sharedpref!.getString("asr")!,
+        maghrib: sharedpref!.getString("maghrib")!,
+        isha: sharedpref!.getString("isha")!,
+        lastthird: sharedpref!.getString("lastthird")!
+    );
   }
-
-  // settimes (){
-  //   Asr= convertF(data["data"]["timings"]["Asr"]);
-  //   Maghrib= convertF(data["data"]["timings"]["Maghrib"]);
-  //   Isha= convertF(data["data"]["timings"]["Isha"]);
-  //   Fajr= data["data"]["timings"]["Fajr"];
-  //   Sunrise= data["data"]["timings"]["Sunrise"];
-  //   Dhuhr= data["data"]["timings"]["Dhuhr"];
-  // }
 }

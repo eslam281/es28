@@ -1,11 +1,11 @@
 class TimingModel {
-  late String fajr;
-  late String sunrise;
-  late String dhuhr;
-  late String asr;
-  late String maghrib;
-  late String isha;
-  late String lastthird;
+  String? fajr;
+  String? sunrise;
+  String? dhuhr;
+  String? asr;
+  String? maghrib;
+  String? isha;
+  String? lastthird;
 
   TimingModel(
       {required this.fajr,

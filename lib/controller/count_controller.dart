@@ -14,10 +14,12 @@ class CountControllerImp extends CountController {
   @override
   void onInit() {
     textcontroll = TextEditingController();
-    if (sharedpref!.getInt("i") != null) {
+
+    if (sharedpref!.getInt("i") != null)
       i = sharedpref!.getInt("i")!;
+
+    if(sharedpref!.getString("counter")!= null)
       counter = sharedpref!.getString("counter")!;
-    }
     super.onInit();
   }
 

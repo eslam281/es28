@@ -10,9 +10,9 @@ abstract class HomeController extends GetxController{
 class HomeControllerImp extends HomeController{
   int index=0;
   List bodyList=[
-    Counter(),
-    Times(),
-    Althakr()
+    const Counter(),
+    const Times(),
+    const Althakr()
   ];
 
 

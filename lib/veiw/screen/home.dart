@@ -63,12 +63,8 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined),label:"الاذكار"),
             ]),
 
-            body: Container(
-              color: Colors.black,height: double.infinity,padding:const EdgeInsets.all(20) ,
-              child:  SingleChildScrollView(
-                child: controller.bodyList[controller.index]
-                 ),
-            )
+            body:  controller.bodyList[controller.index]
+
         );
       }
     );
