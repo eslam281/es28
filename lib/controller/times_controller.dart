@@ -3,7 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:es28/main.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
 import '../modle/modle.dart';
 
@@ -22,12 +22,12 @@ class TimesController extends GetxController{
     super.onInit();
   }
 
-  String convertF (String val){
-    time24 = val;
-    dateTime =DateFormat("HH:mm").parse(time24);
-    time12 = DateFormat("h:mm").format(dateTime);
-    return time12;
-  }
+  // String convertF (String val){
+  //   time24 = val;
+  //   dateTime =DateFormat("HH:mm").parse(time24);
+  //   time12 = DateFormat("h:mm").format(dateTime);
+  //   return time12;
+  // }
   Future iscontnect()async{
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult.contains(ConnectivityResult.wifi)) result =true ;
