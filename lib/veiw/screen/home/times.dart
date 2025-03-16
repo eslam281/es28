@@ -13,21 +13,21 @@ class Times extends StatelessWidget {
     return GetBuilder<TimesController>(builder: (controller) =>
         Column(crossAxisAlignment:CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 50,),
+            const SizedBox(height: 50,),
 
             (controller.data == null||controller.isLoading)?
               Column(
                 children: [
                 (controller.isLoading)?
-                  Column(
+                  const Column(
                     children: [
-                      const Text("Loading....",style:TextStyle(fontSize:50,color: Colors.blue),),
-                      const SizedBox(height: 50,),
-                      Center(child: const CircularProgressIndicator()),
+                      Text("Loading....",style:TextStyle(fontSize:50,color: Colors.blue),),
+                      SizedBox(height: 50,),
+                      Center(child: CircularProgressIndicator()),
                     ],
                   ):
                 (!controller.result)?
-                  const Text("No internet",style:TextStyle(fontSize:50,color: Colors.blue),):Center(),
+                  const Text("No internet",style:TextStyle(fontSize:50,color: Colors.blue),):const Center(),
 
               ],
               )

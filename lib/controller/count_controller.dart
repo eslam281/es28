@@ -3,20 +3,21 @@ import 'package:get/get.dart';
 
 import '../main.dart';
 
-abstract class CountController extends GetxController{
+abstract class CountController extends GetxController {}
 
-}
-class CountControllerImp extends CountController{
+class CountControllerImp extends CountController {
   int i = 0;
-  String counter="ادخل الذكر ";
+  String counter = "ادخل الذكر ";
 
   late TextEditingController textcontroll;
 
   @override
   void onInit() {
     textcontroll = TextEditingController();
-     if( sharedpref!.getInt("i") != null)
-    i  = sharedpref!.getInt("i")!;
+    if (sharedpref!.getInt("i") != null) {
+      i = sharedpref!.getInt("i")!;
+      counter = sharedpref!.getString("counter")!;
+    }
     super.onInit();
   }
 
@@ -26,20 +27,21 @@ class CountControllerImp extends CountController{
     super.dispose();
   }
 
-  void seti (){
-    i=0;
+  void seti() {
+    i = 0;
     sharedpref?.setInt("i", 0);
     update();
   }
-  void setCounter (String? val){
-    counter=val!;
+
+  void setCounter(String? val) {
+    counter = val!;
     sharedpref?.setString("counter", counter);
     update();
   }
-  void Addi (){
+
+  void Addi() {
     i++;
     sharedpref?.setInt("i", i);
     update();
   }
-
 }

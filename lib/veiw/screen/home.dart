@@ -29,11 +29,11 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {controllerCount.seti();
                     controllerCount.setCounter("ادخل الذكر ");
                     },
-                  child:  Column(
+                  child:  const Column(
                       children: [
                         SizedBox(height:3),
                         Icon(Icons.settings_backup_restore_outlined,size: 30,),
-                Text("reset",style:TextStyle(color:Colors.white),)
+                const Text("reset",style:TextStyle(color:Colors.white),)
               ],
                 ),backgroundColor: Colors.blue
             ):null,
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             appBar: AppBar(title: const Text("سبح اسم ربك الاعلى\t"),backgroundColor: Colors.blue,),
 
             drawer: Drawer(child: Container(padding: const EdgeInsets.all(10),child: Column(children: [
-              SizedBox(height: 100,)
+              const SizedBox(height: 100,)
           
               ,const ListTile(title: Text("Contact Us"),leading: Icon(Icons.comment_outlined),)
 

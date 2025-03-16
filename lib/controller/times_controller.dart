@@ -42,7 +42,8 @@ class TimesController extends GetxController{
       sharedpref?.setString("maghrib", data!.maghrib);
       sharedpref?.setString("isha", data!.isha);
       sharedpref?.setString("lastthird", data!.lastthird);
-    }else{
+    }else if (sharedpref!.getString("fajr") != null) {
+
       data =TimingModel(
           fajr: sharedpref!.getString("fajr")!,
           sunrise: sharedpref!.getString("sunrise")!,
@@ -50,7 +51,8 @@ class TimesController extends GetxController{
           asr: sharedpref!.getString("asr")!,
           maghrib: sharedpref!.getString("maghrib")!,
           isha: sharedpref!.getString("isha")!,
-          lastthird: sharedpref!.getString("lastthird")!);
+          lastthird: sharedpref!.getString("lastthird")!
+      );
     }
 
     isLoading=false;

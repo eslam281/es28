@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../component/custom.dart';
 import '../../../component/dropdownlist.dart';
 import '../../../controller/count_controller.dart';
-import '../../../main.dart';
 
 class Counter extends StatelessWidget {
   const Counter({super.key});
@@ -15,7 +14,7 @@ class Counter extends StatelessWidget {
 
     return GetBuilder<CountControllerImp>(builder: (controller) {
       return  Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
           Column(children: [
             AppTextField(textEditingController:controller.textcontroll,
               title: "الذكر",
@@ -27,7 +26,7 @@ class Counter extends StatelessWidget {
                 SelectedListItem(name: "الله اكبر",),
                 SelectedListItem(name: "+",),
               ],),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             MaterialButton(onPressed: () {
               controller.setCounter(controller.textcontroll.text);
             },
@@ -39,7 +38,7 @@ class Counter extends StatelessWidget {
 
           const SizedBox(height: 100,),
 
-          Text("${sharedpref?.getString("counter")} ${sharedpref?.getInt("i")}",
+          Text("${controller.counter} ${controller.i}",
             style: const TextStyle(fontSize: 50, color: Color(0xFFFFE700)),
             softWrap: true,),
           const SizedBox(height: 30,),
@@ -48,7 +47,6 @@ class Counter extends StatelessWidget {
             controller.Addi();
           }),
         ],);
-      return Container();
     }
     );
   }
