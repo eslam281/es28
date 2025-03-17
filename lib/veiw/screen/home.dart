@@ -4,16 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/count_controller.dart';
 import '../../controller/home_controller.dart';
+import '../../core/functions/alertexitapp.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
 
   HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -25,28 +20,31 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
 
             floatingActionButton:(controller.index==0)?
-                FloatingActionButton(
-                  onPressed: () {controllerCount.seti();
-                    controllerCount.setCounter("ادخل الذكر ");
-                    },
-                  child:  const Column(
-                      children: [
-                        SizedBox(height:3),
-                        Icon(Icons.settings_backup_restore_outlined,size: 30,),
-                const Text("reset",style:TextStyle(color:Colors.white),)
-              ],
-                ),backgroundColor: Colors.blue
-            ):null,
-            
+                SizedBox(
+                  width: 70,
+                  child: FloatingActionButton(
+                    onPressed: () {controllerCount.seti();
+                      controllerCount.setCounter("ادخل الذكر ");
+                      },
+                    child:  const Column(
+                        children: [
+                          SizedBox(height:3),
+                          Icon(Icons.settings_backup_restore_outlined,size: 30,),
+                  const Text("إعادة ضبط",style:TextStyle(color:Colors.white),)
+                                ],
+                  ),backgroundColor: Colors.blue
+                              ),
+                ):null,
+
             appBar: AppBar(title: const Text("سبح اسم ربك الاعلى\t"),backgroundColor: Colors.blue,),
 
             drawer: Drawer(child: Container(padding: const EdgeInsets.all(10),child: Column(children: [
               const SizedBox(height: 100,)
-          
-              ,const ListTile(title: Text("Contact Us"),leading: Icon(Icons.comment_outlined),)
+
+              ,const ListTile(title: Text("اتصل بنا"),leading: Icon(Icons.comment_outlined),)
 
               ,Container(alignment:Alignment.centerLeft, child: MaterialButton
-                  (child: const ListTile(title: Text("About Us"),leading: Icon(Icons.info))
+                  (child: const ListTile(title: Text("معلومات عنا"),leading: Icon(Icons.info))
                   ,onPressed: () {Get.to(const About_us());},),),
 
             ],)
@@ -63,8 +61,11 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined),label:"الاذكار"),
             ]),
 
-            body:  controller.bodyList[controller.index]
-
+            body: PopScope(child:  controller.bodyList[controller.index],
+            canPop:false,
+            onPopInvokedWithResult:(didPop, result) {
+             return alertExitApp();
+            },)
         );
       }
     );

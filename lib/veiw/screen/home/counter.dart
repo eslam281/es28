@@ -38,21 +38,21 @@ class Counter extends StatelessWidget {
                       color: Color(0xFFFFE700)),)),
             ],),
 
-            const SizedBox(height: 100,),
+            const SizedBox(height: 50,),
 
             Column(
               children: [
                 Text("${controller.counter} ${controller.i}",
                   style: const TextStyle(fontSize: 50, color: Color(0xFFFFE700)),
                   softWrap: true,),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 20,),
                 customButton(iconName: Icons.add
                     , onPressed: () {
                       controller.Addi();
                     }),
               ],
             ),
-
+          const SizedBox(height: 50,),
           ],),
       );
     }

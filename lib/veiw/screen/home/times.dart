@@ -14,10 +14,10 @@ class Times extends StatelessWidget {
     return GetBuilder<TimesController>(builder: (controller) {
       print(controller.statusRequest);
       return Container(
-        color: Colors.black,height: double.infinity,padding:const EdgeInsets.all(20) ,
-        alignment: Alignment.center,
+        color: Colors.black,height: double.infinity,
+        padding:const EdgeInsets.all(20) , alignment: Alignment.center,
         child:  SingleChildScrollView(
-        child: HandlingDataView(
+          child: HandlingDataView(
           statusRequest:controller.statusRequest,
           widget: Column(crossAxisAlignment:CrossAxisAlignment.stretch,
             children: [
@@ -30,9 +30,9 @@ class Times extends StatelessWidget {
                   customCard(text: " فجر   ${controller.data!.fajr}"),
                   customCard(text: " شروق الشمس   ${controller.data!.sunrise}"),
                   customCard(text: "  ظهر   ${controller.data!.dhuhr}"),
-                  customCard(text: " عصر   ${controller.data!.asr}"),
-                  customCard(text: " مغرب   ${controller.data!.maghrib}"),
-                  customCard(text: " عشاء   ${controller.data!.isha}"),
+                  customCard(text: " عصر   ${controller.convertF(controller.data!.asr!)}"),
+                  customCard(text: " مغرب   ${controller.convertF(controller.data!.maghrib!)}"),
+                  customCard(text: " عشاء   ${controller.convertF(controller.data!.isha!)}"),
                   customCard(text: " الثلث الاخير من الليل   ${controller.data!.lastthird}"),
                 ],
               ),

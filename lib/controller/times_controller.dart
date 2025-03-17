@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
-// import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
+
 
 import '../core/class/statusrequest.dart';
 import '../core/functions/handlingdata.dart';
@@ -28,12 +27,12 @@ class TimesController extends GetxController{
     super.onInit();
   }
 
-  // String convertF (String val){
-  //   time24 = val;
-  //   dateTime =DateFormat("HH:mm").parse(time24);
-  //   time12 = DateFormat("h:mm").format(dateTime);
-  //   return time12;
-  // }
+  String convertF (String val){
+    time24 = val;
+    dateTime =DateFormat("HH:mm").parse(time24);
+    time12 = DateFormat("h:mm").format(dateTime);
+    return time12;
+  }
 
    iscontnect()async{
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
@@ -58,6 +57,8 @@ class TimesController extends GetxController{
       sharedpref?.setString("maghrib", data!.maghrib!);
       sharedpref?.setString("isha", data!.isha!);
       sharedpref?.setString("lastthird", data!.lastthird!);
+     }else{
+       getTimesOff();
      }
 
   }

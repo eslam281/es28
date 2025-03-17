@@ -48,7 +48,7 @@ dependencies:
   get: ^4.6.6
   shared_preferences: ^2.2.3
   connectivity_plus: ^6.0.5
-#  intl: ^0.17.0
+  intl: ^0.17.0
   font_awesome_flutter: ^10.1.0
   dartz: ^0.10.1
   lottie: ^3.1.3

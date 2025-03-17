@@ -20,6 +20,7 @@ class CountControllerImp extends CountController {
 
     if(sharedpref!.getString("counter")!= null)
       counter = sharedpref!.getString("counter")!;
+
     super.onInit();
   }
 
