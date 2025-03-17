@@ -27,7 +27,7 @@ class HomeControllerImp extends HomeController{
     update();
   }
   showDialog()async{
-   await Future.delayed(const Duration(seconds: 3));
+   await Future.delayed(const Duration(seconds: 2));
      Get.defaultDialog(
          confirm:Container(
            margin:const EdgeInsets.only(right: 10),

@@ -2,6 +2,7 @@
 import 'package:es28/veiw/screen/drawer/Aboutus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../controller/count_controller.dart';
 import '../../controller/home_controller.dart';
 import '../../core/functions/alertexitapp.dart';
@@ -41,7 +42,12 @@ class HomePage extends StatelessWidget {
             drawer: Drawer(child: Container(padding: const EdgeInsets.all(10),child: Column(children: [
               const SizedBox(height: 100,)
 
-              ,const ListTile(title: Text("اتصل بنا"),leading: Icon(Icons.comment_outlined),)
+              ,ListTile(title: const Text("اتصل بنا"),leading: const Icon(Icons.comment_outlined),
+                  trailing:const Icon(Icons.phone_callback_outlined),onTap:() async{
+                    // await launchUrl(Uri.parse("https://wa.me/201064744978"));
+                    // await launchUrl(Uri.parse("tel:0201064744978"));
+                    await launchUrl(Uri.parse("mailto://aslamsydbdalzyzbry@gmail.com"));
+                  })
 
               ,Container(alignment:Alignment.centerLeft, child: MaterialButton
                   (child: const ListTile(title: Text("معلومات عنا"),leading: Icon(Icons.info))
