@@ -17,9 +17,9 @@ class HomeControllerImp extends HomeController{
   ];
 
   @override
-  void onInit() {
+  void onReady() {
     showDialog();
-    super.onInit();
+    super.onReady();
   }
 
   void setIndex(val){
@@ -27,7 +27,7 @@ class HomeControllerImp extends HomeController{
     update();
   }
   showDialog()async{
-   await Future.delayed(const Duration(seconds: 2));
+   // await Future.delayed(const Duration(seconds: 1));
      Get.defaultDialog(
          confirm:Container(
            margin:const EdgeInsets.only(right: 10),

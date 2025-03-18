@@ -2,6 +2,8 @@
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class AppTextField extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -30,7 +32,7 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField> {
 
   /// This is on text changed method which will display on city text field on changed.
-  void onTextFieldTap() {
+  void onTextFieldTap()async {
     DropDownState(
       DropDown(
         isDismissible: true,
@@ -89,6 +91,7 @@ class _AppTextFieldState extends State<AppTextField> {
           controller: widget.textEditingController,
           cursorColor: Colors.black,
           keyboardType:TextInputType.name,
+          textDirection: TextDirection.rtl,
           onTap: widget.isCitySelected
               ? () {
             FocusScope.of(context).unfocus();
@@ -99,7 +102,8 @@ class _AppTextFieldState extends State<AppTextField> {
             filled: true,
             fillColor: Colors.white,
             contentPadding: const EdgeInsets.only(left: 8, bottom: 0, top: 0, right: 15),
-            hintText: widget.textEditingController.text ==""? widget.hint:widget.textEditingController.text,
+            hintText: widget.hint,
+            hintTextDirection: TextDirection.rtl,
             border: const OutlineInputBorder(
               borderSide: BorderSide(
                 width: 0,

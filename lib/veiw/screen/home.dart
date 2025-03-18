@@ -66,11 +66,16 @@ class HomePage extends StatelessWidget {
               BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined),label:"الاذكار"),
             ]),
 
-            body: PopScope(child:  controller.bodyList[controller.index],
+            body: PopScope(
             canPop:false,
             onPopInvokedWithResult:(didPop, result) {
              return alertExitApp();
-            },)
+            },
+                child:Container(
+        color: Colors.black,height: double.infinity,padding:const EdgeInsets.all(20) ,
+        child:SingleChildScrollView(
+          child: controller.bodyList[controller.index],
+        )))  ,
         );
       }
     );

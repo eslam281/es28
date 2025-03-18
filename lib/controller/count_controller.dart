@@ -39,6 +39,7 @@ class CountControllerImp extends CountController {
   void setCounter(String? val) {
     counter = val!;
     sharedpref?.setString("counter", counter);
+    textcontroll.clear();
     update();
   }
 

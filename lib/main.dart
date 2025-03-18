@@ -14,11 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  GetMaterialApp(
       title: 'Demo',
+      // textDirection: TextDirection.rtl,
       theme:ThemeData.light(),
       // darkTheme:ThemeData.dark() ,
-      home:  HomePage()
+      home:  HomePage(),
     );
   }
 }
