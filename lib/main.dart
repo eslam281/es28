@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Demo',
       theme:ThemeData.light(),
       // darkTheme:ThemeData.dark() ,
-      home:  HomePage()  ,
-
+      home:  HomePage()
     );
   }
 }

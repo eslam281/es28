@@ -19,7 +19,6 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomeControllerImp>(
       builder: (controller) {
         return Scaffold(
-
             floatingActionButton:(controller.index==0)?
                 SizedBox(
                   width: 70,
