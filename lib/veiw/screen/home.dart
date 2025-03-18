@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                   trailing:const Icon(Icons.phone_callback_outlined),onTap:() async{
                     // await launchUrl(Uri.parse("https://wa.me/201064744978"));
                     // await launchUrl(Uri.parse("tel:0201064744978"));
-                    await launchUrl(Uri.parse("mailto://aslamsydbdalzyzbry@gmail.com"));
+                    await launchUrl(Uri.parse("mailto:aslamsydbdalzyzbry@gmail.com"));
                   })
 
               ,Container(alignment:Alignment.centerLeft, child: MaterialButton
