@@ -2,9 +2,9 @@ import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../component/custom.dart';
-import '../../../component/dropdownlist.dart';
 import '../../../controller/count_controller.dart';
+import '../../component/custom.dart';
+import '../../component/dropdownlist.dart';
 
 class Counter extends StatelessWidget {
   const Counter({super.key});
@@ -13,7 +13,8 @@ class Counter extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetBuilder<CountControllerImp>(builder: (controller) {
-      return  Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      return  Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         const SizedBox(height: 50,),
 
           Column(children: [

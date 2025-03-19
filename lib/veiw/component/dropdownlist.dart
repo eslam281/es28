@@ -1,6 +1,7 @@
 
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
+import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -100,7 +101,7 @@ class _AppTextFieldState extends State<AppTextField> {
               : null,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.white,
+            fillColor: AppColor.grey,
             contentPadding: const EdgeInsets.only(left: 8, bottom: 0, top: 0, right: 15),
             hintText: widget.hint,
             hintTextDirection: TextDirection.rtl,

@@ -2,8 +2,8 @@ import 'package:es28/core/class/handlingdataview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../component/custom.dart';
 import '../../../controller/times_controller.dart';
+import '../../component/custom.dart';
 
 class Times extends StatelessWidget {
   const Times({super.key});
