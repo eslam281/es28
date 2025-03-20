@@ -30,10 +30,10 @@ class HomePage extends StatelessWidget {
                     child: const Column(
                       children: [
                         SizedBox(height: 3),
-                        Icon(
-                          Icons.settings_backup_restore_outlined,
-                          size: 30,
-                        ),
+
+                        Icon(Icons.settings_backup_restore_outlined,
+                          size: 30,),
+
                         const Text(
                           "إعادة ضبط",
                           style: TextStyle(color: Colors.white),
@@ -41,17 +41,15 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                     backgroundColor: Colors.blue),
-              )
-            : null,
+              ) : null,
         appBar: AppBar(
-
+          foregroundColor: Colors.white,
+          backgroundColor: AppColor.black,
           title:Image.asset(AppImageAsset.titleimage,width: 220,height: 120,),
-          backgroundColor: Colors.blue,
           centerTitle:true,
-        ),onEndDrawerChanged: (isOpened) {
-          Get.back();
-        },
+        ),
         drawer: Drawer(
+          width: 220,
           child: Container(
             padding: const EdgeInsets.all(10),
             child: Column(

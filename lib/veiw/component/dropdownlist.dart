@@ -3,8 +3,6 @@ import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class AppTextField extends StatefulWidget {
   final TextEditingController textEditingController;

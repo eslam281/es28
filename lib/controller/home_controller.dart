@@ -38,7 +38,9 @@ class HomeControllerImp extends HomeController{
              child: const Text("حسنا",style:TextStyle(fontSize: 17,fontFamily:"sans")),),
          ),
         title:"هل صليت على النبي اليوم ؟ ",
-       content: const Text("")
+       content: const Text("اللَّهُمَّ ‌صَلِّ ‌عَلَى ‌مُحَمَّدٍ ‌وَعَلَى ‌آلِ ‌مُحَمَّدٍ، ‌كما ‌صليت ‌على ‌إبراهيم، وعلى آل إبراهيم، إنك حميد مجيد،"
+           " اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كما باركت على إبراهيم وعلى آل إبراهيم، إنك حميد مجيد",
+       textDirection:TextDirection.rtl,style:TextStyle(fontSize:16),)
     );
   }
 }
