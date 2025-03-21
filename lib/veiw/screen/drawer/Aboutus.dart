@@ -4,13 +4,16 @@ class About_us extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(),body:
+    return Scaffold(
+      appBar: AppBar()
+      ,body:
     Container(
+      alignment:Alignment.topCenter,
       padding:const EdgeInsets.all(20),
         child: const Text(
-            "Hello \n I am Islam , I the developer of this app",
+            "مرحباً \n\n أنا إسلام، أنا مطور هذا التطبيق.",
           style:TextStyle(fontSize:25),
-          textAlign:TextAlign.center,))
+          textAlign:TextAlign.center,textDirection:TextDirection.rtl,))
       ,);
   }
 }

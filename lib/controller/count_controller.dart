@@ -36,10 +36,11 @@ class CountControllerImp extends CountController {
     update();
   }
 
-  void setCounter(String? val) {
+  void setCounter(String? val,BuildContext context) {
     counter = val!;
     sharedpref?.setString("counter", counter);
     textcontroll.clear();
+    FocusScope.of(context).unfocus();
     update();
   }
 

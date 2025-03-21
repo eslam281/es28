@@ -13,8 +13,8 @@ class customButton extends StatelessWidget{
           borderRadius:BorderRadius.circular(80),
           border:Border.all(color: const Color(0xFFFFE700) )
         ),
-        child:  Icon(iconName ,size: 50, color: const Color(0xFFFFE700)),),
-      iconSize: 60, onPressed:onPressed,);
+        child:  Icon(iconName ,size: 150, color: const Color(0xFFFFE700)),),
+      iconSize: 200, onPressed:onPressed,);
   }
 }
 

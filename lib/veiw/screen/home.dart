@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                 child: FloatingActionButton(
                     onPressed: () {
                       controllerCount.seti();
-                      controllerCount.setCounter("ادخل الذكر ");
+                      controllerCount.setCounter("ادخل الذكر ",context);
                     },
                     child: const Column(
                       children: [
