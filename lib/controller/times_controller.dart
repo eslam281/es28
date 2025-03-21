@@ -15,11 +15,12 @@ class TimesController extends GetxController{
   TimeData timeData = TimeData(Crud());
   bool result=false;
   TimingModel? data;
-   StatusRequest statusRequest =StatusRequest.loading;
+  StatusRequest statusRequest =StatusRequest.loading;
 
   late String time24;
   late String time12;
   late DateTime dateTime;
+  String? date;
 
   @override
   void onInit() {
@@ -49,6 +50,8 @@ class TimesController extends GetxController{
     statusRequest =handlingData(response);
      if(statusRequest == StatusRequest.success){
       data=TimingModel.fromJson(response["data"]["timings"]);
+      date = response["data"]["date"]["gregorian"]["date"];
+      print(date);
 
       sharedpref?.setString("fajr", data!.fajr!);
       sharedpref?.setString("sunrise", data!.sunrise!);
@@ -57,6 +60,7 @@ class TimesController extends GetxController{
       sharedpref?.setString("maghrib", data!.maghrib!);
       sharedpref?.setString("isha", data!.isha!);
       sharedpref?.setString("lastthird", data!.lastthird!);
+      sharedpref?.setString("date", date!);
      }else{
        getTimesOff();
      }
@@ -78,15 +82,18 @@ class TimesController extends GetxController{
   }
 
   getTimesOff(){
-    if (sharedpref!.getString("fajr") != null)
-    data = TimingModel(
-        fajr: sharedpref!.getString("fajr")!,
-        sunrise: sharedpref!.getString("sunrise")!,
-        dhuhr: sharedpref!.getString("dhuhr")!,
-        asr: sharedpref!.getString("asr")!,
-        maghrib: sharedpref!.getString("maghrib")!,
-        isha: sharedpref!.getString("isha")!,
-        lastthird: sharedpref!.getString("lastthird")!
-    );
+    if (sharedpref!.getString("fajr") != null){
+      data = TimingModel(
+          fajr: sharedpref!.getString("fajr")!,
+          sunrise: sharedpref!.getString("sunrise")!,
+          dhuhr: sharedpref!.getString("dhuhr")!,
+          asr: sharedpref!.getString("asr")!,
+          maghrib: sharedpref!.getString("maghrib")!,
+          isha: sharedpref!.getString("isha")!,
+          lastthird: sharedpref!.getString("lastthird")!
+      );
+      date =sharedpref!.getString("date");
+    }
+
   }
 }
