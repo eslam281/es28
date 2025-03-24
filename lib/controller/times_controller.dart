@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -16,6 +17,7 @@ class TimesController extends GetxController{
   bool result=false;
   TimingModel? data;
   StatusRequest statusRequest =StatusRequest.loading;
+  late Position position;
 
   late String time24;
   late String time12;
@@ -43,6 +45,8 @@ class TimesController extends GetxController{
   }
 
    getdata() async{
+   position = await Geolocator.getCurrentPosition();
+   print(position);
      statusRequest =StatusRequest.loading;
      update();
     var response =await timeData.getData("https://api.aladhan.com/v1/timingsByCity?city=tarqaya&country=EGY&method=5#");

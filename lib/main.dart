@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  GetMaterialApp(
-      title: 'Demo',
+      title: 'Hisn Muslim',
       // textDirection: TextDirection.rtl,
       theme:ThemeData.light(),
       // darkTheme:ThemeData.dark() ,
