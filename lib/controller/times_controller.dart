@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -17,12 +18,12 @@ import '../data/modle/modle.dart';
 
 class TimesController extends GetxController{
 
-  late String timingUrl;
+  String? timingUrl;
   TimeData timeData = TimeData(Crud());
   bool result=false;
   TimingModel? data;
   StatusRequest statusRequest =StatusRequest.loading;
-  late Position position;
+  Position? position;
 
   late String time24;
   late String time12;
@@ -50,8 +51,15 @@ class TimesController extends GetxController{
   }
 
    getdata() async{
-    if(timingUrl != null) {
-      var response = await timeData.getData(timingUrl);
+
+     if (timingUrl == null){
+       print(Get.deviceLocale);
+       timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&method=5#";
+       Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
+           backgroundColor: Colors.white);
+     }
+
+     var response = await timeData.getData(timingUrl!);
 
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
@@ -70,8 +78,7 @@ class TimesController extends GetxController{
       } else {
         getTimesOff();
       }
-    }
-    print(timingUrl);
+
   }
 
   times()async{
@@ -105,36 +112,27 @@ class TimesController extends GetxController{
 
   }
 
-  Future<Position> _determinePosition() async {
+ Future _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
-
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
-      return Future.error('Location services are disabled.');
+      Get.snackbar("تحذير","خدمات الموقع غير مفعلة.",backgroundColor: Colors.white);
+      return;
     }
 
     permission = await Geolocator.checkPermission();
-    while (permission == LocationPermission.denied) {
+    if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      // if (permission == LocationPermission.denied) {
-      //   // Permissions are denied, next time you could try
-      //   // requesting permissions again (this is also where
-      //   // Android's shouldShowRequestPermissionRationale
-      //   // returned true. According to Android guidelines
-      //   // your App should show an explanatory UI now.
-      //   return Future.error('Location permissions are denied');
-      // }
+      Get.snackbar("تحذير","تم رفض أذونات الموقع", backgroundColor: Colors.white);
+
+      return;
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      Get.snackbar("تحذير","تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",backgroundColor: Colors.white);
+      return;
     }
 
     return await Geolocator.getCurrentPosition();
@@ -142,23 +140,23 @@ class TimesController extends GetxController{
 
   Future<void> reverseGeocode() async {
     position = await _determinePosition();
-    final String
-    url = "https://nominatim.openstreetmap.org/reverse?lat=${position.latitude}&lon=${position.longitude}"
-        "&format=json&accept-language=en";
+    if(position == null) return;
+    final String url = "https://nominatim.openstreetmap.org/reverse?"
+        "lat=${position?.latitude}&lon=${position?.longitude}&format=json&accept-language=en";
 
     try {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
-        print(data["address"]);
+
         timingUrl = "https://api.aladhan.com/v1/timingsByCity?city=${data["address"]["road"]??data["address"]["state"]}&"
             "country=${data["address"]["country"]}&method=5#";
       } else {
-        print("Error: ${response.statusCode} - ${response.body}");
+
       }
     } catch (e) {
-      print("Exception: $e");
+
     }
   }
 
