@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       // textDirection: TextDirection.rtl,
       theme:ThemeData.light(),
       // darkTheme:ThemeData.dark() ,
+
       home:  HomePage(),
     );
   }
