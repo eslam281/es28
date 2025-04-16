@@ -53,7 +53,6 @@ class TimesController extends GetxController{
    getdata() async{
 
      if (timingUrl == null){
-       print(Get.deviceLocale);
        timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&method=5#";
        Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
            backgroundColor: Colors.white);
@@ -118,15 +117,18 @@ class TimesController extends GetxController{
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      Get.snackbar("تحذير","خدمات الموقع غير مفعلة.",backgroundColor: Colors.white);
-      return;
+     await Get.snackbar("تحذير","خدمات الموقع غير مفعلة.",backgroundColor: Colors.white);
+
+     await Geolocator.openLocationSettings();
+     serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+     if(!serviceEnabled) return;
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       Get.snackbar("تحذير","تم رفض أذونات الموقع", backgroundColor: Colors.white);
-
       return;
     }
 
@@ -135,7 +137,7 @@ class TimesController extends GetxController{
       return;
     }
 
-    return await Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 
   Future<void> reverseGeocode() async {
@@ -150,8 +152,8 @@ class TimesController extends GetxController{
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
 
-        timingUrl = "https://api.aladhan.com/v1/timingsByCity?city=${data["address"]["road"]??data["address"]["state"]}&"
-            "country=${data["address"]["country"]}&method=5#";
+        timingUrl = "https://api.aladhan.com/v1/timingsByCity?city=${(data["address"]["road"]!=null)?
+        data["address"]["road"]:data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
       } else {
 
       }
@@ -161,3 +163,5 @@ class TimesController extends GetxController{
   }
 
 }
+// List<Placemark> placemarks =
+//     await placemarkFromCoordinates(position.latitude, position.longitude);
