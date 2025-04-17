@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/times_controller.dart';
+import '../../../core/functions/converTime24_12.dart';
 import '../../component/custom.dart';
 
 class Times extends StatelessWidget {
@@ -29,9 +30,9 @@ class Times extends StatelessWidget {
               customCard(text: " فجر   ${controller.data!.fajr}"),
               customCard(text: " شروق الشمس   ${controller.data!.sunrise}"),
               customCard(text: "  ظهر   ${controller.data!.dhuhr}"),
-              customCard(text: " عصر   ${controller.convertF(controller.data!.asr!)}"),
-              customCard(text: " مغرب   ${controller.convertF(controller.data!.maghrib!)}"),
-              customCard(text: " عشاء   ${controller.convertF(controller.data!.isha!)}"),
+              customCard(text: " عصر   ${convertF(controller.data!.asr!)}"),
+              customCard(text: " مغرب   ${convertF(controller.data!.maghrib!)}"),
+              customCard(text: " عشاء   ${convertF(controller.data!.isha!)}"),
               customCard(text: " الثلث الاخير من الليل   ${controller.data!.lastthird}"),
             ],
           ),

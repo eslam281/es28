@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 
 
 import '../core/class/statusrequest.dart';
+import '../core/functions/getlocation.dart';
 import '../core/functions/handlingdata.dart';
 import '../data/datasource/time_data.dart';
 import '../data/modle/modle.dart';
@@ -25,9 +25,7 @@ class TimesController extends GetxController{
   StatusRequest statusRequest =StatusRequest.loading;
   Position? position;
 
-  late String time24;
-  late String time12;
-  late DateTime dateTime;
+
   String? date;
 
   @override
@@ -36,21 +34,15 @@ class TimesController extends GetxController{
     super.onInit();
   }
 
-  String convertF (String val){
-    time24 = val;
-    dateTime =DateFormat("HH:mm").parse(time24);
-    time12 = DateFormat("h:mm").format(dateTime);
-    return time12;
-  }
 
-   iscontnect()async{
+  iscontnect()async{
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult.contains(ConnectivityResult.wifi)) return true ;
     else if(connectivityResult.contains(ConnectivityResult.mobile)) return true ;
     else return false;
   }
 
-   getdata() async{
+  getdata() async{
 
      if (timingUrl == null){
        timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&method=5#";
@@ -111,37 +103,10 @@ class TimesController extends GetxController{
 
   }
 
- Future _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-     await Get.snackbar("تحذير","خدمات الموقع غير مفعلة.",backgroundColor: Colors.white);
-
-     await Geolocator.openLocationSettings();
-     serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-     if(!serviceEnabled) return;
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      Get.snackbar("تحذير","تم رفض أذونات الموقع", backgroundColor: Colors.white);
-      return;
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      Get.snackbar("تحذير","تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",backgroundColor: Colors.white);
-      return;
-    }
-
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-  }
 
   Future<void> reverseGeocode() async {
-    position = await _determinePosition();
+    position = await determinePosition();
     if(position == null) return;
     final String url = "https://nominatim.openstreetmap.org/reverse?"
         "lat=${position?.latitude}&lon=${position?.longitude}&format=json&accept-language=en";
