@@ -88,7 +88,7 @@ class _AppTextFieldState extends State<AppTextField> {
         ),
         TextFormField(
           controller: widget.textEditingController,
-          cursorColor: Colors.black,
+          cursorColor: Colors.white,
           keyboardType:TextInputType.name,
           textDirection: TextDirection.rtl,
           onTap: widget.isCitySelected

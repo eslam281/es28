@@ -1,15 +1,16 @@
 import 'dart:convert';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 
 import '../core/class/statusrequest.dart';
+import '../core/functions/checkContnection.dart';
 import '../core/functions/getlocation.dart';
 import '../core/functions/handlingdata.dart';
 import '../data/datasource/time_data.dart';
@@ -18,15 +19,13 @@ import '../data/modle/modle.dart';
 
 class TimesController extends GetxController{
 
-  String? timingUrl;
-  TimeData timeData = TimeData(Crud());
-  bool result=false;
-  TimingModel? data;
   StatusRequest statusRequest =StatusRequest.loading;
+  TimeData timeData = TimeData(Crud());
+  TimingModel? data;
+
   Position? position;
-
-
-  String? date;
+  String? timingUrl;
+  String? dateResponse;
 
   @override
   void onInit() {
@@ -34,12 +33,21 @@ class TimesController extends GetxController{
     super.onInit();
   }
 
+  times()async{
+    bool result=false;
+    result = await iscontnect();
 
-  iscontnect()async{
-    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
-    if(connectivityResult.contains(ConnectivityResult.wifi)) return true ;
-    else if(connectivityResult.contains(ConnectivityResult.mobile)) return true ;
-    else return false;
+    dateResponse =sharedpref!.getString("date")??"";
+
+    if(result && dateResponse!=DateFormat('dd-MM-yyyy').format(DateTime.now())){
+      await reverseGeocode();
+      await getdata();
+    }else{
+      getTimesOff();
+    }
+    statusRequest =StatusRequest.success;
+    update();
+
   }
 
   getdata() async{
@@ -55,8 +63,7 @@ class TimesController extends GetxController{
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         data = TimingModel.fromJson(response["data"]["timings"]);
-        date = response["data"]["date"]["gregorian"]["date"];
-        print(date);
+        dateResponse = response["data"]["date"]["gregorian"]["date"];
 
         sharedpref?.setString("fajr", data!.fajr!);
         sharedpref?.setString("sunrise", data!.sunrise!);
@@ -65,25 +72,10 @@ class TimesController extends GetxController{
         sharedpref?.setString("maghrib", data!.maghrib!);
         sharedpref?.setString("isha", data!.isha!);
         sharedpref?.setString("lastthird", data!.lastthird!);
-        sharedpref?.setString("date", date!);
+        sharedpref?.setString("date", dateResponse!);
       } else {
         getTimesOff();
       }
-
-  }
-
-  times()async{
-
-    result = await iscontnect();
-
-    if(result){
-      await reverseGeocode();
-      await getdata();
-    }else{
-      getTimesOff();
-    }
-    statusRequest =StatusRequest.success;
-    update();
 
   }
 
@@ -98,12 +90,10 @@ class TimesController extends GetxController{
           isha: sharedpref!.getString("isha")!,
           lastthird: sharedpref!.getString("lastthird")!
       );
-      date =sharedpref!.getString("date");
+      dateResponse =sharedpref!.getString("date");
     }
 
   }
-
-
 
   Future<void> reverseGeocode() async {
     position = await determinePosition();

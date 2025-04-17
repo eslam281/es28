@@ -92,7 +92,7 @@ class HomePage extends StatelessWidget {
                   icon: Icon(Icons.access_time), label: "أوقات الصلاة"),
               BottomNavigationBarItem(
                   icon: Icon(Icons.menu_book_outlined), label: "الاذكار"),
-            ],selectedItemColor: AppColor.primaryColor,
+            ],selectedItemColor: AppColor.primaryColor,backgroundColor: AppColor.grey4,
         ),
         body: PopScope(
             canPop: false,

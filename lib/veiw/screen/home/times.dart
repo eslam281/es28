@@ -19,7 +19,7 @@ class Times extends StatelessWidget {
       widget: Column(crossAxisAlignment:CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 30,),
-          Text("${controller.date}",style: const TextStyle(color:Colors.white,fontSize: 20),
+          Text("${controller.dateResponse}",style: const TextStyle(color:Colors.white,fontSize: 20),
           textAlign: TextAlign.right),
           const SizedBox(height: 30,),
 

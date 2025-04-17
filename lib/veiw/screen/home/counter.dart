@@ -15,7 +15,7 @@ class Counter extends StatelessWidget {
     return GetBuilder<CountControllerImp>(builder: (controller) {
       return  Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const SizedBox(height: 50,),
+        const SizedBox(height: 40,),
 
           Column(children: [
             AppTextField(textEditingController:controller.textcontroll,
@@ -44,16 +44,14 @@ class Counter extends StatelessWidget {
           Column(
             children: [
               Text("${controller.counter} ${controller.i}",
-                style: const TextStyle(fontSize: 40, color: Color(0xFFFFE700)),
+                style: const TextStyle(fontSize: 30, color: Color(0xFFFFE700)),
                 softWrap: true,textDirection:TextDirection.rtl,),
               const SizedBox(height: 20,),
-              customButton(iconName: Icons.add
-                  , onPressed: () {
-                    controller.Addi();
-                  }),
+
+              customButton(onPressed: () {controller.Addi();}),
             ],
           ),
-        const SizedBox(height: 50,),
+        const SizedBox(height: 40,),
         ],);
     }
     );
