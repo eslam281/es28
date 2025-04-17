@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:es28/core/class/crud.dart';
@@ -19,10 +20,12 @@ import '../data/modle/modle.dart';
 
 class TimesController extends GetxController{
 
-  StatusRequest statusRequest =StatusRequest.loading;
+  StatusRequest statusRequest =StatusRequest.onitnial;
   TimeData timeData = TimeData(Crud());
   TimingModel? data;
 
+  bool isready = false;
+  late Timer rebuild ;
   Position? position;
   String? timingUrl;
   String? dateResponse;
@@ -30,16 +33,33 @@ class TimesController extends GetxController{
   @override
   void onInit() {
     times();
+    isready =true;
     super.onInit();
   }
 
+  reTimes()async{
+
+    if(isready){
+     await times();
+    }
+    isready = false;
+
+   rebuild = Timer(const Duration(seconds: 40),() {
+     isready =true;
+     rebuild.cancel();
+   },);
+  }
+
   times()async{
+    statusRequest =StatusRequest.loading;
+    update();
+
     bool result=false;
     result = await iscontnect();
+    bool isondate = checkDate();
 
-    dateResponse =sharedpref!.getString("date")??"";
+    if(result && (!isondate||isready)){
 
-    if(result && dateResponse!=DateFormat('dd-MM-yyyy').format(DateTime.now())){
       await reverseGeocode();
       await getdata();
     }else{
@@ -77,6 +97,11 @@ class TimesController extends GetxController{
         getTimesOff();
       }
 
+  }
+
+ bool checkDate(){
+    dateResponse =sharedpref!.getString("date")??"";
+   return dateResponse==DateFormat('dd-MM-yyyy').format(DateTime.now());
   }
 
   getTimesOff(){

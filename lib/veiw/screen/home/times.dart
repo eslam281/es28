@@ -1,4 +1,5 @@
 import 'package:es28/core/class/handlingdataview.dart';
+import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,8 +20,15 @@ class Times extends StatelessWidget {
       widget: Column(crossAxisAlignment:CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 30,),
-          Text("${controller.dateResponse}",style: const TextStyle(color:Colors.white,fontSize: 20),
-          textAlign: TextAlign.right),
+          Row(
+              mainAxisAlignment:MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(onPressed:() {controller.reTimes();}, icon:const Icon(Icons.refresh)
+              ,color:AppColor.primaryColor,),
+              Text("${controller.dateResponse}",style: const TextStyle(color:Colors.white,fontSize: 20),
+              textAlign: TextAlign.right),
+            ],
+          ),
           const SizedBox(height: 30,),
 
           if (controller.data != null)
