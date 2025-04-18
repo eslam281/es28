@@ -33,7 +33,10 @@ class TimesController extends GetxController{
   @override
   void onInit() {
     times();
-    isready =true;
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      isready =true;
+      update();
+    },);
     super.onInit();
   }
 
@@ -46,6 +49,7 @@ class TimesController extends GetxController{
 
    rebuild = Timer(const Duration(seconds: 40),() {
      isready =true;
+     update();
      rebuild.cancel();
    },);
   }
@@ -59,7 +63,6 @@ class TimesController extends GetxController{
     bool isondate = checkDate();
 
     if(result && (!isondate||isready)){
-
       await reverseGeocode();
       await getdata();
     }else{
@@ -99,7 +102,7 @@ class TimesController extends GetxController{
 
   }
 
- bool checkDate(){
+  bool checkDate(){
     dateResponse =sharedpref!.getString("date")??"";
    return dateResponse==DateFormat('dd-MM-yyyy').format(DateTime.now());
   }
