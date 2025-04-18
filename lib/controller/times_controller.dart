@@ -46,6 +46,8 @@ class TimesController extends GetxController{
      await times();
     }
     isready = false;
+    Get.snackbar("تنببه","انتظر حتى يتم اعاده تشغيل الزر بعد 40 دقيقه",
+        backgroundColor: Colors.white);
 
    rebuild = Timer(const Duration(seconds: 40),() {
      isready =true;
