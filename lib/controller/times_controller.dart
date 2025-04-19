@@ -52,7 +52,6 @@ class TimesController extends GetxController{
    rebuild = Timer(const Duration(seconds: 40),() {
      isready =true;
      update();
-     rebuild.cancel();
    },);
   }
 

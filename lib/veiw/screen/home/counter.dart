@@ -11,7 +11,7 @@ class Counter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    Get.put(CountControllerImp());
     return GetBuilder<CountControllerImp>(builder: (controller) {
       return  Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
