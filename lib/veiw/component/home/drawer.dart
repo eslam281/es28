@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constant/imageasset.dart';
 import '../../screen/drawer/Aboutus.dart';
+import '../../screen/drawer/Qibla.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -43,6 +44,17 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
             ),
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: ListTile(
+                title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
+                onTap: () {
+                  Get.to(() => const QiblaPage());
+                },
+              ),
+            ),
+
           ],
         ),
       ),

@@ -28,5 +28,5 @@ Future determinePosition() async {
     return null;
   }
 
-  return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  return await Geolocator.getCurrentPosition(locationSettings:const LocationSettings(accuracy:LocationAccuracy.best ) );
 }
