@@ -11,13 +11,14 @@ abstract class QiblaController extends GetxController {
 
 class QiblaControllerImp extends QiblaController {
   StatusRequest statusRequest = StatusRequest.loading;
-  double? qiblaDirection;
+  late double qiblaDirection;
 
   @override
   void onInit() {
     initQiblaDirection();
     super.onInit();
   }
+
 
   Future<void> initQiblaDirection() async {
     final Position? position = await determinePosition();
