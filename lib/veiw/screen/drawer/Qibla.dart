@@ -34,7 +34,7 @@ class QiblaPage extends StatelessWidget {
                   return const Center(child: Text('Device does not have sensors.'));
                 }
 
-                double angle = (controller.qiblaDirection! - direction) * (math.pi / 180);
+                double angle = (controller.qiblaDirection - direction) * (math.pi / 180);
 
                 return Center(
                   child: Container(
