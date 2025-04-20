@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/Qibla_controller.dart';
+import '../../../controller/drawer/Qibla_controller.dart';
 
 class QiblaPage extends StatelessWidget {
   const QiblaPage({super.key});

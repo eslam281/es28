@@ -1,3 +1,4 @@
+import 'package:es28/core/shared/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -9,19 +10,22 @@ Future determinePosition() async {
   permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
-    Get.snackbar("تحذير","تم رفض أذونات الموقع", backgroundColor: Colors.white);
+    CustomSnackBar("تحذير","تم رفض أذونات الموقع");
     return null;
   }
 
   if (permission == LocationPermission.deniedForever) {
-    Get.snackbar("تحذير","تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",backgroundColor: Colors.white);
+    CustomSnackBar("تحذير","تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.");
     return null;
   }
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
 
-    await Get.snackbar("تحذير","خدمات الموقع غير مفعلة.",backgroundColor: Colors.white);
+
+
+    CustomSnackBar("تحذير", "خدمات الموقع غير مفعلة.");
+
     while (!serviceEnabled) {
       await Geolocator.openLocationSettings();
       await Future.delayed(const Duration(seconds: 6));

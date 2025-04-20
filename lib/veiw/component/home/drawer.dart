@@ -1,3 +1,4 @@
+import 'package:es28/veiw/screen/drawer/surat_al_kahf.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -25,6 +26,26 @@ class CustomDrawer extends StatelessWidget {
             ),
             const SizedBox(height: 50,),
 
+            Container(
+              alignment: Alignment.centerLeft,
+              child: ListTile(
+                title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
+                onTap: () {
+                  Get.to(() => const QiblaPage());
+                },
+              ),
+            ),
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: ListTile(
+                title: const Text("سورة الكهف"), leading: const Icon(Icons.menu_book_outlined),
+                onTap: () {
+                  Get.to(() => const Surat_Al_Kahf());
+                },
+              ),
+            ),
+
             ListTile(
                 title: const Text("اتصل بنا"),
                 leading: const Icon(Icons.comment_outlined),
@@ -41,16 +62,6 @@ class CustomDrawer extends StatelessWidget {
                 title: const Text("معلومات عنا"), leading: const Icon(Icons.info),
                 onTap: () {
                   Get.to(() => const About_us());
-                },
-              ),
-            ),
-
-            Container(
-              alignment: Alignment.centerLeft,
-              child: ListTile(
-                title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
-                onTap: () {
-                  Get.to(() => const QiblaPage());
                 },
               ),
             ),

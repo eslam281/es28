@@ -1,9 +1,9 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
-import '../core/class/statusrequest.dart';
-import '../core/functions/calculateQiblaDirection.dart';
-import '../core/functions/getlocation.dart';
+import '../../core/class/statusrequest.dart';
+import '../../core/functions/calculateQiblaDirection.dart';
+import '../../core/functions/getlocation.dart';
 
 abstract class QiblaController extends GetxController {
 

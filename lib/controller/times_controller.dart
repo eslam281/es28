@@ -14,6 +14,7 @@ import '../core/class/statusrequest.dart';
 import '../core/functions/checkContnection.dart';
 import '../core/functions/getlocation.dart';
 import '../core/functions/handlingdata.dart';
+import '../core/shared/snackbar.dart';
 import '../data/datasource/time_data.dart';
 import '../data/modle/modle.dart';
 
@@ -46,8 +47,7 @@ class TimesController extends GetxController{
      await times();
     }
     isready = false;
-    Get.snackbar("تنببه","انتظر حتى يتم اعاده تشغيل الزر بعد 40 دقيقه",
-        backgroundColor: Colors.white);
+    CustomSnackBar("تنببه","انتظر حتى يتم اعاده تشغيل الزر بعد 40 دقيقه");
 
    rebuild = Timer(const Duration(seconds: 40),() {
      isready =true;
@@ -56,17 +56,22 @@ class TimesController extends GetxController{
   }
 
   times()async{
-    statusRequest =StatusRequest.loading;
-    update();
+    bool isondate =await checkDate();
+    if(!isondate||isready){
+      statusRequest =StatusRequest.loading;
+      update();
+      bool result = false;
+      result = await iscontnect();
 
-    bool result=false;
-    result = await iscontnect();
-    bool isondate = checkDate();
+      if (result) {
+        await reverseGeocode();
+        await getdata();
 
-    if(result && (!isondate||isready)){
-      await reverseGeocode();
-      await getdata();
-    }else{
+      } else {
+        getTimesOff();
+      }
+
+    } else {
       getTimesOff();
     }
     statusRequest =StatusRequest.success;
