@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/color.dart';
+import '../../../core/shared/appleading.dart';
 class About_us extends StatelessWidget {
   const About_us({super.key});
 
@@ -8,8 +9,7 @@ class About_us extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( backgroundColor: AppColor.black,
-          leading:IconButton(onPressed:() => Navigator.of(context).pop(),
-              icon: const Icon(Icons.arrow_back,color:AppColor.secondColor,))),
+          leading:const Appleading()),
       
       body: Container(
       color:AppColor.black,

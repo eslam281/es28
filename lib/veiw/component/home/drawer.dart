@@ -1,3 +1,4 @@
+import 'package:es28/core/constant/color.dart';
 import 'package:es28/veiw/screen/drawer/surat_al_kahf.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,10 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Drawer(
-      width: 220,
+      surfaceTintColor:Colors.blue,
+      backgroundColor: AppColor.black,
+      shadowColor:AppColor.secondColor,elevation: 70,
+      width: 200,
       child: Container(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -27,6 +31,8 @@ class CustomDrawer extends StatelessWidget {
             const SizedBox(height: 50,),
 
             Container(
+              margin:const EdgeInsets.only(top: 10),
+              color:AppColor.secondColor,
               alignment: Alignment.centerLeft,
               child: ListTile(
                 title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
@@ -37,6 +43,8 @@ class CustomDrawer extends StatelessWidget {
             ),
 
             Container(
+              margin:const EdgeInsets.only(top: 10),
+              color:AppColor.secondColor,
               alignment: Alignment.centerLeft,
               child: ListTile(
                 title: const Text("سورة الكهف"), leading: const Icon(Icons.menu_book_outlined),
@@ -46,17 +54,23 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
 
-            ListTile(
-                title: const Text("اتصل بنا"),
-                leading: const Icon(Icons.comment_outlined),
-                onTap: () async {
-                  // await launchUrl(Uri.parse("https://wa.me/201064744978"));
-                  // await launchUrl(Uri.parse("tel:0201064744978"));
-                  await launchUrl(
-                      Uri.parse("mailto:aslamsydbdalzyzbry@gmail.com"));
-                }),
+            Container(
+              margin:const EdgeInsets.only(top: 10),
+              color:AppColor.secondColor,
+              child: ListTile(
+                  title: const Text("اتصل بنا"),
+                  leading: const Icon(Icons.comment_outlined),
+                  onTap: () async {
+                    // await launchUrl(Uri.parse("https://wa.me/201064744978"));
+                    // await launchUrl(Uri.parse("tel:0201064744978"));
+                    await launchUrl(
+                        Uri.parse("mailto:aslamsydbdalzyzbry@gmail.com"));
+                  }),
+            ),
 
             Container(
+              margin:const EdgeInsets.only(top: 10),
+              color:AppColor.secondColor,
               alignment: Alignment.centerLeft,
               child: ListTile(
                 title: const Text("معلومات عنا"), leading: const Icon(Icons.info),

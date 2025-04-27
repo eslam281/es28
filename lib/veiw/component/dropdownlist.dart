@@ -88,7 +88,7 @@ class _AppTextFieldState extends State<AppTextField> {
         ),
         TextFormField(
           controller: widget.textEditingController,
-          cursorColor: Colors.white,
+          cursorColor: AppColor.secondColor,
           keyboardType:TextInputType.name,
           textDirection: TextDirection.rtl,
           onTap: widget.isCitySelected
@@ -100,8 +100,8 @@ class _AppTextFieldState extends State<AppTextField> {
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColor.grey,
-            contentPadding: const EdgeInsets.only(left: 8, bottom: 0, top: 0, right: 15),
-            hintText: widget.hint,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+            hintText: widget.hint,hintStyle: const TextStyle(color:AppColor.black),
             hintTextDirection: TextDirection.rtl,
             border: const OutlineInputBorder(
               borderSide: BorderSide(
