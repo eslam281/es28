@@ -13,6 +13,7 @@ class SuratAlKahfController extends GetxController {
     AppImageAsset.page8,
     AppImageAsset.page9,
     AppImageAsset.page10,
+    AppImageAsset.page11,
     AppImageAsset.page12,
   ];
 

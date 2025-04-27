@@ -10,17 +10,13 @@ class Surat_Al_Kahf extends StatelessWidget {
   Widget build(BuildContext context) {
     SuratAlKahfController controller = Get.put(SuratAlKahfController());
     return Scaffold(
-      appBar:AppBar(
-        backgroundColor:const Color(0xFFFCF5FD),
-        elevation: 0,
-      ),
+      appBar:AppBar(backgroundColor:Colors.white,surfaceTintColor:const Color(0xFF5E4840)),
       body:Container(
-        padding:const EdgeInsets.all(15),
         child:ListView.builder(itemCount:controller.images.length,
             itemBuilder: (context, index) =>
                 Center(
                   child: Image.asset(controller.images[index],
-                    height:index==0?200:600, fit:BoxFit.fill,),
+                     fit:BoxFit.fitWidth,),
                 )
           ,),
       ),

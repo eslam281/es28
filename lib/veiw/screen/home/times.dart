@@ -24,7 +24,7 @@ class Times extends StatelessWidget {
               mainAxisAlignment:MainAxisAlignment.spaceBetween,
             children: [
               IconButton(onPressed:() {controller.reTimes();}, icon:const Icon(Icons.refresh)
-              ,color:controller.isready?AppColor.primaryColor:null,),
+              ,color:controller.isready?AppColor.secondColor:null,),
               Text("${controller.dateResponse}",style: const TextStyle(color:Colors.white,fontSize: 20),
               textAlign: TextAlign.right),
             ],

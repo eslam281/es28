@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constant/color.dart';
+
 
 class customButton extends StatelessWidget{
   final Function () onPressed;
@@ -9,7 +11,7 @@ class customButton extends StatelessWidget{
     return Container(
       height: 150,width: 150,
       decoration:BoxDecoration(
-        color: const Color(0xFFFFE700),
+        color: AppColor.secondColor,
         borderRadius:BorderRadius.circular(100),
       ),
       child:  MaterialButton(
@@ -41,7 +43,7 @@ class customCard extends StatelessWidget{
     return Column(
       children: [
         Card(child: Container(width: 350,alignment: Alignment.center,
-            child: Text(text,style: const TextStyle(color: Colors.teal,fontSize: 30),textAlign: TextAlign.center,))),
+            child: Text(text,style: const TextStyle(color: AppColor.primaryColor,fontSize: 30),textAlign: TextAlign.center,))),
         const SizedBox(height: 40,)
       ],
     );

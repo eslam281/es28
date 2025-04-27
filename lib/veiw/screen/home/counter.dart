@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/count_controller.dart';
+import '../../../core/constant/color.dart';
 import '../../component/custom.dart';
 import '../../component/dropdownlist.dart';
 
@@ -44,7 +45,7 @@ class Counter extends StatelessWidget {
           Column(
             children: [
               Text("${controller.counter} ${controller.i}",
-                style: const TextStyle(fontSize: 30, color: Color(0xFFFFE700)),
+                style: const TextStyle(fontSize: 30, color: AppColor.primaryColor),
                 softWrap: true,textDirection:TextDirection.rtl,),
               const SizedBox(height: 20,),
 

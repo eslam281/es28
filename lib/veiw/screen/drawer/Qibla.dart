@@ -15,7 +15,7 @@ class QiblaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(QiblaControllerImp());
     return Scaffold(
-      appBar: AppBar(title: const Text('Qibla Compass')),
+      appBar: AppBar(title: const Text('اتجاه القبلة')),
       body: GetBuilder<QiblaControllerImp>(builder: (controller) {
         return HandlingDataView(statusRequest: controller.statusRequest,
             widget: StreamBuilder<CompassEvent>(

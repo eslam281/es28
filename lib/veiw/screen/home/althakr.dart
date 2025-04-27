@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/elathaker_controller.dart';
+import '../../../core/constant/color.dart';
 
 class Althakr extends StatelessWidget {
   const Althakr({super.key});
@@ -21,7 +22,8 @@ class Althakr extends StatelessWidget {
                   children: [
                     Card(child:Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(controller.adhkar[index],style:const TextStyle(fontSize: 20,),
+                      child: Text(controller.adhkar[index],style:const TextStyle(fontSize: 20,
+                      color: AppColor.primaryColor),
                         textDirection:TextDirection.rtl,),
                     ),),
                     const SizedBox(height: 10,)
