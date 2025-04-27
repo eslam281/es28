@@ -20,7 +20,7 @@ class Counter extends StatelessWidget {
 
           Column(children: [
             AppTextField(textEditingController:controller.textcontroll,
-              title: "الذكر",
+              title: "",
               hint: "أدخل الذكر",
               isCitySelected: true,
               cities: [
@@ -34,10 +34,10 @@ class Counter extends StatelessWidget {
             MaterialButton(onPressed: () {
               controller.setCounter(controller.textcontroll.text,context);
             },
-                color: Colors.blue,
+                color: AppColor.secondColor,
                 child: const Text("ادخل الذكر", style: TextStyle(fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFFFE700)),)),
+                    color:AppColor.white),)),
           ],),
 
           const SizedBox(height: 50,),

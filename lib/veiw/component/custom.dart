@@ -42,8 +42,10 @@ class customCard extends StatelessWidget{
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Card(child: Container(width: 350,alignment: Alignment.center,
-            child: Text(text,style: const TextStyle(color: AppColor.primaryColor,fontSize: 30),textAlign: TextAlign.center,))),
+        Card(
+            color: AppColor.primaryColor,
+            child: Container(width: 350,alignment: Alignment.center,
+            child: Text(text,style: const TextStyle(color:Colors.white,fontSize: 30),textAlign: TextAlign.center,))),
         const SizedBox(height: 40,)
       ],
     );

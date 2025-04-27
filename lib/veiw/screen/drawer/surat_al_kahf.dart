@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/drawer/surat_al_kahf_controller.dart';
+import '../../../core/constant/color.dart';
 
 class Surat_Al_Kahf extends StatelessWidget {
   const Surat_Al_Kahf({super.key});
@@ -10,7 +11,7 @@ class Surat_Al_Kahf extends StatelessWidget {
   Widget build(BuildContext context) {
     SuratAlKahfController controller = Get.put(SuratAlKahfController());
     return Scaffold(
-      appBar:AppBar(backgroundColor:Colors.white,surfaceTintColor:const Color(0xFF5E4840)),
+      appBar:AppBar(backgroundColor:AppColor.white,surfaceTintColor:const Color(0xFF5E4840)),
       body:Container(
         child:ListView.builder(itemCount:controller.images.length,
             itemBuilder: (context, index) =>

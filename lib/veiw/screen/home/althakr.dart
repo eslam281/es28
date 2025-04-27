@@ -20,10 +20,12 @@ class Althakr extends StatelessWidget {
               ...List.generate(controller.adhkar.length, (index) =>
                 Column(
                   children: [
-                    Card(child:Padding(
+                    Card(
+                      color: AppColor.primaryColor,
+                      child:Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(controller.adhkar[index],style:const TextStyle(fontSize: 20,
-                      color: AppColor.primaryColor),
+                      child: Text(controller.adhkar[index],style:const
+                      TextStyle(fontSize: 20,color: AppColor.white),
                         textDirection:TextDirection.rtl,),
                     ),),
                     const SizedBox(height: 10,)
