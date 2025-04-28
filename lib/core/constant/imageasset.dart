@@ -5,7 +5,7 @@ class AppImageAsset{
 
   static const String logo="$rootImages/537600-00.png";
 
-  static const String titleimage="$rootImages/othman008.jpg";
+  static const String titleimage="$rootImages/othman008.png";
   static const String qibla="$rootImages/qibla.jpg";
 
   static const String loading  = "$rootLottie/loading.json";

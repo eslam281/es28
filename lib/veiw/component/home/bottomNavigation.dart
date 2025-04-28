@@ -23,7 +23,8 @@ class CustomBottomNavigation extends StatelessWidget {
                 icon: Icon(Icons.access_time), label: "أوقات الصلاة"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.menu_book_outlined), label: "الاذكار"),
-          ],selectedItemColor: AppColor.secondColor,backgroundColor: AppColor.grey,
+          ],selectedItemColor: AppColor.secondColor,
+          backgroundColor: AppColor.black,unselectedItemColor:AppColor.white,
         );
       }
     );
