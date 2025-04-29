@@ -7,6 +7,7 @@ import 'package:flutter_compass/flutter_compass.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/drawer/Qibla_controller.dart';
+import '../../../core/constant/color.dart';
 
 class QiblaPage extends StatelessWidget {
   const QiblaPage({super.key});
@@ -15,39 +16,48 @@ class QiblaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(QiblaControllerImp());
     return Scaffold(
-      appBar: AppBar(title: const Text('اتجاه القبلة')),
-      body: GetBuilder<QiblaControllerImp>(builder: (controller) {
-        return HandlingDataView(statusRequest: controller.statusRequest,
-            widget: StreamBuilder<CompassEvent>(
-              stream: FlutterCompass.events,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(child: Text('Error reading compass'));
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+        appBar: AppBar(title: const Text('اتجاه القبلة')
+          ,centerTitle: true,titleTextStyle:const TextStyle(color:AppColor.primaryColor,
+          fontSize:25), backgroundColor:AppColor.black,
+          iconTheme: const IconThemeData(color: AppColor.secondColor),),
+      body: Stack(fit: StackFit.expand,
+        children: [
+          Container(color:AppColor.black,),
 
-                double? direction = snapshot.data?.heading;
+          GetBuilder<QiblaControllerImp>(builder: (controller) {
+            return HandlingDataView(statusRequest: controller.statusRequest,
+                widget: StreamBuilder<CompassEvent>(
+                  stream: FlutterCompass.events,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return const Center(child: Text('Error reading compass'));
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
 
-                if (direction == null) {
-                  return const Center(child: Text('Device does not have sensors.'));
-                }
+                    double? direction = snapshot.data?.heading;
 
-                double angle = (controller.qiblaDirection - direction) * (math.pi / 180);
+                    if (direction == null) {
+                      return const Center(child: Text('Device does not have sensors.'));
+                    }
 
-                return Center(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Transform.rotate(
-                      angle: angle,
-                      child: Image.asset(AppImageAsset.qibla, width: 300, height: 300),
-                    ),
-                  ),
-                );
-              },
-            ));
-      },)
+                    double angle = (controller.qiblaDirection - direction) * (math.pi / 180);
+
+                    return Center(
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Transform.rotate(
+                          angle: angle,
+                          child: Image.asset(AppImageAsset.qibla, width: 300, height: 300),
+                        ),
+                      ),
+                    );
+                  },
+                ));
+          },),
+        ],
+      )
 
 
     );
