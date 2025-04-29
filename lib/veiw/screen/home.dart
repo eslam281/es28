@@ -24,7 +24,10 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           iconTheme: const IconThemeData(color: AppColor.secondColor),
           foregroundColor:Colors.white,backgroundColor:AppColor.black,centerTitle:true,
-          title:Image.asset(AppImageAsset.titleimage,width: 220,height: 120,),
+          title:Padding(
+            padding: const EdgeInsets.only(top:10),
+            child: Image.asset(AppImageAsset.titleimage,width: 220,height: 130,),
+          ),
         ),
 
         drawer:const CustomDrawer(),
