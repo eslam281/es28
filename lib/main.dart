@@ -8,9 +8,11 @@ SharedPreferences? sharedpref;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   sharedpref = await SharedPreferences.getInstance();
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {

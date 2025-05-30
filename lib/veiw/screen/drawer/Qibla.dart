@@ -38,14 +38,17 @@ class QiblaPage extends StatelessWidget {
 
                     double? direction = snapshot.data?.heading;
 
-                    double angle = (controller.qiblaDirection - direction) * (math.pi / 180);
+                    double angle = (controller.qiblaDirection - direction!) * (math.pi / 180);
 
                     return Center(
-                      child: Container(
-                        alignment: Alignment.center,
                         child: Transform.rotate(
                           angle: angle,
-                          child: Image.asset(AppImageAsset.qibla, width: 300, height: 300),
+                          child: Container(
+                            width:250,height:250,
+                            decoration:BoxDecoration(borderRadius:BorderRadius.circular(150),
+                                border:Border.all(),image:const DecorationImage(image:
+                                AssetImage(AppImageAsset.qibla),
+                                    fit:BoxFit.cover,isAntiAlias:true)),
                         ),
                       ),
                     );
