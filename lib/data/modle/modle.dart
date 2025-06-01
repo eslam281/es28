@@ -16,7 +16,7 @@ class TimingModel {
         required this.isha,
         required this.lastthird});
 
-  TimingModel.fromJson(Map<String, dynamic> json) {
+  TimingModel.fromJson(Map<dynamic, dynamic> json) {
     fajr = json['Fajr'];
     sunrise = json['Sunrise'];
     dhuhr = json['Dhuhr'];

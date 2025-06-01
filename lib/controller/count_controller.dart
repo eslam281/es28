@@ -15,11 +15,11 @@ class CountControllerImp extends CountController {
   void onInit() {
     textcontroll = TextEditingController();
 
-    if (sharedpref!.getInt("i") != null)
-      i = sharedpref!.getInt("i")!;
+    if (myBox!.get("i") != null)
+      i = myBox!.get("i")!;
 
-    if(sharedpref!.getString("counter")!= null)
-      counter = sharedpref!.getString("counter")!;
+    if(myBox!.get("counter")!= null)
+      counter = myBox!.get("counter")!;
 
     super.onInit();
   }
@@ -32,13 +32,13 @@ class CountControllerImp extends CountController {
 
   void seti() {
     i = 0;
-    sharedpref?.setInt("i", 0);
+    myBox?.put("i", 0);
     update();
   }
 
   void setCounter(String? val,BuildContext context) {
     counter = val!;
-    sharedpref?.setString("counter", counter);
+    myBox?.put("counter", counter);
     textcontroll.clear();
     FocusScope.of(context).unfocus();
     update();
@@ -46,7 +46,7 @@ class CountControllerImp extends CountController {
 
   void Addi() {
     i++;
-    sharedpref?.setInt("i", i);
+    myBox?.put("i", i);
     update();
   }
 }

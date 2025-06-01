@@ -82,7 +82,7 @@ class TimesController extends GetxController{
   getdata() async{
 
      if (timingUrl == null){
-       timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&method=5#";
+       timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&city=ciro&method=5#";
        Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
            backgroundColor: Colors.white);
      }
@@ -94,14 +94,9 @@ class TimesController extends GetxController{
         data = TimingModel.fromJson(response["data"]["timings"]);
         dateResponse = response["data"]["date"]["gregorian"]["date"];
 
-        sharedpref?.setString("fajr", data!.fajr!);
-        sharedpref?.setString("sunrise", data!.sunrise!);
-        sharedpref?.setString("dhuhr", data!.dhuhr!);
-        sharedpref?.setString("asr", data!.asr!);
-        sharedpref?.setString("maghrib", data!.maghrib!);
-        sharedpref?.setString("isha", data!.isha!);
-        sharedpref?.setString("lastthird", data!.lastthird!);
-        sharedpref?.setString("date", dateResponse!);
+        myBox?.put("time",data?.toJson());
+        myBox?.put("date",dateResponse);
+
       } else {
         getTimesOff();
       }
@@ -109,24 +104,14 @@ class TimesController extends GetxController{
   }
 
   bool checkDate(){
-    dateResponse =sharedpref!.getString("date")??"";
+    dateResponse =myBox?.get("date")??"";
    return dateResponse==DateFormat('dd-MM-yyyy').format(DateTime.now());
   }
 
   getTimesOff(){
-    if (sharedpref!.getString("fajr") != null){
-      data = TimingModel(
-          fajr: sharedpref!.getString("fajr")!,
-          sunrise: sharedpref!.getString("sunrise")!,
-          dhuhr: sharedpref!.getString("dhuhr")!,
-          asr: sharedpref!.getString("asr")!,
-          maghrib: sharedpref!.getString("maghrib")!,
-          isha: sharedpref!.getString("isha")!,
-          lastthird: sharedpref!.getString("lastthird")!
-      );
-      dateResponse =sharedpref!.getString("date");
-    }
-
+    if(myBox?.get("time") != null)
+      data= TimingModel.fromJson(myBox?.get("time"));
+      dateResponse =myBox?.get("date")??"";
   }
 
   Future<void> reverseGeocode() async {
@@ -152,5 +137,3 @@ class TimesController extends GetxController{
   }
 
 }
-// List<Placemark> placemarks =
-//     await placemarkFromCoordinates(position.latitude, position.longitude);

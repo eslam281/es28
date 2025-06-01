@@ -2,12 +2,16 @@ import 'package:es28/veiw/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 
-SharedPreferences? sharedpref;
+import 'core/functions/initBox.dart';
+
+// SharedPreferences? sharedpref;
+Box? myBox;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  sharedpref = await SharedPreferences.getInstance();
+  // sharedpref = await SharedPreferences.getInstance();
+  myBox = await initalBox("times");
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
