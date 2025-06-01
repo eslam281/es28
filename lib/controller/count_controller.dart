@@ -1,3 +1,4 @@
+import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -49,4 +50,10 @@ class CountControllerImp extends CountController {
     myBox?.put("i", i);
     update();
   }
+  List<SelectedListItem> itemsDropdown = [
+    SelectedListItem(name: "+",),
+    SelectedListItem(name: "سبحان الله"),
+    SelectedListItem(name: "الحمد الله"),
+    SelectedListItem(name: "الله اكبر",),
+  ];
 }

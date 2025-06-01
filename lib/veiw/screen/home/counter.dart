@@ -23,12 +23,7 @@ class Counter extends StatelessWidget {
               title: "",
               hint: "أدخل الذكر",
               isCitySelected: true,
-              cities: [
-                SelectedListItem(name: "+",),
-                SelectedListItem(name: "سبحان الله"),
-                SelectedListItem(name: "الحمد الله"),
-                SelectedListItem(name: "الله اكبر",),
-              ],),
+              cities:controller.itemsDropdown,),
 
             const SizedBox(height: 5,),
             MaterialButton(onPressed: () {
@@ -45,7 +40,7 @@ class Counter extends StatelessWidget {
           Column(
             children: [
               Text("${controller.counter} ${controller.i}",
-                style: const TextStyle(fontSize: 30, color: AppColor.primaryColor),
+                style: const TextStyle(fontSize: 30, color: AppColor.white),
                 softWrap: true,textDirection:TextDirection.rtl,),
               const SizedBox(height: 20,),
 
