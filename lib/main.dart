@@ -1,3 +1,4 @@
+import 'package:es28/core/constant/color.dart';
 import 'package:es28/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
       title: 'Hisn Muslim',
 
       // textDirection: TextDirection.rtl,
-      theme:ThemeData.light(),
+      theme:ThemeData.light().copyWith(appBarTheme: const AppBarTheme(color:AppColor.black
+      ,iconTheme:IconThemeData(color:AppColor.secondColor))),
       // darkTheme:ThemeData.dark() ,
 
       // home:  HomePage(),
