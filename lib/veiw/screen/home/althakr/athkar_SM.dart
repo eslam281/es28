@@ -13,32 +13,35 @@ class AthkarSM extends StatelessWidget {
     return  Scaffold(
       backgroundColor:AppColor.black,
       appBar:AppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 30,),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 30,),
 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ...List.generate(controller.adhkar.length, (index) =>
-                    Column(
-                      children: [
-                        Card(
-                          color: AppColor.primaryColor,
-                          child:Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(controller.adhkar[index][0],style:const
-                            TextStyle(fontSize: 20,color: AppColor.white),
-                              textDirection:TextDirection.rtl,),
-                          ),),
-                        const SizedBox(height: 10,)
-                      ],
-                    ),)
-              ],
-            ),
-            const SizedBox(height: 30,)
-          ],),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ...List.generate(controller.adhkar.length, (index) =>
+                      Column(
+                        children: [
+                          Card(
+                            color: AppColor.primaryColor,
+                            child:Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(controller.adhkar[index][0],style:const
+                              TextStyle(fontSize: 20,color: AppColor.white),
+                                textDirection:TextDirection.rtl,),
+                            ),),
+                          const SizedBox(height: 10,)
+                        ],
+                      ),)
+                ],
+              ),
+              const SizedBox(height: 30,)
+            ],),
+        ),
       ),
     );
   }

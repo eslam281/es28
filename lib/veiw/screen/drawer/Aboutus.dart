@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/color.dart';
-import '../../../core/shared/appleading.dart';
 class About_us extends StatelessWidget {
   const About_us({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( backgroundColor: AppColor.black,
-          leading:const Appleading()),
+      appBar: AppBar(),
       
       body: Container(
       color:AppColor.black,

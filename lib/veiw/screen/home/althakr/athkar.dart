@@ -11,14 +11,34 @@ class Althakr extends StatelessWidget {
   Widget build(BuildContext context) {
    return Center(
      child: Column(
-       mainAxisAlignment:MainAxisAlignment.center,
+       mainAxisAlignment:MainAxisAlignment.spaceEvenly,
        children: [
           MaterialButton(onPressed:() =>Get.toNamed(AppRoute.athkar_SM),
-            minWidth: 400,
-            child:const Card(
+            child:Card(
               color: AppColor.secondColor,
-              child:Text("اذكار الصباح والمساء"
-              ,style:TextStyle(color:AppColor.white),) ,) ,)
+              child:Container(
+                width: 200,height:100,alignment:Alignment.center,
+                child: const Text("اذكار الصباح والمساء"
+                ,style:TextStyle(color:AppColor.white,fontSize: 20,fontWeight:FontWeight.bold),),
+              ) ,) ,),
+
+          MaterialButton(onPressed:() =>Get.toNamed(AppRoute.athkar_SM),
+            child:Card(
+              color: AppColor.secondColor,
+              child:Container(
+                width: 200,height:100,alignment:Alignment.center,
+                child: const Text("اذكار الصباح والمساء"
+                ,style:TextStyle(color:AppColor.white,fontSize: 20,fontWeight:FontWeight.bold),),
+              ) ,) ,),
+
+          MaterialButton(onPressed:() =>Get.toNamed(AppRoute.athkarFriday),
+            child:Card(
+              color: AppColor.secondColor,
+              child:Container(
+                width: 200,height:100,alignment:Alignment.center,
+                child: const Text( "اذكار يوم الجمعة"
+                ,style:TextStyle(color:AppColor.white,fontSize: 20,fontWeight:FontWeight.bold),),
+              ) ,) ,),
        ],
      ),
    );
