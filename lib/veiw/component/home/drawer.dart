@@ -43,18 +43,6 @@ class CustomDrawer extends StatelessWidget {
             Container(
               margin:const EdgeInsets.only(top: 10),
               color:AppColor.secondColor,
-              alignment: Alignment.centerLeft,
-              child: ListTile(
-                title: const Text("سورة الكهف"), leading: const Icon(Icons.menu_book_outlined),
-                onTap: () {
-                  Get.toNamed(AppRoute.surat_Al_Kahf);
-                },
-              ),
-            ),
-
-            Container(
-              margin:const EdgeInsets.only(top: 10),
-              color:AppColor.secondColor,
               child: ListTile(
                   title: const Text("اتصل بنا"),
                   leading: const Icon(Icons.comment_outlined),

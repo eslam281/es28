@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/drawer/surat_al_kahf_controller.dart';
-import '../../../core/constant/color.dart';
+import '../../../../controller/drawer/surat_al_kahf_controller.dart';
+import '../../../../core/constant/color.dart';
 
 class Surat_Al_Kahf extends StatelessWidget {
   const Surat_Al_Kahf({super.key});

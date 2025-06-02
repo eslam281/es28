@@ -1,7 +1,7 @@
 import 'package:es28/core/constant/routes.dart';
 import 'package:es28/veiw/screen/drawer/Aboutus.dart';
 import 'package:es28/veiw/screen/drawer/Qibla.dart';
-import 'package:es28/veiw/screen/drawer/surat_al_kahf.dart';
+import 'package:es28/veiw/screen/home/althakr/surat_al_kahf.dart';
 import 'package:es28/veiw/screen/home.dart';
 import 'package:es28/veiw/screen/home/althakr/athkar_Friday.dart';
 import 'package:es28/veiw/screen/home/althakr/athkar_SM.dart';
