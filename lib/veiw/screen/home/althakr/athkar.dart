@@ -18,7 +18,7 @@ class Althakr extends StatelessWidget {
 
          CustomButtonMain(name:"اذكار الصباح والمساء",pageName:AppRoute.athkar_SM ,),
 
-         CustomButtonMain(name:"اذكار الصباح والمساء",pageName:AppRoute.athkar_SM ,),
+         CustomButtonMain(name:"اذكار بعد الصلاة",pageName:AppRoute.athkarAP ,),
 
          CustomButtonMain(name:"اذكار يوم الجمعة",pageName:AppRoute.athkarFriday,),
 
