@@ -2,7 +2,7 @@ import 'package:es28/veiw/screen/home/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../veiw/screen/home/althakr.dart';
+import '../veiw/screen/home/althakr/althakr.dart';
 import '../veiw/screen/home/times.dart';
 
 abstract class HomeController extends GetxController{

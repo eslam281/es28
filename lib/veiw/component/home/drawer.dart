@@ -1,12 +1,10 @@
 import 'package:es28/core/constant/color.dart';
-import 'package:es28/veiw/screen/drawer/surat_al_kahf.dart';
+import 'package:es28/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constant/imageasset.dart';
-import '../../screen/drawer/Aboutus.dart';
-import '../../screen/drawer/Qibla.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -37,7 +35,7 @@ class CustomDrawer extends StatelessWidget {
               child: ListTile(
                 title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
                 onTap: () {
-                  Get.to(() => const QiblaPage());
+                  Get.toNamed(AppRoute.qiblaPage);
                 },
               ),
             ),
@@ -49,7 +47,7 @@ class CustomDrawer extends StatelessWidget {
               child: ListTile(
                 title: const Text("سورة الكهف"), leading: const Icon(Icons.menu_book_outlined),
                 onTap: () {
-                  Get.to(() => const Surat_Al_Kahf());
+                  Get.toNamed(AppRoute.surat_Al_Kahf);
                 },
               ),
             ),
@@ -75,7 +73,7 @@ class CustomDrawer extends StatelessWidget {
               child: ListTile(
                 title: const Text("معلومات عنا"), leading: const Icon(Icons.info),
                 onTap: () {
-                  Get.to(() => const About_us());
+                  Get.toNamed(AppRoute.about_us);
                 },
               ),
             ),

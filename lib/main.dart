@@ -1,3 +1,4 @@
+import 'package:es28/routes.dart';
 import 'package:es28/veiw/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       theme:ThemeData.light(),
       // darkTheme:ThemeData.dark() ,
 
-      home:  HomePage(),
+      // home:  HomePage(),
+      getPages: routes,
     );
   }
 }

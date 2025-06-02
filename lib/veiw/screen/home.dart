@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
             child: Container(
                 color: AppColor.black,
                 height: double.infinity,
-                padding: const EdgeInsets.all(20),
+                padding:  const EdgeInsets.all(20),
                 child: SingleChildScrollView(
                   child: controller.bodyList[controller.index],
                 ))),
