@@ -25,9 +25,11 @@ class QiblaControllerImp extends QiblaController {
     if (position != null) {
       double bearing = calculateQiblaDirection(position.latitude, position.longitude);
         qiblaDirection = bearing;
+        statusRequest = StatusRequest.success;
 
+    }else{
+      statusRequest = StatusRequest.failure;
     }
-    statusRequest = StatusRequest.success;
     update();
   }
 

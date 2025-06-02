@@ -6,10 +6,14 @@ Future determinePosition() async {
   LocationPermission permission;
 
   permission = await Geolocator.checkPermission();
+
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
+
+    if (permission == LocationPermission.denied) {
     CustomSnackBar("تحذير","تم رفض أذونات الموقع");
     return null;
+    }
   }
 
   if (permission == LocationPermission.deniedForever) {
@@ -19,8 +23,6 @@ Future determinePosition() async {
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-
-
 
     CustomSnackBar("تحذير", "خدمات الموقع غير مفعلة.");
 
