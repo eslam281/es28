@@ -38,7 +38,7 @@ class Times extends StatelessWidget {
               children: [
                 customCard(text: " فجر   ${controller.data!.fajr}"),
                 customCard(text: " شروق الشمس   ${controller.data!.sunrise}"),
-                customCard(text: "  ظهر   ${controller.data!.dhuhr}"),
+                customCard(text: "  ظهر   ${convertF(controller.data!.dhuhr!)}"),
                 customCard(text: " عصر   ${convertF(controller.data!.asr!)}"),
                 customCard(text: " مغرب   ${convertF(controller.data!.maghrib!)}"),
                 customCard(text: " عشاء   ${convertF(controller.data!.isha!)}"),

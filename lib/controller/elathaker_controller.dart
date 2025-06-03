@@ -1,5 +1,6 @@
 import 'package:es28/main.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ElathakerController extends GetxController{
 
@@ -11,11 +12,23 @@ class ElathakerController extends GetxController{
   }
 
   intialData(){
-    if(myBox?.get("athakerCount")!=null)
-    count = myBox?.get("athakerCount");
+    count.length = adhkar.length;
+    if(!checkDate('Asr')&&checkDate('Fajr') &&myBox?.get("athakertime")==1) {
+      count.fillRange(0, adhkar.length, 0);
+      myBox?.put("athakerCount",count);
+      myBox?.put("athakertime",2);
+    }
+    else if(checkDate('Asr') &&myBox?.get("athakertime")==2) {
+      count.fillRange(0, adhkar.length, 0);
+      myBox?.put("athakerCount",count);
+      myBox?.put("athakertime",1);
+    }
+    else if(myBox?.get("athakerCount")!=null&&myBox?.get("athakertime")!=null){
+      count = myBox?.get("athakerCount");
+    }
     else{
-    count.length =adhkar.length;
-    count.fillRange(0, adhkar.length,0);
+      count.fillRange(0, adhkar.length, 0);
+      myBox?.put("athakertime",1);
     }
   }
 
@@ -26,6 +39,14 @@ class ElathakerController extends GetxController{
     }
     update();
   }
+
+  bool checkDate(String name){
+   String time =myBox?.get("time")[name]??"";
+   String currntTime= DateFormat('H:M').format(DateTime.now().add(const Duration(hours: 1)));
+   int resulte =currntTime.compareTo(time);
+   return (resulte>0);
+  }
+
   List<List<dynamic>> adhkar = [
     ["قراءة آية الكرسي: {الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤده حفظهما وهو العلي العظيم} (البقرة:255)", 1],
     ["سورة الإخلاص، الفلق، والناس", 3],
