@@ -1,7 +1,31 @@
+import 'package:es28/main.dart';
 import 'package:get/get.dart';
 
 class ElathakerController extends GetxController{
 
+  List count=[];
+  @override
+  void onInit() {
+    intialData();
+    super.onInit();
+  }
+
+  intialData(){
+    if(myBox?.get("athakerCount")!=null)
+    count = myBox?.get("athakerCount");
+    else{
+    count.length =adhkar.length;
+    count.fillRange(0, adhkar.length,0);
+    }
+  }
+
+  onTap(int max,int index){
+    if(max > count[index]){
+      count[index]=count[index]+1;
+      myBox?.put("athakerCount",count);
+    }
+    update();
+  }
   List<List<dynamic>> adhkar = [
     ["قراءة آية الكرسي: {الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤده حفظهما وهو العلي العظيم} (البقرة:255)", 1],
     ["سورة الإخلاص، الفلق، والناس", 3],
