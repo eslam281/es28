@@ -13,6 +13,8 @@ class ElathakerController extends GetxController{
 
   intialData(){
     count.length = adhkar.length;
+
+    if(!myBox?.get("time")){
     if(!checkDate('Asr')&&checkDate('Fajr') &&myBox?.get("athakertime")==1) {
       count.fillRange(0, adhkar.length, 0);
       myBox?.put("athakerCount",count);
@@ -23,12 +25,19 @@ class ElathakerController extends GetxController{
       myBox?.put("athakerCount",count);
       myBox?.put("athakertime",1);
     }
+    }
+
     else if(myBox?.get("athakerCount")!=null&&myBox?.get("athakertime")!=null){
       count = myBox?.get("athakerCount");
     }
+
     else{
       count.fillRange(0, adhkar.length, 0);
+
+      if(checkDate('Asr'))
       myBox?.put("athakertime",1);
+      else
+        myBox?.put("athakertime",1);
     }
   }
 
@@ -42,7 +51,7 @@ class ElathakerController extends GetxController{
 
   bool checkDate(String name){
    String time =myBox?.get("time")[name]??"";
-   String currntTime= DateFormat('H:M').format(DateTime.now().add(const Duration(hours: 1)));
+   String currntTime= DateFormat('H:M').format(DateTime.now());
    int resulte =currntTime.compareTo(time);
    return (resulte>0);
   }
