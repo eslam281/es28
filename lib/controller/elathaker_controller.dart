@@ -45,6 +45,11 @@ class ElathakerController extends GetxController{
     update();
   }
 
+  customRefresh(){
+    elseCond();
+    update();
+  }
+
   bool checkDate(String name){
    String time =myBox?.get("time")[name]??"";
    String currntTime= DateFormat('H:M').format(DateTime.now());
