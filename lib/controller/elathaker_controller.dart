@@ -14,30 +14,26 @@ class ElathakerController extends GetxController{
   intialData(){
     count.length = adhkar.length;
 
-    if(!myBox?.get("time")){
-    if(!checkDate('Asr')&&checkDate('Fajr') &&myBox?.get("athakertime")==1) {
-      count.fillRange(0, adhkar.length, 0);
-      myBox?.put("athakerCount",count);
-      myBox?.put("athakertime",2);
-    }
-    else if(checkDate('Asr') &&myBox?.get("athakertime")==2) {
-      count.fillRange(0, adhkar.length, 0);
-      myBox?.put("athakerCount",count);
-      myBox?.put("athakertime",1);
-    }
-    }
-
-    else if(myBox?.get("athakerCount")!=null&&myBox?.get("athakertime")!=null){
-      count = myBox?.get("athakerCount");
-    }
-
-    else{
-      count.fillRange(0, adhkar.length, 0);
-
-      if(checkDate('Asr'))
-      myBox?.put("athakertime",1);
-      else
+    if(myBox?.get("time") != null){
+      if(!checkDate('Asr')&&checkDate('Fajr') &&myBox?.get("athakertime")==1) {
+        count.fillRange(0, adhkar.length, 0);
+        myBox?.put("athakerCount",count);
+        myBox?.put("athakertime",2);
+      }
+      else if(checkDate('Asr') &&myBox?.get("athakertime")==2) {
+        count.fillRange(0, adhkar.length, 0);
+        myBox?.put("athakerCount",count);
         myBox?.put("athakertime",1);
+      }
+      else if(myBox?.get("athakerCount")!=null&&myBox?.get("athakertime")!=null){
+        count = myBox?.get("athakerCount");
+      }
+      else{
+      elseCond();
+      }
+    }
+    else{
+      elseCond();
     }
   }
 
@@ -54,6 +50,15 @@ class ElathakerController extends GetxController{
    String currntTime= DateFormat('H:M').format(DateTime.now());
    int resulte =currntTime.compareTo(time);
    return (resulte>0);
+  }
+
+  void elseCond(){
+    count.fillRange(0, adhkar.length, 0);
+
+    if(checkDate('Asr'))
+      myBox?.put("athakertime",1);
+    else
+      myBox?.put("athakertime",1);
   }
 
   List<List<dynamic>> adhkar = [

@@ -14,7 +14,8 @@ class Surat_Al_Kahf extends StatelessWidget {
     return Scaffold(
       appBar:AppBar(
         iconTheme:const IconThemeData(color:AppColor.white),toolbarHeight: 35,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          systemOverlayStyle:Get.theme != ThemeMode.light ?
+          SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
           surfaceTintColor:const Color(0xFF5E4840)),
       body:Container(
         child:ListView.builder(itemCount:controller.images.length,
