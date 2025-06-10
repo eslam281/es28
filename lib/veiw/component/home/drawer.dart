@@ -18,55 +18,57 @@ class CustomDrawer extends StatelessWidget {
       width: 200,
       child: Container(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          textDirection:TextDirection.rtl,
-          children: [
-            const SizedBox(height: 20,),
-            SizedBox(
-              height: 100,
-              child:Image.asset(AppImageAsset.logo,width: 200,fit:BoxFit.fitWidth,),
-            ),
-            const SizedBox(height: 50,),
-
-            Container(
-              margin:const EdgeInsets.only(top: 10),
-              color:AppColor.secondColor,
-              alignment: Alignment.centerLeft,
-              child: ListTile(
-                title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
-                onTap: () {
-                  Get.toNamed(AppRoute.qiblaPage);
-                },
+        child: SafeArea(
+          child: Column(
+            textDirection:TextDirection.rtl,
+            children: [
+              const SizedBox(height: 20,),
+              SizedBox(
+                height: 100,
+                child:Image.asset(AppImageAsset.logo,width: 200,fit:BoxFit.fitWidth,),
               ),
-            ),
+              const SizedBox(height: 50,),
 
-            Container(
-              margin:const EdgeInsets.only(top: 10),
-              color:AppColor.secondColor,
-              child: ListTile(
-                  title: const Text("اتصل بنا"),
-                  leading: const Icon(Icons.comment_outlined),
-                  onTap: () async {
-                    // await launchUrl(Uri.parse("https://wa.me/201064744978"));
-                    // await launchUrl(Uri.parse("tel:0201064744978"));
-                    await launchUrl(
-                        Uri.parse("mailto:aslamsydbdalzyzbry@gmail.com"));
-                  }),
-            ),
-
-            Container(
-              margin:const EdgeInsets.only(top: 10),
-              color:AppColor.secondColor,
-              alignment: Alignment.centerLeft,
-              child: ListTile(
-                title: const Text("معلومات عنا"), leading: const Icon(Icons.info),
-                onTap: () {
-                  Get.toNamed(AppRoute.about_us);
-                },
+              Container(
+                margin:const EdgeInsets.only(top: 10),
+                color:AppColor.secondColor,
+                alignment: Alignment.centerLeft,
+                child: ListTile(
+                  title: const Text("القبلة"), leading: const Icon(Icons.directions_outlined),
+                  onTap: () {
+                    Get.toNamed(AppRoute.qiblaPage);
+                  },
+                ),
               ),
-            ),
 
-          ],
+              Container(
+                margin:const EdgeInsets.only(top: 10),
+                color:AppColor.secondColor,
+                child: ListTile(
+                    title: const Text("اتصل بنا"),
+                    leading: const Icon(Icons.comment_outlined),
+                    onTap: () async {
+                      // await launchUrl(Uri.parse("https://wa.me/201064744978"));
+                      // await launchUrl(Uri.parse("tel:0201064744978"));
+                      await launchUrl(
+                          Uri.parse("mailto:aslamsydbdalzyzbry@gmail.com"));
+                    }),
+              ),
+
+              Container(
+                margin:const EdgeInsets.only(top: 10),
+                color:AppColor.secondColor,
+                alignment: Alignment.centerLeft,
+                child: ListTile(
+                  title: const Text("معلومات عنا"), leading: const Icon(Icons.info),
+                  onTap: () {
+                    Get.toNamed(AppRoute.about_us);
+                  },
+                ),
+              ),
+
+            ],
+          ),
         ),
       ),
     );

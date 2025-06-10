@@ -8,14 +8,14 @@ class customButton extends StatelessWidget{
   const customButton({super.key, required this.onPressed});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,width: 150,
-      decoration:BoxDecoration(
-        color: AppColor.secondColor,
-        borderRadius:BorderRadius.circular(100),
-      ),
-      child:  MaterialButton(
-      onPressed:onPressed,),);
+    return GestureDetector(
+      child:Container(
+        height: 150,width: 150,
+        decoration:BoxDecoration(
+          color: AppColor.secondColor,
+          borderRadius:BorderRadius.circular(100),
+        ),),
+       onTap:onPressed,);
   }
 }
 
