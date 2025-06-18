@@ -37,16 +37,16 @@ class Counter extends StatelessWidget {
 
             const SizedBox(height: 50,),
 
-            Column(
-              children: [
-                Text("${controller.counter} ${controller.i}",
-                  style: const TextStyle(fontSize: 30, color: AppColor.white),
-                  softWrap: true,textDirection:TextDirection.rtl,),
-                const SizedBox(height: 20,),
+            Text("${controller.counter}",
+              style: const TextStyle(fontSize: 30, color: AppColor.white),
+             textDirection:TextDirection.rtl,),
+            const SizedBox(height: 10,),
 
-                customButton(onPressed: () {controller.Addi();}),
-              ],
-            ),
+          Text("${controller.i}",
+              style: const TextStyle(fontSize: 30, color: AppColor.white)),
+            const SizedBox(height: 20,),
+
+            customButton(onPressed: () {controller.Addi();}),
           const SizedBox(height: 40,),
           ],),
       );

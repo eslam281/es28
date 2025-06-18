@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
+import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
 
 // SharedPreferences? sharedpref;
@@ -30,8 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Hisn Muslim',
 
       // textDirection: TextDirection.rtl,
-      theme:ThemeData.light().copyWith(appBarTheme: const AppBarTheme(color:AppColor.black
-      ,iconTheme:IconThemeData(color:AppColor.secondColor))),
+      theme:MyTheme.lightTheme,
       // darkTheme:ThemeData.dark() ,
 
       // home:  HomePage(),
