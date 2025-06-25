@@ -17,35 +17,38 @@ class Counter extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           const SizedBox(height: 40,),
-
+        
             Column(children: [
-              AppTextField(textEditingController:controller.textcontroll,
-                title: "",
-                hint: "أدخل الذكر",
-                isCitySelected: true,
-                cities:controller.itemsDropdown,),
-
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: AppTextField(textEditingController:controller.textcontroll,
+                  title: "",
+                  hint: "اختر الذكر",
+                  isCitySelected: true,
+                  cities:controller.itemsDropdown,),
+              ),
+        
               const SizedBox(height: 5,),
               MaterialButton(onPressed: () {
                 controller.setCounter(controller.textcontroll.text,context);
               },
                   color: AppColor.secondColor,
-                  child: const Text("ادخل الذكر", style: TextStyle(fontSize: 20,
+                  child: const Text("اضف الى العداد", style: TextStyle(fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color:AppColor.white),)),
             ],),
-
+        
             const SizedBox(height: 50,),
-
+        
             Text("${controller.counter}",
               style: const TextStyle(fontSize: 30, color: AppColor.white),
              textDirection:TextDirection.rtl,),
             const SizedBox(height: 10,),
-
+        
           Text("${controller.i}",
               style: const TextStyle(fontSize: 30, color: AppColor.white)),
             const SizedBox(height: 20,),
-
+        
             customButton(onPressed: () {controller.Addi();}),
           const SizedBox(height: 40,),
           ],),
