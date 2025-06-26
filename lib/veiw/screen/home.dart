@@ -25,7 +25,8 @@ class HomePage extends StatelessWidget {
           foregroundColor:Colors.white,centerTitle:true,
           title:Padding(
             padding: const EdgeInsets.only(top:10),
-            child: Image.asset(AppImageAsset.titleimage,width: 220,height: 130,),
+            child: Image.asset(AppImageAsset.titleimage,
+              width: 220,height: 130,color:AppColor.secondColor,),
           ),
         ),
 
