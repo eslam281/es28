@@ -1,4 +1,5 @@
 import 'package:es28/routes.dart';
+import 'package:es28/veiw/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
 
       // home:  HomePage(),
       getPages: routes,
+      home:const SplashScreen(),
     );
   }
 }
