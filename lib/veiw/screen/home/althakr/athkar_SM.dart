@@ -30,7 +30,7 @@ class AthkarSM extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
           child: ListView.builder(
             itemCount: controller.adhkar.length,
             itemBuilder: (context, index) => GetBuilder<ElathakerController>(

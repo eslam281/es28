@@ -82,7 +82,7 @@ class TimesController extends GetxController{
   getdata() async{
 
      if (timingUrl == null){
-       timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&city=ciro&method=5#";
+       timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&city=cairo&method=5#";
        Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
            backgroundColor: Colors.white);
      }
@@ -126,8 +126,7 @@ class TimesController extends GetxController{
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
 
-        timingUrl = "https://api.aladhan.com/v1/timingsByCity?city=${(data["address"]["road"]!=null)?
-        data["address"]["road"]:data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
+        timingUrl = "https://api.aladhan.com/v1/timingsByCity?city=${data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
       } else {
 
       }
