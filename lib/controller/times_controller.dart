@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +22,7 @@ import '../data/modle/modle.dart';
 
 class TimesController extends GetxController{
 
-  StatusRequest statusRequest =StatusRequest.onitnial;
+  StatusRequest statusRequest =StatusRequest.loading;
   TimeData timeData = TimeData(Crud());
   TimingModel? data;
 
@@ -33,6 +34,7 @@ class TimesController extends GetxController{
 
   @override
   void onInit() {
+    FlutterBackgroundService().invoke("setAsBackground");
     times();
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
