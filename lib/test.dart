@@ -13,7 +13,8 @@ class _TestState extends State<Test> {
   Widget build(BuildContext context) {
     String text = "Stop Service";
     return Scaffold(
-      body: Center(child: Column(mainAxisAlignment:MainAxisAlignment.center,
+      body: Center(child:
+      Column(mainAxisAlignment:MainAxisAlignment.center,
         children: [
           ElevatedButton(onPressed: () {
             FlutterBackgroundService().invoke("setAsForeground");

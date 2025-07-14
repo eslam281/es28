@@ -3,6 +3,9 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:get/get.dart';
+
+import '../../controller/times_controller.dart';
 
 
 Future<void> initializeService()async {
@@ -41,15 +44,26 @@ void onStart (ServiceInstance service){
     },);
   }
 
-  Timer.periodic(const Duration(seconds:1), (timer)async{
-    if (service is AndroidServiceInstance) {
-      if (await service.isForegroundService()) {
-        service.setForegroundNotificationInfo(title: "Hisn Muslim", content: "content");
-      }
-    }
-    // TimesController? controller;
-    // controller?.times();
-    print("=================================");
-    service.invoke('update');
-  },);
+  // Timer.periodic(const Duration(seconds:5), (timer)async{
+  //   if (service is AndroidServiceInstance) {
+  //     if (await service.isForegroundService()) {
+  //       service.setForegroundNotificationInfo(title: "Hisn Muslim", content: "content");
+  //     }
+  //   }
+  //
+  // },);
+  scheduleNextUpdate();
+  print("=================================");
+  service.invoke('update');
+}
+void scheduleNextUpdate() {
+  final now = DateTime.now();
+  final tomorrow = DateTime(now.year, now.month, now.day + 1);
+  final durationUntilMidnight = tomorrow.difference(now);
+   Get.lazyPut(() => TimesController());
+  TimesController controller = Get.find();
+  Timer(durationUntilMidnight, () async {
+    await controller.times();
+    scheduleNextUpdate(); // Reschedule for the next day
+  });
 }
