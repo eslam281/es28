@@ -1,9 +1,10 @@
 import 'package:es28/routes.dart';
-import 'package:es28/veiw/screen/splash_screen.dart';
+import 'package:es28/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'core/class/theme.dart';
 import 'core/functions/background_service.dart';
@@ -13,6 +14,11 @@ import 'core/functions/initBox.dart';
 Box? myBox;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  },);
   await initializeService();
   myBox = await initalBox("times");
 
@@ -35,9 +41,9 @@ class MyApp extends StatelessWidget {
       theme:MyTheme.lightTheme,
       // darkTheme:ThemeData.dark() ,
 
-      // home:  HomePage(),
+      home:  const Test(),
       getPages: routes,
-      home:const SplashScreen(),
+      // home:const SplashScreen(),
     );
   }
 }
