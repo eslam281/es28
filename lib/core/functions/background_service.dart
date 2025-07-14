@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
+import '../../controller/times_controller.dart';
+
 Future<void> initializeService()async {
   final service =FlutterBackgroundService();
   await service.configure(
@@ -40,12 +42,14 @@ void onStart (ServiceInstance service){
     },);
   }
 
-  Timer.periodic(const Duration(seconds:1), (timer)async{
+  Timer.periodic(const Duration(hours: 24), (timer) async {
     if (service is AndroidServiceInstance) {
       if (await service.isForegroundService()) {
         service.setForegroundNotificationInfo(title: "Hisn Muslim", content: "content");
       }
     }
+    TimesController controller=TimesController();
+    controller.times();
     service.invoke('update');
   },);
 }
