@@ -66,7 +66,7 @@ class AthkarSM extends StatelessWidget {
                               ),
                             ),
                             AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 800),
                                 child:completed
                                     ? const Icon(Icons.check_circle,
                                     color: Colors.green)

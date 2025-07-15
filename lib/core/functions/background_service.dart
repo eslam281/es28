@@ -52,7 +52,7 @@ void onStart (ServiceInstance service){
   //   }
   //
   // },);
-  scheduleNextUpdate();
+  // scheduleNextUpdate();
   print("=================================");
   service.invoke('update');
 }

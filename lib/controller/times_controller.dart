@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 
 
 import '../core/class/statusrequest.dart';
+import '../core/functions/background_service.dart';
 import '../core/functions/checkContnection.dart';
 import '../core/functions/getlocation.dart';
 import '../core/functions/handlingdata.dart';
@@ -33,13 +34,14 @@ class TimesController extends GetxController{
   String? dateResponse;
 
   @override
-  void onInit() {
-    FlutterBackgroundService().invoke("setAsBackground");
+  void onInit() async{
     times();
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
       update();
     },);
+    await initializeService();
+    FlutterBackgroundService().invoke("setAsBackground");
     super.onInit();
   }
 

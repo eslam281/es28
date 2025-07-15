@@ -6,13 +6,12 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import 'core/class/theme.dart';
-import 'core/functions/background_service.dart';
 import 'core/functions/initBox.dart';
 
 Box? myBox;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeService();
+
   myBox = await initalBox("times");
 
   await SystemChrome.setPreferredOrientations([
