@@ -12,7 +12,8 @@ import 'getNameOfLocation.dart';
 import 'handlingdata.dart';
 
 
-Future<void> times(bool isready)async{
+Future<StatusRequest> times(bool isready)async{
+  StatusRequest statusRequest =StatusRequest.onitnial;
   bool isondate =await checkDate();
 
   if(!isondate||isready){
@@ -20,13 +21,13 @@ Future<void> times(bool isready)async{
     result = await iscontnect();
 
     if (result) {
-     await getdata();
+      statusRequest = await getdata();
     }
   }
-
+  return statusRequest;
 }
 
-Future<void> getdata() async{
+Future<StatusRequest> getdata() async{
   StatusRequest statusRequest =StatusRequest.onitnial;
   TimeData timeData = TimeData(Crud());
   String? timingUrl= await reverseGeocode();
@@ -35,8 +36,7 @@ Future<void> getdata() async{
 
   if (timingUrl == ""){
     timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&city=cairo&method=5#";
-    Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
-        backgroundColor: Colors.white);
+    statusRequest = StatusRequest.error;
   }
 
   var response = await timeData.getData(timingUrl);
@@ -50,10 +50,11 @@ Future<void> getdata() async{
     myBox?.put("date",dateResponse);
   }
 
+  return statusRequest;
 }
 
-bool checkDate(){
+Future<bool> checkDate()async{
   String? dateResponse;
-  dateResponse =myBox?.get("date")??"";
+  dateResponse =await myBox?.get("date")??"";
   return dateResponse==DateFormat('dd-MM-yyyy').format(DateTime.now());
 }

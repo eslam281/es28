@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import '../core/class/statusrequest.dart';
-import '../core/functions/background_service.dart';
 
 import '../core/functions/time_service.dart';
 import '../core/shared/snackbar.dart';
@@ -56,7 +55,11 @@ class TimesController extends GetxController{
   gettimes()async{
     statusRequest =StatusRequest.loading;
     update();
-    await times(isready);
+    statusRequest = await times(isready);
+    if(statusRequest == StatusRequest.error){
+      Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
+          backgroundColor: Colors.white);
+    }
     await getTimesOff();
 
     statusRequest =StatusRequest.success;

@@ -4,5 +4,5 @@ enum StatusRequest {
   failure,
   serverfailure,
   offlinefailure,
-  onitnial
+  onitnial, error
 }

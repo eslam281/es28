@@ -3,9 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
-import 'package:get/get.dart';
 
-import '../../controller/times_controller.dart';
 
 
 Future<void> initializeService()async {
