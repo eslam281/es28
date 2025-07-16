@@ -16,7 +16,6 @@ class Counter extends StatelessWidget {
       return  SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          const SizedBox(height: 20,),
 
           Card(
             color: Colors.grey.shade900,
