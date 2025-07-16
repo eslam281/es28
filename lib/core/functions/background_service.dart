@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:es28/core/functions/time_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
@@ -53,18 +54,16 @@ void onStart (ServiceInstance service){
     }
   });
 
-    // scheduleNextUpdate();
-  print("=================================");
+  _scheduleNextUpdate();
   service.invoke('update');
 }
-// void scheduleNextUpdate() {
-//   final now = DateTime.now();
-//   final tomorrow = DateTime(now.year, now.month, now.day + 1);
-//   final durationUntilMidnight = tomorrow.difference(now);
-//    Get.lazyPut(() => TimesController());
-//   TimesController controller = Get.find();
-//   Timer(durationUntilMidnight, () async {
-//     await controller.times();
-//     scheduleNextUpdate(); // Reschedule for the next day
-//   });
-// }
+void _scheduleNextUpdate() {
+  final now = DateTime.now();
+  final tomorrow = DateTime(now.year, now.month, now.day + 1);
+  final durationUntilMidnight = tomorrow.difference(now);
+
+  Timer(durationUntilMidnight, () async {
+    await times(false); // Fetch again tomorrow
+    _scheduleNextUpdate(); // Reschedule again
+  });
+}

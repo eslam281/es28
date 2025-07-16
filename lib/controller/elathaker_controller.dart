@@ -11,30 +11,42 @@ class ElathakerController extends GetxController{
     super.onInit();
   }
 
-  intialData(){
+  void intialData() {
     count.length = adhkar.length;
 
-    if(myBox?.get("time") != null){
-      if(!checkDate('Asr')&&checkDate('Fajr') &&myBox?.get("athakertime")==1) {
+    if (myBox?.get("time") != null) {
+      if (!checkDate('Asr') && checkDate('Fajr') && myBox?.get("athakertime") == 1) {
         count.fillRange(0, adhkar.length, 0);
-        myBox?.put("athakerCount",count);
-        myBox?.put("athakertime",2);
-      }
-      else if(checkDate('Asr') &&myBox?.get("athakertime")==2) {
+        myBox?.put("athakerCount", count);
+        myBox?.put("athakertime", 2);
+      } else if (checkDate('Asr') && myBox?.get("athakertime") == 2) {
         count.fillRange(0, adhkar.length, 0);
-        myBox?.put("athakerCount",count);
-        myBox?.put("athakertime",1);
-      }
-      else if(myBox?.get("athakerCount")!=null&&myBox?.get("athakertime")!=null){
+        myBox?.put("athakerCount", count);
+        myBox?.put("athakertime", 1);
+      } else if (myBox?.get("athakerCount") != null && myBox?.get("athakertime") != null) {
         count = myBox?.get("athakerCount");
+      } else {
+        elseCond();
       }
-      else{
-      elseCond();
-      }
-    }
-    else{
+    } else {
       elseCond();
     }
+  }
+
+  void elseCond() {
+    count.fillRange(0, adhkar.length, 0);
+    if (checkDate('Asr')) {
+      myBox?.put("athakertime", 2);
+    } else {
+      myBox?.put("athakertime", 1);
+    }
+  }
+
+  bool checkDate(String name) {
+    final String time = myBox?.get("time")[name] ?? "";
+    final String currentTime = DateFormat('HH:mm').format(DateTime.now());
+
+    return currentTime.compareTo(time) > 0;
   }
 
   onTap(int max,int index){
@@ -48,22 +60,6 @@ class ElathakerController extends GetxController{
   customRefresh(){
     elseCond();
     update();
-  }
-
-  bool checkDate(String name){
-   String time =myBox?.get("time")[name]??"";
-   String currntTime= DateFormat('H:M').format(DateTime.now());
-   int resulte =currntTime.compareTo(time);
-   return (resulte>0);
-  }
-
-  void elseCond(){
-    count.fillRange(0, adhkar.length, 0);
-
-    if(checkDate('Asr'))
-      myBox?.put("athakertime",1);
-    else
-      myBox?.put("athakertime",1);
   }
 
   List<List<dynamic>> adhkar = [

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import '../core/class/statusrequest.dart';
@@ -33,7 +34,7 @@ class TimesController extends GetxController{
       update();
     },);
     // await initializeService();
-    // FlutterBackgroundService().invoke("setAsBackground");
+    FlutterBackgroundService().invoke("setAsBackground");
     super.onInit();
   }
 
