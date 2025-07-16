@@ -44,26 +44,29 @@ void onStart (ServiceInstance service){
     },);
   }
 
-  // Timer.periodic(const Duration(seconds:5), (timer)async{
-  //   if (service is AndroidServiceInstance) {
-  //     if (await service.isForegroundService()) {
-  //       service.setForegroundNotificationInfo(title: "Hisn Muslim", content: "content");
-  //     }
-  //   }
-  //
-  // },);
-  // scheduleNextUpdate();
+  Timer.periodic(const Duration(seconds: 5), (timer) async {
+    if (service is AndroidServiceInstance) {
+      if (await service.isForegroundService()) {
+        service.setForegroundNotificationInfo(
+          title: "Hisn Muslim",
+          content: "Running in background",
+        );
+      }
+    }
+  });
+
+    // scheduleNextUpdate();
   print("=================================");
   service.invoke('update');
 }
-void scheduleNextUpdate() {
-  final now = DateTime.now();
-  final tomorrow = DateTime(now.year, now.month, now.day + 1);
-  final durationUntilMidnight = tomorrow.difference(now);
-   Get.lazyPut(() => TimesController());
-  TimesController controller = Get.find();
-  Timer(durationUntilMidnight, () async {
-    await controller.times();
-    scheduleNextUpdate(); // Reschedule for the next day
-  });
-}
+// void scheduleNextUpdate() {
+//   final now = DateTime.now();
+//   final tomorrow = DateTime(now.year, now.month, now.day + 1);
+//   final durationUntilMidnight = tomorrow.difference(now);
+//    Get.lazyPut(() => TimesController());
+//   TimesController controller = Get.find();
+//   Timer(durationUntilMidnight, () async {
+//     await controller.times();
+//     scheduleNextUpdate(); // Reschedule for the next day
+//   });
+// }
