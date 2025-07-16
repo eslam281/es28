@@ -12,7 +12,7 @@ import 'core/functions/initBox.dart';
 Box? myBox;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeService();
+  // await initializeService();
   myBox = await initalBox("times");
 
   await SystemChrome.setPreferredOrientations([

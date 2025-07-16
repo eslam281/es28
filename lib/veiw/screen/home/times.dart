@@ -14,7 +14,6 @@ class Times extends StatelessWidget {
   Widget build(BuildContext context) {
      Get.put(TimesController());
     return GetBuilder<TimesController>(builder: (controller) {
-      print(controller.statusRequest);
       return HandlingDataView(
       statusRequest:controller.statusRequest,
       widget: SingleChildScrollView(
