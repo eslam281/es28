@@ -27,7 +27,7 @@ class About_us extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               const Text(
-                'إسلام سيد عبدالعزيز',
+                'إسلام سيد عبد العزيز',
                 style: TextStyle(
                   fontSize: 24,
                   color: AppColor.secondColor,

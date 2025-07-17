@@ -9,7 +9,7 @@ Widget bulletList(List<String> items) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Text('• ', style: TextStyle(color: Colors.white, fontSize: 18)),
+
           Expanded(
             child: Text(
               item,
@@ -18,6 +18,7 @@ Widget bulletList(List<String> items) {
               textDirection: TextDirection.rtl,
             ),
           ),
+        const Text('  • ', style: TextStyle(color: Colors.white, fontSize: 18))
         ],
       ),
     ))

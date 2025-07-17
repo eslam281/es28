@@ -22,11 +22,12 @@ class Counter extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            elevation: 4,
+            elevation: 8,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical:20),
               child: Column(
                 children: [
+
                   AppTextField(
                     textEditingController: controller.textcontroll,
                     title: "",
@@ -34,7 +35,9 @@ class Counter extends StatelessWidget {
                     isCitySelected: true,
                     cities: controller.itemsDropdown,
                   ),
+
                   const SizedBox(height: 16),
+
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
