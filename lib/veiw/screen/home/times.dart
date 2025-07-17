@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../controller/times_controller.dart';
 import '../../../core/functions/converTime24_12.dart';
-import '../../component/custom.dart';
 import '../../component/home/timeTile.dart';
 
 class Times extends StatelessWidget {
