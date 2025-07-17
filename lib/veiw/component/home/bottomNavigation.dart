@@ -16,18 +16,50 @@ class CustomBottomNavigation extends StatelessWidget {
             controller.setIndex(val);
           },
           currentIndex: controller.index,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: "الصفحة الرئسية"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.access_time), label: "أوقات الصلاة"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.menu_book_outlined), label: "الاذكار"),
-          ],selectedItemColor: AppColor.secondColor,
-          backgroundColor: AppColor.black,unselectedItemColor:AppColor.white,
-          selectedIconTheme:const IconThemeData(size: 35) ,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: AppColor.black,
+          selectedItemColor: AppColor.secondColor,
+          unselectedItemColor: Colors.white70,
+          selectedIconTheme: const IconThemeData(size: 32),
+          unselectedIconTheme: const IconThemeData(size: 24),
+          items: [
+            _animatedBarItem(
+              icon: Icons.home,
+              label: "الصفحة الرئسية",
+              isActive: controller.index == 0,
+            ),
+            _animatedBarItem(
+              icon: Icons.access_time,
+              label: "أوقات الصلاة",
+              isActive: controller.index == 1,
+            ),
+            _animatedBarItem(
+              icon: Icons.menu_book_outlined,
+              label: "الأذكار",
+              isActive: controller.index == 2,
+            ),
+          ],
         );
-      }
+      },
+    );
+  }
+
+  BottomNavigationBarItem _animatedBarItem({
+    required IconData icon,
+    required String label,
+    required bool isActive,
+  }) {
+    return BottomNavigationBarItem(
+      label: label,
+      icon: AnimatedContainer(
+        duration: const Duration(milliseconds: 800),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: isActive ? AppColor.secondColor.withAlpha(55) : Colors.transparent,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon),
+      ),
     );
   }
 }
