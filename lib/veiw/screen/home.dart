@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../controller/home_controller.dart';
 import '../../core/functions/alertexitapp.dart';
 import '../component/home/bottomNavigation.dart';
-import '../component/home/drawer.dart';
+import '../component/drawer/drawer.dart';
 import '../component/home/floatingActionButton.dart';
 
 class HomePage extends StatelessWidget {

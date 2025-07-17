@@ -48,10 +48,7 @@ class CustomDrawer extends StatelessWidget {
                     title: const Text("اتصل بنا"),
                     leading: const Icon(Icons.comment_outlined),
                     onTap: () async {
-                      // await launchUrl(Uri.parse("https://wa.me/201064744978"));
-                      // await launchUrl(Uri.parse("tel:0201064744978"));
-                      await launchUrl(
-                          Uri.parse("mailto:aslamsydbdalzyzbry@gmail.com"));
+                      Get.toNamed(AppRoute.contact_us);
                     }),
               ),
 
