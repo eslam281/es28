@@ -14,7 +14,7 @@ Future<void> initializeService()async {
           autoStart:true,onBackground:onIosBackground
       ),
       androidConfiguration: AndroidConfiguration(onStart:onStart,
-          isForegroundMode: false,autoStart:true)
+          isForegroundMode: false,autoStart:false)
   );
 }
 
@@ -32,10 +32,15 @@ void onStart (ServiceInstance service){
 
     service.on('setAsForeground').listen((event) {
       service.setAsForegroundService();
+      print("setAsForegroundService=======================================================");
+
     },);
 
     service.on('setAsBackground').listen((event) {
       service.setAsBackgroundService();
+      _scheduleNextUpdate();
+
+      print("setAsBackgroundService=======================================================");
     },);
 
     service.on('stopService').listen((event) {
@@ -54,7 +59,7 @@ void onStart (ServiceInstance service){
     }
   });
 
-  _scheduleNextUpdate();
+  print("=======================================================");
   service.invoke('update');
 }
 void _scheduleNextUpdate() {
@@ -62,6 +67,7 @@ void _scheduleNextUpdate() {
   final tomorrow = DateTime(now.year, now.month, now.day + 1);
   final durationUntilMidnight = tomorrow.difference(now);
 
+  print("=======================================================");
   Timer(durationUntilMidnight, () async {
     await times(false); // Fetch again tomorrow
     _scheduleNextUpdate(); // Reschedule again

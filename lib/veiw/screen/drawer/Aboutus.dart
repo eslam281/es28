@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constant/color.dart';
 import '../../component/drawer/bulletList.dart';
 import '../../component/drawer/sectionTitle.dart';

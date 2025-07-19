@@ -23,6 +23,7 @@ class _TestState extends State<Test> {
           ElevatedButton(onPressed: () {
             FlutterBackgroundService().invoke("setAsBackground");
           }, child: const Text("Background Service")),
+
           ElevatedButton(onPressed: () async{
 
             bool isRunning =await FlutterBackgroundService().isRunning();
