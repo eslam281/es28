@@ -1,6 +1,9 @@
 import 'package:es28/main.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../core/services/elathaker_service.dart';
 
 class ElathakerController extends GetxController{
 
@@ -12,25 +15,30 @@ class ElathakerController extends GetxController{
   }
 
   void intialData() {
-    count.length = adhkar.length;
+    // elathakerService();
+    FlutterBackgroundService().invoke("setAsBackground_elathakerService");
+    count = myBox?.get("athakerCount");
+    print(count);
 
-    if (myBox?.get("time") != null) {
-      if (!checkDate('Asr') && checkDate('Fajr') && myBox?.get("athakertime") == 1) {
-        count.fillRange(0, adhkar.length, 0);
-        myBox?.put("athakerCount", count);
-        myBox?.put("athakertime", 2);
-      } else if (checkDate('Asr') && myBox?.get("athakertime") == 2) {
-        count.fillRange(0, adhkar.length, 0);
-        myBox?.put("athakerCount", count);
-        myBox?.put("athakertime", 1);
-      } else if (myBox?.get("athakerCount") != null && myBox?.get("athakertime") != null) {
-        count = myBox?.get("athakerCount");
-      } else {
-        elseCond();
-      }
-    } else {
-      elseCond();
-    }
+    // count.length = adhkar.length;
+    //
+    // if (myBox?.get("time") != null) {
+    //   if (!checkDate('Asr') && checkDate('Fajr') && myBox?.get("athakertime") == 1) {
+    //     count.fillRange(0, adhkar.length, 0);
+    //     myBox?.put("athakerCount", count);
+    //     myBox?.put("athakertime", 2);
+    //   } else if (checkDate('Asr') && myBox?.get("athakertime") == 2) {
+    //     count.fillRange(0, adhkar.length, 0);
+    //     myBox?.put("athakerCount", count);
+    //     myBox?.put("athakertime", 1);
+    //   } else if (myBox?.get("athakerCount") != null && myBox?.get("athakertime") != null) {
+    //     count = myBox?.get("athakerCount");
+    //   } else {
+    //     elseCond();
+    //   }
+    // } else {
+    //   elseCond();
+    // }
   }
 
   void elseCond() {

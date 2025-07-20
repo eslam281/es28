@@ -13,11 +13,11 @@ import 'core/functions/initBox.dart';
 Box? myBox;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  myBox = await initalBox("times");
   if(! await FlutterBackgroundService().isRunning()){
   await initializeService();
-  FlutterBackgroundService().startService();
+  await FlutterBackgroundService().startService();
   }
-  myBox = await initalBox("times");
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

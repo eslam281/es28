@@ -22,6 +22,9 @@ Future<StatusRequest> times(bool isready)async{
       statusRequest = await getdata();
     }
   }
+  if(isondate)
+    statusRequest = StatusRequest.success;
+
   return statusRequest;
 }
 

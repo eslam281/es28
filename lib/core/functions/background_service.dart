@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:es28/core/functions/time_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+
+import '../services/elathaker_service.dart';
 
 
 
@@ -38,9 +39,15 @@ void onStart (ServiceInstance service){
 
     service.on('setAsBackground').listen((event) {
       service.setAsBackgroundService();
-      _scheduleNextUpdate();
+      // _scheduleNextUpdate();
 
       print("setAsBackgroundService=======================================================");
+    },);
+    service.on('setAsBackground_elathakerService').listen((event) {
+      elathakerService();
+      service.setAsBackgroundService();
+
+      print("setAsBackground_elathakerService=======================================================");
     },);
 
     service.on('stopService').listen((event) {
@@ -48,28 +55,36 @@ void onStart (ServiceInstance service){
     },);
   }
 
-  Timer.periodic(const Duration(seconds: 5), (timer) async {
-    if (service is AndroidServiceInstance) {
-      if (await service.isForegroundService()) {
-        service.setForegroundNotificationInfo(
-          title: "Hisn Muslim",
-          content: "Running in background",
-        );
-      }
-    }
-  });
+  // Timer.periodic(const Duration(seconds: 5), (timer) async {
+  //   if (service is AndroidServiceInstance) {
+  //     if (await service.isForegroundService()) {
+  //       service.setForegroundNotificationInfo(
+  //         title: "Hisn Muslim",
+  //         content: "Running in background",
+  //       );
+  //     }
+  //   }
+  // });
 
-  print("=======================================================");
+  print("onStart==================================================");
   service.invoke('update');
 }
-void _scheduleNextUpdate() {
-  final now = DateTime.now();
-  final tomorrow = DateTime(now.year, now.month, now.day + 1);
-  final durationUntilMidnight = tomorrow.difference(now);
-
-  print("=======================================================");
-  Timer(durationUntilMidnight, () async {
-    await times(false); // Fetch again tomorrow
-    _scheduleNextUpdate(); // Reschedule again
-  });
-}
+// void _scheduleNextUpdate() {
+//   final now = DateTime.now();
+//   final tomorrow = DateTime(now.year, now.month, now.day + 1);
+//   final durationUntilMidnight = tomorrow.difference(now);
+//
+//   print("_scheduleNextUpdate scheduled for tomorrow ===================================");
+//
+//   Timer(durationUntilMidnight, () async {
+//     StatusRequest status = await times(false);
+//
+//     if (status == StatusRequest.success) {
+//       print("times(false) succeeded. Scheduling next update...");
+//       _scheduleNextUpdate(); // Reschedule only if it succeeded
+//     } else {
+//       print("times(false) failed with status: $status. Will NOT schedule next update.");
+//       // Optional: Retry later or log for debugging
+//     }
+//   });
+// }
