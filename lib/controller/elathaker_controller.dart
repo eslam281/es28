@@ -3,7 +3,6 @@ import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../core/services/elathaker_service.dart';
 
 class ElathakerController extends GetxController{
 
