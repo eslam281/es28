@@ -15,48 +15,48 @@ import 'core/services/elathaker_service.dart';
 Box? myBox;
 const taskName = "elathakerDailyTask";
 
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) async {
-
-    if (task == taskName) {
-      final Map<String, String> times = Map<String, String>.from(myBox?.get("time") ?? {});
-      final now = DateTime.now();
-      final currentTime = "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
-
-      if (times["Fajr"] == currentTime || times["Asr"] == currentTime) {
-        elathakerService();
-        print("✅ elathakerService triggered at $currentTime");
-      } else {
-        print("⏰ Not time yet: $currentTime");
-      }
-    }
-
-    return Future.value(true);
-  });
-}
+// void callbackDispatcher() {
+//   Workmanager().executeTask((task, inputData) async {
+//
+//     if (task == taskName) {
+//       final Map<String, String> times = Map<String, String>.from(myBox?.get("time") ?? {});
+//       final now = DateTime.now();
+//       final currentTime = "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+//
+//       if (times["Fajr"] == currentTime || times["Asr"] == currentTime) {
+//         elathakerService();
+//         print("✅ elathakerService triggered at $currentTime");
+//       } else {
+//         print("⏰ Not time yet: $currentTime");
+//       }
+//     }
+//
+//     return Future.value(true);
+//   });
+// }
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   myBox = await initalBox("times");
 
-  if(! await FlutterBackgroundService().isRunning()){
-  await initializeService();
-  await FlutterBackgroundService().startService();
-  }
+  // if(! await FlutterBackgroundService().isRunning()){
+  // await initializeService();
+  // await FlutterBackgroundService().startService();
+  // }
 
-  await Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: false, // Set to true to debug in logcat
-  );
-
-  await Workmanager().registerPeriodicTask(
-    "1",
-    taskName,
-    frequency: const Duration(minutes: 15), // minimum allowed
-    constraints: Constraints(
-      networkType: NetworkType.not_required,
-      requiresBatteryNotLow: true,
-    ),
-  );
+  // await Workmanager().initialize(
+  //   callbackDispatcher,
+  //   isInDebugMode: false, // Set to true to debug in logcat
+  // );
+  //
+  // await Workmanager().registerPeriodicTask(
+  //   "1",
+  //   taskName,
+  //   frequency: const Duration(minutes: 15), // minimum allowed
+  //   constraints: Constraints(
+  //     networkType: NetworkType.not_required,
+  //     requiresBatteryNotLow: true,
+  //   ),
+  // );
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

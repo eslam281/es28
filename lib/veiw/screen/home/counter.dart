@@ -22,7 +22,7 @@ class Counter extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            elevation: 8,
+            elevation: 25,shadowColor: Colors.grey.withAlpha(45),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical:20),
               child: Column(
@@ -67,7 +67,7 @@ class Counter extends StatelessWidget {
             ),
           ),
 
-            const SizedBox(height: 50,),
+            const SizedBox(height: 30,),
 
             Text("${controller.counter}",
               style: const TextStyle(fontSize: 30, color: AppColor.white),
@@ -78,7 +78,7 @@ class Counter extends StatelessWidget {
               style: const TextStyle(fontSize: 30, color: AppColor.white)),
             const SizedBox(height: 20,),
 
-            customButton(onPressed: () {controller.Addi();}),
+            CustomButton(onPressed:controller.Addi),
           const SizedBox(height: 40,),
           ],),
       );
