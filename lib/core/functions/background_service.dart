@@ -4,7 +4,9 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
+import '../class/statusrequest.dart';
 import '../services/elathaker_service.dart';
+import '../services/time_service.dart';
 
 
 
@@ -39,7 +41,7 @@ void onStart (ServiceInstance service){
 
     service.on('setAsBackground').listen((event) {
       service.setAsBackgroundService();
-      // _scheduleNextUpdate();
+      _scheduleNextUpdate();
 
       print("setAsBackgroundService=======================================================");
     },);
@@ -69,22 +71,22 @@ void onStart (ServiceInstance service){
   print("onStart==================================================");
   service.invoke('update');
 }
-// void _scheduleNextUpdate() {
-//   final now = DateTime.now();
-//   final tomorrow = DateTime(now.year, now.month, now.day + 1);
-//   final durationUntilMidnight = tomorrow.difference(now);
-//
-//   print("_scheduleNextUpdate scheduled for tomorrow ===================================");
-//
-//   Timer(durationUntilMidnight, () async {
-//     StatusRequest status = await times(false);
-//
-//     if (status == StatusRequest.success) {
-//       print("times(false) succeeded. Scheduling next update...");
-//       _scheduleNextUpdate(); // Reschedule only if it succeeded
-//     } else {
-//       print("times(false) failed with status: $status. Will NOT schedule next update.");
-//       // Optional: Retry later or log for debugging
-//     }
-//   });
-// }
+void _scheduleNextUpdate() {
+  final now = DateTime.now();
+  final tomorrow = DateTime(now.year, now.month, now.day + 1);
+  final durationUntilMidnight = tomorrow.difference(now);
+
+  print("_scheduleNextUpdate scheduled for tomorrow ===================================");
+
+  Timer(durationUntilMidnight, () async {
+    StatusRequest status = await times(false,true);
+
+    if (status == StatusRequest.success) {
+      print("times(false) succeeded. Scheduling next update...");
+      _scheduleNextUpdate(); // Reschedule only if it succeeded
+    } else {
+      print("times(false) failed with status: $status. Will NOT schedule next update.");
+      // Optional: Retry later or log for debugging
+    }
+  });
+}

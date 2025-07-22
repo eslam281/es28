@@ -5,12 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:workmanager/workmanager.dart';
 
 import 'core/class/theme.dart';
 import 'core/functions/background_service.dart';
 import 'core/functions/initBox.dart';
-import 'core/services/elathaker_service.dart';
 
 Box? myBox;
 const taskName = "elathakerDailyTask";
@@ -38,10 +36,10 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   myBox = await initalBox("times");
 
-  // if(! await FlutterBackgroundService().isRunning()){
-  // await initializeService();
-  // await FlutterBackgroundService().startService();
-  // }
+  if(! await FlutterBackgroundService().isRunning()){
+  await initializeService();
+  await FlutterBackgroundService().startService();
+  }
 
   // await Workmanager().initialize(
   //   callbackDispatcher,

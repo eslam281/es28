@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
+import '../../main.dart';
 import 'getlocation.dart';
 Future<String> reverseGeocode() async {
 Position? position;
@@ -19,6 +20,8 @@ Position? position;
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
+
+     await myBox?.put("location", [data["address"]["country"],data["address"]["state"]]);
 
      return "https://api.aladhan.com/v1/timingsByCity?city=${data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
     } else {

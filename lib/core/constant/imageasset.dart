@@ -9,6 +9,7 @@ class AppImageAsset{
   static const String qibla="$rootImages/qibla.jpg";
   // static const String background_qibla="$rootImages/background_qibla.png";
   static const String athkar_AP="$rootImages/p-mqyydh002.jpg";
+  static const String saibh="$rootImages/saibh.png";
 
 
   static const String loading  = "$rootLottie/loading.json";

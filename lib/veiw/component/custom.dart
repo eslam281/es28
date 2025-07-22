@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import '../../core/constant/color.dart';
+import '../../core/constant/imageasset.dart';
 
 class CustomButton extends StatefulWidget {
   final VoidCallback onPressed;
@@ -68,25 +69,24 @@ class _CustomButtonState extends State<CustomButton> with SingleTickerProviderSt
       onLongPressEnd: (_) {
         stopRotation();
       },
+
       child: AnimatedBuilder(
         animation: _turns,
         builder: (context, child) {
           return Transform.rotate(
             angle: _turns.value * 2 * math.pi,
+
             child: Transform.translate(
               offset: const Offset(0, -25), // 👈 tweak this offset to fix center manually
-              child: child,
-            ),
-          );
-        },
+              child: child,),
+
+          );},
+
         child: SizedBox(
-          width: 300,
-          height: 300,
-          child: Image.asset(
-            "assets/images/saibh.png",
-            color: AppColor.secondColor,
-          ),
+          width: 300, height: 300,
+          child: Image.asset(AppImageAsset.saibh, color: AppColor.secondColor,),
         ),
+
       ),
     );
   }

@@ -35,12 +35,19 @@ class Times extends StatelessWidget {
                     Text(
                       controller.dateResponse ?? "",
                       style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.right,
                     ),
+
+                    Text(
+                      controller.locationList[1],
+                      style: const TextStyle(
+                        color: AppColor.primaryColor, fontSize: 18, fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+
                     IconButton(
                       onPressed: controller.reTimes,
                       icon: const Icon(Icons.refresh, size: 26),
