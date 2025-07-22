@@ -1,6 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-import '../shared/snackbar.dart';
 
 iscontnect()async{
   final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());

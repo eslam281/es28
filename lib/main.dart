@@ -40,7 +40,7 @@ void main() async{
   await initializeService();
   await FlutterBackgroundService().startService();
   }
-
+  FlutterBackgroundService().invoke("setAsBackground");
   // await Workmanager().initialize(
   //   callbackDispatcher,
   //   isInDebugMode: false, // Set to true to debug in logcat

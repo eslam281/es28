@@ -22,14 +22,13 @@ class TimesController extends GetxController{
   bool isready = false;
   late Timer rebuild ;
   Position? position;
-  List locationList = [];
+  List locationList =  myBox?.get("location")??["","Cairo"];
 
   String? dateResponse;
 
   @override
   void onInit() async{
    await gettimes();
-   locationList = await myBox?.get("location")??["","Cairo"];
 
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
@@ -62,6 +61,9 @@ class TimesController extends GetxController{
     if(statusRequest == StatusRequest.error){
       Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
           backgroundColor: Colors.white);
+    }else if(statusRequest == StatusRequest.offlinefailure){
+      CustomSnackBar("تنببه",
+          "انت الان في حاله عدم الاتصال يرجى الاتصال بالانترنت واعاده المحاوله");
     }
     await getTimesOff();
 

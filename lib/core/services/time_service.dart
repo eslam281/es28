@@ -8,7 +8,6 @@ import '../class/statusrequest.dart';
 import '../functions/checkContnection.dart';
 import '../functions/getNameOfLocation.dart';
 import '../functions/handlingdata.dart';
-import '../shared/snackbar.dart';
 
 
 Future<StatusRequest> times(bool isready,bool isBackground)async{
@@ -22,7 +21,7 @@ Future<StatusRequest> times(bool isready,bool isBackground)async{
     if (result) {
       statusRequest = await getdata(isBackground);
     }else if(!isBackground){
-      CustomSnackBar("تنببه","انت الان في حاله عدم الاتصال يرجى الاتصال بالانترنت واعاده المحاوله");
+      StatusRequest statusRequest =StatusRequest.offlinefailure;
     }
   }
   if(isondate)
