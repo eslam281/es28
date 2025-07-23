@@ -15,7 +15,7 @@ import '../data/modle/modle.dart';
 
 class TimesController extends GetxController{
 
-  StatusRequest statusRequest =StatusRequest.loading;
+  StatusRequest statusRequest =StatusRequest.onitnial;
   TimeData timeData = TimeData(Crud());
   TimingModel? data;
 
@@ -28,7 +28,8 @@ class TimesController extends GetxController{
 
   @override
   void onInit() async{
-   await gettimes();
+   // await gettimes();
+   await getTimesOff();
 
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;

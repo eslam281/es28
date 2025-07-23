@@ -79,6 +79,7 @@ void _scheduleNextUpdate() {
   print("_scheduleNextUpdate scheduled for tomorrow ===================================");
 
   Timer(durationUntilMidnight, () async {
+
     StatusRequest status = await times(false,true);
 
     if (status == StatusRequest.success) {

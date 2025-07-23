@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:es28/core/shared/snackbar.dart';
-import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future determinePosition() async {
