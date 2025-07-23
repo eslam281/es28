@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:es28/core/shared/snackbar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future determinePosition() async {
@@ -25,15 +28,21 @@ Future determinePosition() async {
   if (!serviceEnabled) {
 
     CustomSnackBar("تحذير", "خدمات الموقع غير مفعلة.");
-
-    while (!serviceEnabled) {
       await Geolocator.openLocationSettings();
-      await Future.delayed(const Duration(seconds: 6));
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    }
+    if (!serviceEnabled) return null;
 
   }
 
-  return await Geolocator.getCurrentPosition(locationSettings:const
-  LocationSettings(accuracy:LocationAccuracy.bestForNavigation));
+  try {
+    Position position = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation, // Force GPS
+      ),
+    );
+    return position;
+  } catch (e) {
+    CustomSnackBar("خطأ", "حدث خطأ أثناء تحديد الموقع");
+    return null;
+  }
 }

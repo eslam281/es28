@@ -9,29 +9,10 @@ import 'package:hive/hive.dart';
 import 'core/class/theme.dart';
 import 'core/functions/background_service.dart';
 import 'core/functions/initBox.dart';
+import 'core/services/time_service.dart';
 
 Box? myBox;
-// const taskName = "elathakerDailyTask";
 
-// void callbackDispatcher() {
-//   Workmanager().executeTask((task, inputData) async {
-//
-//     if (task == taskName) {
-//       final Map<String, String> times = Map<String, String>.from(myBox?.get("time") ?? {});
-//       final now = DateTime.now();
-//       final currentTime = "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
-//
-//       if (times["Fajr"] == currentTime || times["Asr"] == currentTime) {
-//         elathakerService();
-//         print("✅ elathakerService triggered at $currentTime");
-//       } else {
-//         print("⏰ Not time yet: $currentTime");
-//       }
-//     }
-//
-//     return Future.value(true);
-//   });
-// }
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   myBox = await initalBox("times");
@@ -40,21 +21,12 @@ void main() async{
   await initializeService();
   await FlutterBackgroundService().startService();
   }
-  FlutterBackgroundService().invoke("setAsBackground");
-  // await Workmanager().initialize(
-  //   callbackDispatcher,
-  //   isInDebugMode: false, // Set to true to debug in logcat
-  // );
-  //
-  // await Workmanager().registerPeriodicTask(
-  //   "1",
-  //   taskName,
-  //   frequency: const Duration(minutes: 15), // minimum allowed
-  //   constraints: Constraints(
-  //     networkType: NetworkType.not_required,
-  //     requiresBatteryNotLow: true,
-  //   ),
-  // );
+  FlutterBackgroundService().on('run_times').listen((event) async {
+    print("📥 Main isolate received run_times");
+    final result = await times(false, true);
+    print("✅ times() ran in main isolate: $result");
+  });
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

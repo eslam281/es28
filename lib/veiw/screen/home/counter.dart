@@ -24,7 +24,7 @@ class Counter extends StatelessWidget {
             ),
             elevation: 25,shadowColor: Colors.grey.withAlpha(45),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical:20),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical:10),
               child: Column(
                 children: [
 

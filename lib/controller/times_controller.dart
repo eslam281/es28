@@ -58,6 +58,7 @@ class TimesController extends GetxController{
     statusRequest =StatusRequest.loading;
     update();
     statusRequest = await times(isready,false);
+
     if(statusRequest == StatusRequest.error){
       Get.snackbar("تحذير","أنت الآن في الموقع الافتراضي مصر",
           backgroundColor: Colors.white);
