@@ -11,7 +11,7 @@ import 'core/functions/background_service.dart';
 import 'core/functions/initBox.dart';
 
 Box? myBox;
-const taskName = "elathakerDailyTask";
+// const taskName = "elathakerDailyTask";
 
 // void callbackDispatcher() {
 //   Workmanager().executeTask((task, inputData) async {

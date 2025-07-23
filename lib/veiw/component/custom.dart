@@ -77,7 +77,7 @@ class _CustomButtonState extends State<CustomButton> with SingleTickerProviderSt
             angle: _turns.value * 2 * math.pi,
 
             child: Transform.translate(
-              offset: const Offset(0, -25), // 👈 tweak this offset to fix center manually
+              offset: const Offset(2, -40), // 👈 tweak this offset to fix center manually
               child: child,),
 
           );},

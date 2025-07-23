@@ -76,10 +76,10 @@ class Counter extends StatelessWidget {
 
           Text("${controller.i}",
               style: const TextStyle(fontSize: 30, color: AppColor.white)),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 35,),
 
             CustomButton(onPressed:controller.Addi),
-          const SizedBox(height: 40,),
+          const SizedBox(height: 20,),
           ],),
       );
     }

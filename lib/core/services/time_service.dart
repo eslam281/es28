@@ -20,12 +20,10 @@ Future<StatusRequest> times(bool isready,bool isBackground)async{
 
     if (result) {
       statusRequest = await getdata(isBackground);
-    }else if(!isBackground){
-      StatusRequest statusRequest =StatusRequest.offlinefailure;
+    }else{
+      statusRequest =StatusRequest.offlinefailure;
     }
   }
-  if(isondate)
-    statusRequest = StatusRequest.success;
   return statusRequest;
 }
 
