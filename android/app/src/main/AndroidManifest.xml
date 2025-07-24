@@ -46,12 +46,11 @@
             android:exported="false"
             />
         <receiver
-            android:name="be.tramckrijte.workmanager.WorkManagerBroadcastReceiver"
-            android:enabled="true"
+            android:name="com.transistorsoft.flutter.backgroundfetch.HeadlessBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.REBOOT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </receiver>
     </application>
