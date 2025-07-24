@@ -37,7 +37,10 @@
 //   final tomorrow = DateTime(now.year, now.month, now.day + 1);
 //   return tomorrow.difference(now);
 // }
+import 'package:hive/hive.dart';
 import 'package:workmanager/workmanager.dart';
+import '../../main.dart';
+import '../functions/initBox.dart';
 import '../services/time_service.dart';
 
 const String dailyTask = "dailyPrayerTimeTask";
@@ -52,7 +55,7 @@ Future<void> setupDailyTask() async {
     "1", // unique ID
     dailyTask,
     frequency: const Duration(hours: 1),
-    initialDelay: Duration(seconds:10),
+    initialDelay: const Duration(seconds:10),
     constraints: Constraints(
       networkType: NetworkType.connected,
     ),
@@ -65,6 +68,10 @@ Future<void> setupDailyTask() async {
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     // if (task == dailyTask) {
+    if (!Hive.isBoxOpen("times")) {
+      Hive.init("/data/user/0/com.example.es28/app_flutter"); // ✅ المسار الثابت
+    myBox =await Hive.openBox("times");
+    }
       print("✅✅✅ WorkManager task executed ✅✅✅");
       await times(false, true);
     // }

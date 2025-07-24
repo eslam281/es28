@@ -27,8 +27,7 @@ Future determinePosition() async {
   if (!serviceEnabled) {
 
     CustomSnackBar("تحذير", "خدمات الموقع غير مفعلة.");
-      await Geolocator.openLocationSettings();
-      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      serviceEnabled = await Geolocator.openLocationSettings();
     if (!serviceEnabled) return null;
 
   }
