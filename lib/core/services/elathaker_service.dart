@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 import '../../main.dart';
 
-void elathakerService() {
+Future<void> elathakerService() async {
   List count=[];
   count.length = 20;
   count.fillRange(0, 20, 0);
@@ -15,8 +15,6 @@ void elathakerService() {
 
       myBox?.put("athakerCount", count);
       myBox?.put("athakertime", 1);
-    } else if (myBox?.get("athakerCount") != null && myBox?.get("athakertime") != null) {
-      count = myBox?.get("athakerCount");
     } else {
       elseCond(count);
     }
@@ -35,8 +33,11 @@ void elseCond(count) {
 }
 
 bool checkDate(String name) {
-  final String time = myBox?.get("time")[name] ?? "";
-  final String currentTime = DateFormat('HH:mm').format(DateTime.now());
+  if (myBox?.get("time") != null) {
+    final String time = myBox?.get("time")[name] ?? "";
+    final String currentTime = DateFormat('HH:mm').format(DateTime.now());
 
-  return currentTime.compareTo(time) > 0;
+    return currentTime.compareTo(time) > 0;
+  }
+  return false;
 }

@@ -17,7 +17,11 @@ class ElathakerController extends GetxController{
 
   void intialData() async{
     count.length = 20;
-    elathakerService();
+    count.fillRange(0, adhkar.length, 0);
+    await elathakerService();
+    if (myBox?.get("time") != null) {
+      count = await myBox?.get("athakerCount");
+    }
     //  FlutterBackgroundService().invoke("setAsBackground_elathakerService");
     // count = myBox?.get("athakerCount");
     // print(count);
@@ -44,7 +48,6 @@ class ElathakerController extends GetxController{
   }
 
   void elseCond() {
-    count.fillRange(0, adhkar.length, 0);
     if (checkDate('Asr')) {
       myBox?.put("athakertime", 2);
     } else {

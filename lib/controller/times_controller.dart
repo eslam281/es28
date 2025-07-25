@@ -28,9 +28,7 @@ class TimesController extends GetxController{
 
   @override
   void onInit() async{
-   // await gettimes();
-   await getTimesOff();
-
+   await gettimes();
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
       update();
