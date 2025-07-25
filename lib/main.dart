@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
@@ -16,9 +15,6 @@ Box? myBox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   myBox = await initalBox("times");
-  var dir = await getApplicationDocumentsDirectory();
-  print(dir.path);
-  print("================================================");
   await setupDailyTask(); // ✅ تشغيل الخلفية اليومية
 
 

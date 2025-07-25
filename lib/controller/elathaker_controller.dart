@@ -1,7 +1,9 @@
 import 'package:es28/main.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../core/services/elathaker_service.dart';
+
 
 
 class ElathakerController extends GetxController{
@@ -13,11 +15,12 @@ class ElathakerController extends GetxController{
     super.onInit();
   }
 
-  void intialData() {
-    // elathakerService();
-    FlutterBackgroundService().invoke("setAsBackground_elathakerService");
-    count = myBox?.get("athakerCount");
-    print(count);
+  void intialData() async{
+    count.length = 20;
+    elathakerService();
+    //  FlutterBackgroundService().invoke("setAsBackground_elathakerService");
+    // count = myBox?.get("athakerCount");
+    // print(count);
 
     // count.length = adhkar.length;
     //

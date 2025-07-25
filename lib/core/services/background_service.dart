@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
 import '../class/statusrequest.dart';
-import '../services/elathaker_service.dart';
-import '../services/time_service.dart';
+import 'elathaker_service.dart';
+import 'time_service.dart';
 
 
 

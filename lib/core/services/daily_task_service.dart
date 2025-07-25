@@ -40,7 +40,6 @@
 import 'package:hive/hive.dart';
 import 'package:workmanager/workmanager.dart';
 import '../../main.dart';
-import '../functions/initBox.dart';
 import '../services/time_service.dart';
 
 const String dailyTask = "dailyPrayerTimeTask";

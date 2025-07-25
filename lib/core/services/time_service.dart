@@ -35,7 +35,7 @@ Future<StatusRequest> getdata(bool isBackground) async{
   late String timingUrl;
 
   if(isBackground){
-    List locationList = await myBox?.get("location")??[];
+    List locationList = await myBox?.get("location")??["Egypt","Cairo"];
     timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=${locationList[0]}"
         "&city=${locationList[1]}&method=5#";
   }
