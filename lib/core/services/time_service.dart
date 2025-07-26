@@ -62,7 +62,6 @@ Future<StatusRequest> getdata(bool isBackground) async{
 
 
 Future<bool> checkDate()async{
-  String? dateResponse;
-  dateResponse =await myBox?.get("date")??"";
+  String? dateResponse = await myBox?.get("date")??"";
   return dateResponse==DateFormat('dd-MM-yyyy').format(DateTime.now());
 }

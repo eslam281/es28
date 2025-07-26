@@ -2,13 +2,11 @@ import 'package:es28/main.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../core/services/elathaker_service.dart';
-
-
 
 class ElathakerController extends GetxController{
 
   List count=[];
+
   @override
   void onInit() {
     intialData();
@@ -16,62 +14,62 @@ class ElathakerController extends GetxController{
   }
 
   void intialData() async{
-    count.length = 20;
+    count.length = adhkar.length;
     count.fillRange(0, adhkar.length, 0);
-    await elathakerService();
     if (myBox?.get("time") != null) {
-      count = await myBox?.get("athakerCount");
-    }
-    //  FlutterBackgroundService().invoke("setAsBackground_elathakerService");
-    // count = myBox?.get("athakerCount");
-    // print(count);
 
-    // count.length = adhkar.length;
-    //
-    // if (myBox?.get("time") != null) {
-    //   if (!checkDate('Asr') && checkDate('Fajr') && myBox?.get("athakertime") == 1) {
-    //     count.fillRange(0, adhkar.length, 0);
-    //     myBox?.put("athakerCount", count);
-    //     myBox?.put("athakertime", 2);
-    //   } else if (checkDate('Asr') && myBox?.get("athakertime") == 2) {
-    //     count.fillRange(0, adhkar.length, 0);
-    //     myBox?.put("athakerCount", count);
-    //     myBox?.put("athakertime", 1);
-    //   } else if (myBox?.get("athakerCount") != null && myBox?.get("athakertime") != null) {
-    //     count = myBox?.get("athakerCount");
-    //   } else {
-    //     elseCond();
-    //   }
-    // } else {
-    //   elseCond();
-    // }
-  }
+      if(!checkTime('Asr') &&checkTime('Fajr') && (myBox?.get("athakertime") == 1||!await checkDate())) {
+        count.fillRange(0, adhkar.length, 0);
+        myBox?.put("athakerCount", count);
+        myBox?.put("athakertime", 2);
+        print("Fajr========================================");
+        await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
 
-  void elseCond() {
-    if (checkDate('Asr')) {
-      myBox?.put("athakertime", 2);
+      } else  if (checkTime('Asr') && (myBox?.get("athakertime") == 2||!await checkDate())) {
+        count.fillRange(0, adhkar.length, 0);
+        myBox?.put("athakerCount", count);
+        myBox?.put("athakertime", 1);
+        print("Asr========================================");
+        await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
+
+      } else if (myBox?.get("athakerCount") != null ) {
+        count = myBox?.get("athakerCount");
+        print("athakerCount========================================");
+
+      } else {
+        count.fillRange(0, adhkar.length, 0);
+      }
     } else {
-      myBox?.put("athakertime", 1);
+      count.fillRange(0, adhkar.length, 0);
+      await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
     }
+    print(myBox?.get("elathakerdate"));
+    update();
   }
 
-  bool checkDate(String name) {
+
+  bool checkTime(String name) {
     final String time = myBox?.get("time")[name] ?? "";
     final String currentTime = DateFormat('HH:mm').format(DateTime.now());
-
     return currentTime.compareTo(time) > 0;
+  }
+  Future<bool> checkDate()async{
+    String? dateResponse;
+    dateResponse =await myBox?.get("elathakerdate")??"";
+    return dateResponse==DateFormat('dd-MM').format(DateTime.now());
   }
 
   onTap(int max,int index){
     if(max > count[index]){
-      count[index]=count[index]+1;
+      count[index] += 1;
       myBox?.put("athakerCount",count);
     }
     update();
   }
 
   customRefresh(){
-    elseCond();
+    count.fillRange(0, adhkar.length, 0);
+    myBox?.put("athakerCount", count);
     update();
   }
 

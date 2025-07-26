@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
 import '../class/statusrequest.dart';
-import 'elathaker_service.dart';
 import 'time_service.dart';
 
 
@@ -46,7 +45,7 @@ void onStart (ServiceInstance service){
       print("setAsBackgroundService=======================================================");
     },);
     service.on('setAsBackground_elathakerService').listen((event) {
-      elathakerService();
+      // elathakerService();
       service.setAsBackgroundService();
 
       print("setAsBackground_elathakerService=======================================================");
