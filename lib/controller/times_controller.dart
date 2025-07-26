@@ -28,7 +28,11 @@ class TimesController extends GetxController{
 
   @override
   void onInit() async{
-   await gettimes();
+    if(myBox?.get("time") == null){
+      await gettimes();
+    }else{
+      getTimesOff();
+    }
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
       update();
@@ -66,7 +70,7 @@ class TimesController extends GetxController{
           "انت الان في حاله عدم الاتصال يرجى الاتصال بالانترنت واعاده المحاوله");
     }
     await getTimesOff();
-
+    locationList = await myBox?.get("location");
     statusRequest =StatusRequest.success;
     update();
   }
