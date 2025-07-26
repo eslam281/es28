@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/times_controller.dart';
 import '../../../core/functions/converTime24_12.dart';
+import '../../../core/localization/locationTranslations.dart';
 import '../../component/home/timeTile.dart';
 
 class Times extends StatelessWidget {
@@ -41,7 +42,7 @@ class Times extends StatelessWidget {
                     ),
 
                     Text(
-                      controller.locationList[1],
+                      getLocalizedLocation(controller.locationList[1]),
                       style: const TextStyle(
                         color: AppColor.primaryColor, fontSize: 18, fontWeight: FontWeight.bold,
                       ),

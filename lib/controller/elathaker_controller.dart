@@ -40,8 +40,14 @@ class ElathakerController extends GetxController{
         count.fillRange(0, adhkar.length, 0);
       }
     } else {
-      count.fillRange(0, adhkar.length, 0);
-      await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
+      if (myBox?.get("athakerCount") != null ) {
+        count = myBox?.get("athakerCount");
+        print("athakerCount========================================");
+
+      } else {
+        count.fillRange(0, adhkar.length, 0);
+        await myBox?.put("elathakerdate", DateFormat('dd-MM').format(DateTime.now()));
+      }
     }
     print(myBox?.get("elathakerdate"));
     update();
