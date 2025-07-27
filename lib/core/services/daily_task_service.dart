@@ -38,8 +38,12 @@ Future<void> setupDailyTask() async {
 @pragma('vm:entry-point')
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
+    if (!Hive.isBoxOpen("times")) {
+      Hive.init("/data/user/0/com.example.es28/app_flutter"); // ✅ المسار الثابت
+      myBox =await Hive.openBox("times");
+    }
     // if (task == dailyTask) {
-      print("✅✅✅ WorkManager task executed ✅✅✅");
+
       await times(false, true);
     // }
     return Future.value(true);

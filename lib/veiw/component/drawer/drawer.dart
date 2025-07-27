@@ -83,7 +83,7 @@ class CustomDrawer extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      hoverColor: AppColor.secondColor.withOpacity(0.15),
+      hoverColor: AppColor.secondColor.withAlpha(45),
       onTap: onTap,
     );
   }

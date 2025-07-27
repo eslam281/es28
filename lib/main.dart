@@ -17,16 +17,13 @@ void main() async {
   myBox = await initalBox("times");
   await setupDailyTask(); // ✅ تشغيل الخلفية اليومية
 
-
   // if(! await FlutterBackgroundService().isRunning()){
   // await initializeService();
   // await FlutterBackgroundService().startService();
   // }
   // FlutterBackgroundService().invoke("setAsBackground");
 
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
 
   runApp(const MyApp());
 }

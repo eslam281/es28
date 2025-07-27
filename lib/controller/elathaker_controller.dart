@@ -22,19 +22,19 @@ class ElathakerController extends GetxController{
         count.fillRange(0, adhkar.length, 0);
         myBox?.put("athakerCount", count);
         myBox?.put("athakertime", 2);
-        print("Fajr========================================");
+
         await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
 
       } else  if (checkTime('Asr') && (myBox?.get("athakertime") == 2||!await checkDate())) {
         count.fillRange(0, adhkar.length, 0);
         myBox?.put("athakerCount", count);
         myBox?.put("athakertime", 1);
-        print("Asr========================================");
+
         await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
 
       } else if (myBox?.get("athakerCount") != null ) {
         count = myBox?.get("athakerCount");
-        print("athakerCount========================================");
+
 
       } else {
         count.fillRange(0, adhkar.length, 0);
@@ -42,14 +42,13 @@ class ElathakerController extends GetxController{
     } else {
       if (myBox?.get("athakerCount") != null ) {
         count = myBox?.get("athakerCount");
-        print("athakerCount========================================");
+
 
       } else {
         count.fillRange(0, adhkar.length, 0);
         await myBox?.put("elathakerdate", DateFormat('dd-MM').format(DateTime.now()));
       }
     }
-    print(myBox?.get("elathakerdate"));
     update();
   }
 
