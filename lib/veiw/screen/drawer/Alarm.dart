@@ -1,44 +1,31 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Alarm extends StatefulWidget {
+import '../../../controller/drawer/alarm_controller.dart';
+import '../../../core/constant/color.dart';
+import '../../../core/functions/getOfFajr.dart';
+
+
+class Alarm extends StatelessWidget {
   const Alarm({super.key});
 
   @override
-  State<Alarm> createState() => _AlarmState();
-}
-
-class _AlarmState extends State<Alarm> {
-  bool ison = false;
-  @override
   Widget build(BuildContext context) {
-
+   Get.put(AlarmControllerImp());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Alarm'),
+        centerTitle:true,
+        title: const Text('Alarm',style:TextStyle(color:AppColor.white)),
       ),
       body: Center(
-        child: Switch.adaptive(value:ison , onChanged: (value) {
-          ison=value;
-          if(ison==true){
-            print("00000000000000000$ison");
-          AndroidAlarmManager.periodic(const Duration(seconds:10), 1,
-            alarm,
-              rescheduleOnReboot: true,allowWhileIdle: true,
-              exact: true,wakeup: true
-          );
-          }else{
-            AndroidAlarmManager.cancel(1);
+        child: GetBuilder<AlarmControllerImp>(
+          builder: (controller) {
+            return Switch.adaptive(value: controller.ison ,
+              onChanged: controller.onChange,);
           }
-          setState(() {
-
-          });
-        },),
+        ),
       ),
     );
   }
-}
-@pragma("vm:entry-point")
-void alarm(){
-  print(" AndroidAlarmManager.periodic00000000000000000000000000000000");
 }

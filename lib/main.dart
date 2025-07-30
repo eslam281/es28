@@ -8,13 +8,14 @@ import 'package:hive/hive.dart';
 
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
+import 'core/services/daily_task_service.dart';
 
 Box? myBox;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   myBox = await initalBox("times");
-  // await setupDailyTask(); // ✅ تشغيل الخلفية اليومية
+  await setupDailyTask(); // ✅ تشغيل الخلفية اليومية
   await AndroidAlarmManager.initialize();
 
    SystemChrome.setPreferredOrientations(
@@ -29,7 +30,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return  GetMaterialApp(
       title: 'Hisn Muslim',
       theme:MyTheme.lightTheme,
