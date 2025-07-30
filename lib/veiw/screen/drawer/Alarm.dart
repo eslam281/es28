@@ -1,10 +1,8 @@
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/drawer/alarm_controller.dart';
 import '../../../core/constant/color.dart';
-import '../../../core/functions/getOfFajr.dart';
 
 
 class Alarm extends StatelessWidget {

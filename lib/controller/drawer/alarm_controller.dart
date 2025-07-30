@@ -23,7 +23,11 @@ class AlarmControllerImp extends AlarmController{
     if(ison==true){
       print("00000000000000000$ison");
       DateTime nextFajr =await getDataOfFajr();
-      AndroidAlarmManager.oneShotAt(nextFajr, 1,alarm,
+      // AndroidAlarmManager.oneShotAt(nextFajr, 1,alarm,
+      //     rescheduleOnReboot: true,allowWhileIdle: true,
+      //     exact: true,wakeup: true
+      // );
+      AndroidAlarmManager.oneShot(const Duration(seconds: 5), 1,alarm,
           rescheduleOnReboot: true,allowWhileIdle: true,
           exact: true,wakeup: true
       );
