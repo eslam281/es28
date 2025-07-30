@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:workmanager/workmanager.dart';
 import '../../main.dart';
+import '../class/statusrequest.dart';
 import '../services/time_service.dart';
 
 const String dailyTask = "dailyPrayerTimeTask";
@@ -19,10 +20,7 @@ Future<void> setupDailyTask() async {
       ? _calculateInitialDelayUntilMidnight()
       : const Duration(seconds: 10);
 
-  await Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: true, // للتجربة السريعة
-  );
+  await Workmanager().initialize(callbackDispatcher);
 
   await Workmanager().registerPeriodicTask(
     "1", // unique ID
@@ -37,17 +35,21 @@ Future<void> setupDailyTask() async {
 
 @pragma('vm:entry-point')
 void callbackDispatcher() {
+  StatusRequest statusRequest = StatusRequest.onitnial;
   Workmanager().executeTask((task, inputData) async {
     if (!Hive.isBoxOpen("times")) {
       Hive.init("/data/user/0/com.example.es28/app_flutter"); // ✅ المسار الثابت
       myBox =await Hive.openBox("times");
     }
     // if (task == dailyTask) {
-
-      await times(false, true);
+    statusRequest=  await times(false, true);
     // }
-    return Future.value(true);
+    if(statusRequest == StatusRequest.success)
+      return Future.value(true);
+
+    return Future.value(false);
   });
+
 }
 /// حساب الفرق حتى منتصف الليل
 Duration _calculateInitialDelayUntilMidnight() {

@@ -1,4 +1,4 @@
-
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:es28/routes.dart';
 import 'package:es28/veiw/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +16,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   myBox = await initalBox("times");
   await setupDailyTask(); // ✅ تشغيل الخلفية اليومية
+  await AndroidAlarmManager.initialize();
 
-  // if(! await FlutterBackgroundService().isRunning()){
-  // await initializeService();
-  // await FlutterBackgroundService().startService();
-  // }
-  // FlutterBackgroundService().invoke("setAsBackground");
-
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
+   SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp,]);
 
   runApp(const MyApp());
 }

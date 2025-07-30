@@ -42,8 +42,6 @@ class ElathakerController extends GetxController{
     } else {
       if (myBox?.get("athakerCount") != null ) {
         count = myBox?.get("athakerCount");
-
-
       } else {
         count.fillRange(0, adhkar.length, 0);
         await myBox?.put("elathakerdate", DateFormat('dd-MM').format(DateTime.now()));
