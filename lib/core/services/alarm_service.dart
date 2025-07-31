@@ -6,15 +6,15 @@ import '../functions/getOfFajr.dart';
 @pragma("vm:entry-point")
 void alarm()async{
 
-  final player = AudioPlayer();
-  player.setSourceAsset(
-    "assets/Abdul_Basit_Abdul_Samad.mp3", // تأكد أنك وضعت الملف في assets
+  final player = AudioPlayer(playerId: "Fajr");
+ await player.setSourceAsset(
+    "audio/Abdul_Basit_Abdul_Samad.mp3", // تأكد أنك وضعت الملف في assets
   );
-
+  await player.resume();
   DateTime nextFajr =await getDataOfFajr();
   await AndroidAlarmManager.oneShotAt(nextFajr, 1,
     alarm, wakeup: true, exact: true,
     allowWhileIdle: true, rescheduleOnReboot: true,
   );
-  print(" AndroidAlarmManager.periodic00000000000000000000000000000000");
+  print(" AndroidAlarmManager.oneShotAt 00000000000000000000000000000000");
 }
