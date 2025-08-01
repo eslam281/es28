@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
@@ -42,8 +43,10 @@ void onStart (ServiceInstance service){
     service.on('setAsBackground').listen((event) {
       service.setAsBackgroundService();
       // AndroidAlarmManager.oneShot(const Duration(seconds: 5), 1,alarm,
-      AndroidAlarmManager.oneShotAt(DateTime.now().add(const Duration(seconds: 30)), 1,alarm,
-          rescheduleOnReboot: true,allowWhileIdle: true,
+      AndroidAlarmManager.oneShotAt(DateTime.now().add(
+          const Duration(seconds: 20)),
+          2,alarm,
+          rescheduleOnReboot: true,allowWhileIdle: true,alarmClock: true,
           exact: true,wakeup: true
       );
       print("setAsBackgroundService=======================================================");
@@ -51,9 +54,10 @@ void onStart (ServiceInstance service){
 
 
     service.on('stopService').listen((event) {
-      service.stopSelf();
-      AudioPlayer(playerId: "Fajr").stop();
+      // service.stopSelf();
+      AudioPlayer().stop();
       AndroidAlarmManager.cancel(1);
+      AndroidAlarmManager.cancel(2);
     },);
   }
 

@@ -22,7 +22,7 @@ Future<void> setupDailyTask() async {
   await Workmanager().registerPeriodicTask(
     "1", // unique ID
     dailyTask,
-    frequency: const Duration(hours: 1),
+    frequency: const Duration(minutes: 15),
     initialDelay:delay,
     constraints: Constraints(
       networkType: NetworkType.connected,
