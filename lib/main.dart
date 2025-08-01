@@ -21,10 +21,10 @@ void main() async {
   await setupDailyTask(); // ✅ تشغيل الخلفية اليومية
   await AndroidAlarmManager.initialize();
 
-  if (!await FlutterBackgroundService().isRunning()) {
-    await initializeService();
-    await FlutterBackgroundService().startService();
-  }
+  // if (!await FlutterBackgroundService().isRunning()) {
+  //   await initializeService();
+  //   await FlutterBackgroundService().startService();
+  // }
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       title: 'Hisn Muslim',
       theme: MyTheme.lightTheme,

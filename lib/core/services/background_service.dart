@@ -2,9 +2,12 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:android_intent_plus/flag.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
 import 'alarm_service.dart';
@@ -54,7 +57,7 @@ void onStart (ServiceInstance service){
 
 
     service.on('stopService').listen((event) {
-      // service.stopSelf();
+      service.stopSelf();
       AudioPlayer().stop();
       AndroidAlarmManager.cancel(1);
       AndroidAlarmManager.cancel(2);
@@ -74,4 +77,12 @@ void onStart (ServiceInstance service){
 
   // print("onStart==================================================");
   service.invoke('update');
+}
+void openBatteryOptimizationSettings() {
+  final intent = const AndroidIntent(
+    action: 'android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS',
+    data: 'package:com.example.es28', // استبدل باسم الحزمة الحقيقي لتطبيقك
+    flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
+  );
+  intent.launch();
 }

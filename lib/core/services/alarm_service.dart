@@ -40,7 +40,7 @@ void alarm()async{
     ),
   );
   final player = AudioPlayer();
-  await player.play(AssetSource("assets/audio/Abdul_Basit_Abdul_Samad.mp3"));
+  await player.play(AssetSource("audio/Abdul_Basit_Abdul_Samad.mp3"));
 
   DateTime nextFajr =await getDataOfFajr();
   await AndroidAlarmManager.oneShotAt(nextFajr, 1,
