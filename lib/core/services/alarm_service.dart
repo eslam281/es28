@@ -1,9 +1,9 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
 
-
-
+import '../constant/routes.dart';
 import '../functions/getOfFajr.dart';
 
 @pragma("vm:entry-point")
@@ -19,8 +19,8 @@ void alarm()async{
 
   await flutterLocalNotificationsPlugin.initialize(
     initializationSettings,
-    onDidReceiveNotificationResponse: (payload) {
-      // عند الضغط على الإشعار، افتح شاشة منبه
+    onDidReceiveNotificationResponse: (response) {
+      Get.toNamed(AppRoute.alarmRing);
     },
   );
 
@@ -39,7 +39,7 @@ void alarm()async{
       ),
     ),
   );
-  final player = AudioPlayer();
+  final player = AudioPlayer(playerId: "Fajr");
   await player.play(AssetSource("audio/Abdul_Basit_Abdul_Samad.mp3"));
 
   DateTime nextFajr =await getDataOfFajr();

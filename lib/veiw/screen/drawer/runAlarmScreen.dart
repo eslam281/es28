@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'core/constant/color.dart';
+import '../../../core/constant/color.dart';
 
-
-class Test extends StatefulWidget {
-  const Test({super.key});
-
-  @override
-  State<Test> createState() => _TestState();
-}
-
-class _TestState extends State<Test> {
+class AlarmRingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
