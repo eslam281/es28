@@ -4,7 +4,9 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
+import '../../core/functions/openBatterySetting.dart';
 import '../../core/services/alarm_service.dart';
 import '../../main.dart';
 
@@ -18,13 +20,20 @@ class AlarmControllerImp extends AlarmController{
     ison = myBox?.get("ison")??false;
     super.onInit();
   }
+  @override
+  void onReady() async{
+    requestExactAlarmPermission();
+    await Permission.notification.request();
+
+    super.onReady();
+  }
   onChange(val) async {
     ison = val;
     myBox?.put("ison", ison);
     if(ison==true){
       print("00000000000000000$ison");
       AndroidAlarmManager.oneShotAt(DateTime.now().add(
-          const Duration(seconds: 20)),
+          const Duration(seconds: 15)),
           2,alarm,
           rescheduleOnReboot: true,allowWhileIdle: true,alarmClock: true,
           exact: true,wakeup: true

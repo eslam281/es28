@@ -1,13 +1,12 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
 
-import '../constant/routes.dart';
 import '../functions/getOfFajr.dart';
 
 @pragma("vm:entry-point")
 void alarm()async{
+  final player = AudioPlayer(playerId: "Fajr");
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   const AndroidInitializationSettings initializationSettingsAndroid =
@@ -19,28 +18,43 @@ void alarm()async{
 
   await flutterLocalNotificationsPlugin.initialize(
     initializationSettings,
-    onDidReceiveNotificationResponse: (response) {
-      Get.toNamed(AppRoute.alarmRing);
-    },
+    // onDidReceiveNotificationResponse: (response) {
+    //   player.stop();
+    // },
   );
+
+
+  // await player.play(AssetSource("audio/Abdul_Basit_Abdul_Samad.mp3"));
 
   await flutterLocalNotificationsPlugin.show(
     0,
     '⏰ وقت الفجر',
-    'حان الآن موعد أذان الفجر',
+    ' حان الآن موعد أذان الفجر \n اضغط لإيقاف التنبيه',
     const NotificationDetails(
       android: AndroidNotificationDetails(
         'alarm_channel',
         'Alarms',
+        channelDescription: 'تنبيهات الأذان',
         importance: Importance.max,
         priority: Priority.high,
-        fullScreenIntent: true, // 💥 لجعل الإشعار يفتح الشاشة
-        playSound: true,
+        fullScreenIntent: true, // ✅ هذا هو المهم لتشغيل الشاشة
+        ticker: 'ticker',
+        enableLights: true,
+        sound: RawResourceAndroidNotificationSound("abdul_basit_abdul_samad"),
+        actions: <AndroidNotificationAction>[
+          AndroidNotificationAction(
+            'stop_alarm',
+            'إيقاف الأذان',
+            showsUserInterface: false,
+            cancelNotification: true,
+          ),
+        ],
       ),
     ),
+
   );
-  final player = AudioPlayer(playerId: "Fajr");
-  await player.play(AssetSource("audio/Abdul_Basit_Abdul_Samad.mp3"));
+
+
 
   DateTime nextFajr =await getDataOfFajr();
   await AndroidAlarmManager.oneShotAt(nextFajr, 1,

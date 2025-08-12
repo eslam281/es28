@@ -20,8 +20,9 @@ class HomeControllerImp extends HomeController{
   @override
   void onReady() {
     showDialog();
-    Future.delayed(const Duration(seconds: 10)).then(
-          (value) => openBatteryOptimizationSettings());
+
+    // Future.delayed(const Duration(seconds: 10)).then(
+    //       (value) => openManageOverlay());
     super.onReady();
   }
 

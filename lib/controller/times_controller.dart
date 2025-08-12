@@ -70,7 +70,7 @@ class TimesController extends GetxController{
           "انت الان في حاله عدم الاتصال يرجى الاتصال بالانترنت واعاده المحاوله");
     }
     await getTimesOff();
-    locationList = await myBox?.get("location");
+    locationList = await myBox?.get("location")??["","Cairo"];
     statusRequest =StatusRequest.success;
     update();
   }

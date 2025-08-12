@@ -1,6 +1,9 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/color.dart';
+import '../../../core/services/alarm_service.dart';
 
 class AlarmRingScreen extends StatelessWidget {
   @override
@@ -20,7 +23,7 @@ class AlarmRingScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: AppColor.secondColor,foregroundColor:AppColor.white),
               onPressed: () {
-                // إيقاف الصوت
+                AudioPlayer(playerId: "Fajr").stop();
               },
               child: const Text("إيقاف"),
             ),
@@ -28,9 +31,13 @@ class AlarmRingScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: AppColor.secondColor,foregroundColor:AppColor.white),
               onPressed: () {
-                // تأجيل لـ 10 دقائق (Snooze)
+                AndroidAlarmManager.oneShot(const Duration(minutes: 5),
+                    2,alarm,
+                    rescheduleOnReboot: true,allowWhileIdle: true
+                    ,alarmClock: true, exact: true,wakeup: true
+                );
               },
-              child: const Text("تأجيل 10 دقائق"),
+              child: const Text("تأجيل 5 دقائق"),
             ),
           ],
         ),
