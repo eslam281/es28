@@ -22,8 +22,9 @@ class AlarmControllerImp extends AlarmController{
   }
   @override
   void onReady() async{
-    requestExactAlarmPermission();
+    await Permission.scheduleExactAlarm.request();
     await Permission.notification.request();
+    // await Permission.ignoreBatteryOptimizations.request();
 
     super.onReady();
   }

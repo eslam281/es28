@@ -6,53 +6,60 @@ import '../functions/getOfFajr.dart';
 
 @pragma("vm:entry-point")
 void alarm()async{
-  final player = AudioPlayer(playerId: "Fajr");
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  const AndroidInitializationSettings initializationSettingsAndroid =
-  AndroidInitializationSettings('@mipmap/ic_launcher');
+  // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  //
+  // const AndroidInitializationSettings initializationSettingsAndroid =
+  // AndroidInitializationSettings('@mipmap/ic_launcher');
+  //
+  // final InitializationSettings initializationSettings = const InitializationSettings(
+  //   android: initializationSettingsAndroid,
+  // );
+  //
+  // await flutterLocalNotificationsPlugin.initialize(
+  //   initializationSettings,
+  //   onDidReceiveNotificationResponse: (response) async {
+  //     if (response.actionId == 'stop_alarm') {
+  //       // flutterLocalNotificationsPlugin.cancel(0);
+  //       // await player.stop();
+  //     }
+  //   },
+  //   // onDidReceiveBackgroundNotificationResponse: (response) async {
+  //   // if (response.actionId == 'stop_alarm') {
+  //   //   // await player.stop();
+  //   // }
+  //   // },
+  // );
+  final player = await AudioPlayer(playerId: "Fajr");
+  await player.play(AssetSource('audio/abdul_basit_abdul_samad.mp3'));
 
-  final InitializationSettings initializationSettings = const InitializationSettings(
-    android: initializationSettingsAndroid,
-  );
 
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-    // onDidReceiveNotificationResponse: (response) {
-    //   player.stop();
-    // },
-  );
-
-
-  // await player.play(AssetSource("audio/Abdul_Basit_Abdul_Samad.mp3"));
-
-  await flutterLocalNotificationsPlugin.show(
-    0,
-    '⏰ وقت الفجر',
-    ' حان الآن موعد أذان الفجر \n اضغط لإيقاف التنبيه',
-    const NotificationDetails(
-      android: AndroidNotificationDetails(
-        'alarm_channel',
-        'Alarms',
-        channelDescription: 'تنبيهات الأذان',
-        importance: Importance.max,
-        priority: Priority.high,
-        fullScreenIntent: true, // ✅ هذا هو المهم لتشغيل الشاشة
-        ticker: 'ticker',
-        enableLights: true,
-        sound: RawResourceAndroidNotificationSound("abdul_basit_abdul_samad"),
-        actions: <AndroidNotificationAction>[
-          AndroidNotificationAction(
-            'stop_alarm',
-            'إيقاف الأذان',
-            showsUserInterface: false,
-            cancelNotification: true,
-          ),
-        ],
-      ),
-    ),
-
-  );
+  // await flutterLocalNotificationsPlugin.show(
+  //   0,
+  //   '⏰ وقت الفجر',
+  //   ' اضغط لإيقاف التنبيه',
+  //   const NotificationDetails(
+  //     android: AndroidNotificationDetails(
+  //       'alarm_channel',
+  //       'Alarms',
+  //       channelDescription: 'تنبيهات الأذان',
+  //       importance: Importance.max,
+  //       priority: Priority.high,
+  //       fullScreenIntent: true, // ✅ هذا هو المهم لتشغيل الشاشة
+  //       ticker: 'ticker',
+  //       enableLights: true,
+  //       autoCancel: false,
+  //       // actions: <AndroidNotificationAction>[
+  //       //   AndroidNotificationAction(
+  //       //     'stop_alarm',
+  //       //     'إيقاف الأذان',
+  //       //     showsUserInterface: false,
+  //       //     cancelNotification: true,
+  //       //   ),
+  //       // ],
+  //     ),
+  //   ),
+  // );
 
 
 
