@@ -1,17 +1,23 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:es28/routes.dart';
 import 'package:es28/veiw/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
+import 'controller/drawer/alarm_controller.dart';
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
+import 'core/services/alarm_service.dart';
 import 'core/services/daily_task_service.dart';
 
 Box? myBox;
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AndroidAlarmManager.initialize();
@@ -22,7 +28,7 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
   await setupDailyTask();
-
+  alarmMain();
   runApp(const MyApp());
 }
 
