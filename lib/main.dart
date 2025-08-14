@@ -28,7 +28,6 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
   await setupDailyTask();
-  alarmMain();
   runApp(const MyApp());
 }
 
