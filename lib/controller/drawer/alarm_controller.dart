@@ -6,7 +6,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../core/functions/openBatterySetting.dart';
 import '../../core/services/alarm_service.dart';
 import '../../main.dart';
 

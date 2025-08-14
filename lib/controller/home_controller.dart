@@ -2,7 +2,6 @@ import 'package:es28/veiw/screen/home/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../core/functions/openBatterySetting.dart';
 import '../veiw/screen/home/althakr/athkar.dart';
 import '../veiw/screen/home/times.dart';
 
