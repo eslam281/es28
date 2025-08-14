@@ -14,15 +14,14 @@ Box? myBox;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AndroidAlarmManager.initialize();
 
   myBox = await initalBox("times");
-
-  await setupDailyTask();
-  await AndroidAlarmManager.initialize();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  await setupDailyTask();
 
   runApp(const MyApp());
 }

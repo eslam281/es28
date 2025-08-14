@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -20,13 +22,8 @@ void alarm()async{
     initializationSettings,
     onDidReceiveNotificationResponse: (response) async {
         await player.stop();
-
+        exit(0);
     },
-    // // onDidReceiveBackgroundNotificationResponse: (response) async {
-    // // if (response.actionId == 'stop_alarm') {
-    // //   // await player.stop();
-    // // }
-    // // },
   );
 
   await player.play(AssetSource('audio/Abdul_Basit_Abdul_Samad.mp3'));
