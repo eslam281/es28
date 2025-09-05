@@ -9,15 +9,11 @@ class About_us extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.black,
       appBar: AppBar(
-        backgroundColor: AppColor.black,
         title: const Text(
           'من أنا',
-          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
@@ -37,7 +33,7 @@ class About_us extends StatelessWidget {
               const SizedBox(height: 10),
               const Text(
                 'طالب بكلية الحاسبات والمعلومات - أكاديمية طيبة (متوقع التخرج 2026)',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 16,),
                 textDirection: TextDirection.rtl,
               ),
               const SizedBox(height: 20),
@@ -55,7 +51,7 @@ class About_us extends StatelessWidget {
               sectionTitle('أبرز المشاريع'),
               const Text(
                 'تطبيق متجر إلكتروني مكون من 3 تطبيقات (عميل - مسؤول - مندوب):',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 16, ),
                 textDirection: TextDirection.rtl,
               ),
               bulletList([

@@ -13,12 +13,11 @@ Widget bulletList(List<String> items) {
           Expanded(
             child: Text(
               item,
-              style: const TextStyle(color: Colors.white),
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
             ),
           ),
-        const Text('  • ', style: TextStyle(color: Colors.white, fontSize: 18))
+        const Text('  • ', style: TextStyle(fontSize: 18))
         ],
       ),
     ))

@@ -18,7 +18,7 @@ class Counter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
 
           Card(
-            color: Colors.grey.shade900,
+            color:context.isDarkMode? Colors.grey.shade900:Colors.black45,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),

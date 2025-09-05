@@ -22,9 +22,8 @@ class CustomButtonMain extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.grey.shade900,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColor.secondColor, width: 1.2),
+          border: Border.all(color: AppColor.secondColor, width: 1.5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -32,7 +31,6 @@ class CustomButtonMain extends StatelessWidget {
             Text(
               name,
               style: const TextStyle(
-                color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),

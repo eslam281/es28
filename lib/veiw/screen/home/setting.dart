@@ -16,19 +16,17 @@ class Setting extends StatelessWidget {
         crossAxisAlignment:CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 50,),
-            Container(
-              decoration: const BoxDecoration(
-                color: AppColor.secondColor,
-               shape: BoxShape.circle
+          GestureDetector(
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: AppColor.secondColor, shape: BoxShape.circle),
+                padding: const EdgeInsets.all(30),
+                child: context.isDarkMode ? const Icon(Icons.light_mode)
+                    : const Icon(Icons.dark_mode),
               ),
-              padding: const EdgeInsets.all(30),
-
-              child: GestureDetector(child:context.isDarkMode?const Icon(Icons.light_mode):
-              const Icon(Icons.dark_mode) ,
-                  onTap: () {
-                    controller.changeThemeMode();
-                  }),
-            ),
+              onTap: () {
+                controller.changeThemeMode();
+              }),
         ],),
     );
   }

@@ -18,7 +18,7 @@ class CustomDrawer extends StatelessWidget {
           children: [
             /// Logo
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24,horizontal:5),
+              padding: const EdgeInsets.symmetric(vertical: 20,horizontal:5),
               child: Image.asset(
                 AppImageAsset.logo,
                 width: 200,

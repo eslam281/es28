@@ -17,9 +17,7 @@ class CustomBottomNavigation extends StatelessWidget {
           },
           currentIndex: controller.index,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: AppColor.black,
           selectedItemColor: AppColor.secondColor,
-          unselectedItemColor: Colors.white70,
           selectedIconTheme: const IconThemeData(size: 32),
           unselectedIconTheme: const IconThemeData(size: 24),
           items: [
