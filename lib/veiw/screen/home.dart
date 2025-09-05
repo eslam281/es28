@@ -26,11 +26,10 @@ class HomePage extends StatelessWidget {
           title:Padding(
             padding: const EdgeInsets.only(top:10),
             child: Image.asset(AppImageAsset.titleimage,
-              width: 220,height: 130,),
+              width: 220,height: 130,color:AppColor.secondColor,),
           ),
         ),
-
-        drawer:const CustomDrawer(),
+        endDrawer: const CustomDrawer(),
 
         bottomNavigationBar:const CustomBottomNavigation() ,
 

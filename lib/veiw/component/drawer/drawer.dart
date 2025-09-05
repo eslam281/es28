@@ -11,7 +11,6 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       width: 240,
-      backgroundColor: AppColor.black,
       elevation: 10,
       child: SafeArea(
         child: Column(
@@ -86,7 +85,6 @@ class CustomDrawer extends StatelessWidget {
       title: Text(
         title,
         style: const TextStyle(
-          color: Colors.white,
           fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
