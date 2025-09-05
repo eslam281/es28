@@ -4,6 +4,7 @@ class AppRoute{
   static const String home = "/";
   static const String qiblaPage = "/qiblaPage";
   static const String alarm = "/alarm";
+  static const String setting = "/setting";
   static const String alarmRing = "/alarmRing";
   static const String about_us = "/about_us";
   static const String contact_us = "/contact_us";

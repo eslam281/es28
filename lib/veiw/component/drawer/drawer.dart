@@ -39,11 +39,17 @@ class CustomDrawer extends StatelessWidget {
               title: 'القبلة',
               onTap: () => Get.toNamed(AppRoute.qiblaPage),
             ),
-
+            ///Alarm
             _drawerTile(
               icon: Icons.alarm,
               title: 'المنبه',
               onTap: () => Get.toNamed(AppRoute.alarm),
+            ),
+            ////Setting
+            _drawerTile(
+              icon: Icons.settings,
+              title: 'الإعدادات',
+              onTap: () => Get.toNamed(AppRoute.setting),
             ),
 
             /// Contact Us

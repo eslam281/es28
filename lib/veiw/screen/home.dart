@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           title:Padding(
             padding: const EdgeInsets.only(top:10),
             child: Image.asset(AppImageAsset.titleimage,
-              width: 220,height: 130,color:AppColor.secondColor,),
+              width: 220,height: 130,),
           ),
         ),
 
@@ -40,7 +40,6 @@ class HomePage extends StatelessWidget {
               return alertExitApp();
             },
             child: Container(
-                color: AppColor.black,
                 height: double.infinity,
                 padding:  const EdgeInsets.symmetric(horizontal:20,vertical: 5),
                 child: controller.bodyList[controller.index])),

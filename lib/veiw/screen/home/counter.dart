@@ -52,12 +52,12 @@ class Counter extends StatelessWidget {
                         controller.setCounter(
                             controller.textcontroll.text, context);
                       },
-                      child: const Text(
+                      child:  Text(
                         "أضف إلى العداد",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppColor.white,
+                          color:context.isDarkMode?AppColor.white: AppColor.black,
                         ),
                       ),
                     ),
@@ -70,12 +70,16 @@ class Counter extends StatelessWidget {
             const SizedBox(height: 30,),
 
             Text("${controller.counter}",
-              style: const TextStyle(fontSize: 30, color: AppColor.white),
+              style: const TextStyle(fontSize: 30,
+                  // color: AppColor.white
+              ),
              textDirection:TextDirection.rtl,),
             const SizedBox(height: 10,),
 
           Text("${controller.i}",
-              style: const TextStyle(fontSize: 30, color: AppColor.white)),
+              style: const TextStyle(fontSize: 30,
+                  // color: AppColor.white
+              )),
             const SizedBox(height: 35,),
 
             CustomButton(onPressed:controller.Addi),

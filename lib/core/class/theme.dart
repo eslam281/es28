@@ -9,13 +9,13 @@ class MyTheme {
   ,iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.white,
       colorScheme: const ColorScheme.light(
-        brightness: Brightness.light,)
+        brightness: Brightness.light,),
   );
   static ThemeData  darkTheme= ThemeData(
       appBarTheme: const AppBarTheme(color:AppColor.black
   ,iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.black,
       colorScheme: const ColorScheme.dark(
-          brightness: Brightness.dark )
+          brightness: Brightness.dark ),
   );
 }

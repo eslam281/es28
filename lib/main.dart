@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       title: 'Hisn Muslim',
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+
       // home:  const Test(),
       getPages: routes,
       home: const SplashScreen(),
