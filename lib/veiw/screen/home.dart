@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           const CustomFloatingActionButton():null,
 
         appBar: AppBar(
-          foregroundColor:Colors.white,centerTitle:true,
+          centerTitle:true,
           title:Padding(
             padding: const EdgeInsets.only(top:10),
             child: Image.asset(AppImageAsset.titleimage,

@@ -40,6 +40,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Hisn Muslim',
       theme: MyTheme.lightTheme,
+      darkTheme: MyTheme.darkTheme,
+      themeMode: ThemeMode.light,
       // home:  const Test(),
       getPages: routes,
       home: const SplashScreen(),

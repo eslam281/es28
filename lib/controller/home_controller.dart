@@ -1,6 +1,7 @@
 import 'package:es28/veiw/screen/home/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../veiw/screen/home/althakr/athkar.dart';
 import '../veiw/screen/home/times.dart';
@@ -17,9 +18,9 @@ class HomeControllerImp extends HomeController{
   ];
 
   @override
-  void onReady() {
+  void onReady()async {
     showDialog();
-
+    await Permission.ignoreBatteryOptimizations.request();
     // Future.delayed(const Duration(seconds: 10)).then(
     //       (value) => openManageOverlay());
     super.onReady();
