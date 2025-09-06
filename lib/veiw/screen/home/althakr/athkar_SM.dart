@@ -11,14 +11,12 @@ class AthkarSM extends StatelessWidget {
   Widget build(BuildContext context) {
     ElathakerController controller = Get.put(ElathakerController());
     return Scaffold(
-        backgroundColor: AppColor.black,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
           title: const Text(
             'الأذكار اليومية',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle( fontWeight: FontWeight.bold),
           ),
           actions: [
             IconButton(
@@ -43,16 +41,16 @@ class AthkarSM extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14)),
                   color: completed
                       ? Colors.green.withValues(alpha: 0.15)
-                      : Colors.white.withValues(alpha: 0.05),
+                      : null,
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
+                          textDirection:TextDirection.rtl ,
                           controller.adhkar[index][0],
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 15),
+                          style: const TextStyle(fontSize: 15),
                         ),
                         const SizedBox(height: 12),
                         Row(
@@ -61,7 +59,7 @@ class AthkarSM extends StatelessWidget {
                             Text(
                               '${controller.count[index]} / ${controller.adhkar[index][1]}',
                               style: TextStyle(
-                                color: completed ? Colors.green : Colors.grey,
+                                color: completed ? Colors.green : null,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
