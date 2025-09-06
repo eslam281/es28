@@ -18,16 +18,15 @@ class Counter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
 
           Card(
-            color:context.isDarkMode? Colors.grey.shade900:Colors.black45,
+            color:context.isDarkMode? Colors.grey.shade900:Colors.white30,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            elevation: 25,shadowColor: Colors.grey.withAlpha(45),
+            elevation: 10,shadowColor: Colors.grey.withAlpha(55),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical:10),
               child: Column(
                 children: [
-
                   AppTextField(
                     textEditingController: controller.textcontroll,
                     title: "",

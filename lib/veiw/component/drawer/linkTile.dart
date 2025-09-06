@@ -22,10 +22,11 @@ Widget linkTile(
     },
     child: Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColor.secondColor.withValues(alpha: 0.5)),
+        border: Border.all(color: AppColor.secondColor.withValues(alpha: 1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -35,9 +36,8 @@ Widget linkTile(
             child: Text(
               title,
               style: const TextStyle(
-                color: Colors.white,
                 fontSize: 16,
-                decoration: TextDecoration.underline,
+                decoration: TextDecoration.underline,decorationThickness: 1,
               ),
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,

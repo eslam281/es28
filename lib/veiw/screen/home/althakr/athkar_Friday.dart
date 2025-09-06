@@ -10,7 +10,6 @@ class AthkarFriday extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:AppColor.black,
       appBar: AppBar(),
       body: Center(
     child: Column(
@@ -28,7 +27,7 @@ class AthkarFriday extends StatelessWidget {
                 textDirection:TextDirection.rtl,
                 children: [
                   Text("سورة الكهف",style:TextStyle(fontSize:25
-                      ,fontWeight: FontWeight.bold,color:AppColor.white),),
+                      ,fontWeight: FontWeight.bold),),
                   SizedBox(width:40,),
                   Icon(Icons.menu_book_outlined,size: 40,),]
             ),

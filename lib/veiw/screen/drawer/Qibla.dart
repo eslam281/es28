@@ -17,12 +17,11 @@ class QiblaPage extends StatelessWidget {
     Get.put(QiblaControllerImp());
     return Scaffold(
         appBar: AppBar(title: const Text('اتجاه القبلة')
-          ,centerTitle: true,titleTextStyle:const TextStyle(color:AppColor.primaryColor,
-          fontSize:25), backgroundColor:AppColor.black,
+          ,centerTitle: true,titleTextStyle:const TextStyle(fontSize:25),
           iconTheme: const IconThemeData(color: AppColor.secondColor),),
       body: Stack(fit: StackFit.expand,
         children: [
-          Container(color:AppColor.black,),
+          Container(),
 
           GetBuilder<QiblaControllerImp>(builder: (controller) {
             return HandlingDataView(statusRequest: controller.statusRequest,

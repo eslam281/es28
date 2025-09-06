@@ -98,7 +98,8 @@ class _AppTextFieldState extends State<AppTextField> {
           }
               : null,
           decoration: InputDecoration(
-            filled: true,suffixIcon:const Icon(Icons.arrow_drop_down),
+            filled: true,
+            suffixIcon:const Icon(Icons.arrow_drop_down,color: AppColor.secondColor),
             fillColor: AppColor.grey,
             contentPadding: const EdgeInsets.symmetric(horizontal: 15),
             hintText: widget.hint,hintStyle: const TextStyle(color:AppColor.black),

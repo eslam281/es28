@@ -42,7 +42,7 @@ class AthkarAP extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14)),
                   color: completed
                       ? Colors.green.withValues(alpha: 0.15)
-                      : Colors.white.withValues(alpha: 0.05),
+                      : null,
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Column(

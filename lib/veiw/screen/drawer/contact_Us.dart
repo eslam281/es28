@@ -11,15 +11,12 @@ class Contact_Us extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.black,
       appBar: AppBar(
-        backgroundColor: AppColor.black,
         title: const Text(
           'تواصل معنا',
-          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: AppColor.secondColor),
       ),
       body: SafeArea(
         child: Padding(

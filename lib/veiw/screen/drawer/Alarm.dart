@@ -14,7 +14,7 @@ class Alarm extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle:true,
-        title: const Text('المنبه',style:TextStyle(color:AppColor.white,fontSize: 30)),
+        title: const Text('المنبه',style:TextStyle(fontSize: 30)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +29,7 @@ class Alarm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20,),
-          const Text("add sound from the device",style:TextStyle(color:AppColor.white)),
+          const Text("add sound from the device"),
           const SizedBox(height: 5,),
           IconButton(onPressed: () {}
               , icon: const Icon(Icons.add_circle_outline))
