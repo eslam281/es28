@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../controller/athakerAP_controller.dart';
 import '../../../../core/constant/color.dart';
+import '../../../component/athkar/customAthkarCard.dart';
 
 class AthkarAP extends StatelessWidget {
   const AthkarAP({super.key});
@@ -16,7 +17,7 @@ class AthkarAP extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           title: const Text(
-            'الأذكار اليومية',
+            'أذكار بعد الصلاة',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           actions: [
@@ -36,63 +37,19 @@ class AthkarAP extends StatelessWidget {
               builder: (controller) {
                 bool completed =
                     controller.count[index] >= controller.adhkar[index][1];
-                return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14)),
-                  color: completed
-                      ? Colors.green.withValues(alpha: 0.15)
-                      : null,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                           textDirection:TextDirection.rtl ,
-                          controller.adhkar[index][0],
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '${controller.count[index]} / ${controller.adhkar[index][1]}',
-                              style: TextStyle(
-                                color: completed ? Colors.green : null,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 800),
-                              child:completed
-                                  ? const Icon(Icons.check_circle,
-                                  color: Colors.green)
-                                  : ElevatedButton(
-                                onPressed: () => controller.onTap(
-                                  controller.adhkar[index][1],
-                                  index,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColor.secondColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                child: const Text('تسبيح'),
-                              ),
-                            )
-
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                return CustomAthkarCard(
+                  elthakr: controller.adhkar[index][0],
+                  count: controller.count[index],
+                  completed: completed,
+                  max: controller.adhkar[index][1],
+                  onTap: () {
+                    controller.onTap(index);
+                  },
                 );
               },
             ),
           ),
-        ));
+        )
+    );
   }
 }

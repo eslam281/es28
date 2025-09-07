@@ -6,43 +6,63 @@ class CustomAthkarCard extends StatelessWidget {
   final String elthakr;
   final int max;
   final int count;
-  final void Function()? onTap;
+  final bool completed;
+  final void Function() onTap;
   const CustomAthkarCard({super.key, required this.elthakr,
-    required this.max, required this.count, this.onTap});
+    required this.max, required this.count, required this.onTap, required this.completed});
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      children: [
-        Row(
-          mainAxisSize:MainAxisSize.min,
+    return  Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14)),
+      color: completed
+          ? Colors.green.withValues(alpha: 0.15)
+          : null,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Container(
-              padding:const EdgeInsets.symmetric(horizontal: 5),
-              decoration:const BoxDecoration(
-                  borderRadius:BorderRadius.only(topLeft:Radius.circular(20))
-                  ,color: AppColor.primaryColor),
-              alignment:Alignment.center,
-              child:Text("$count / $max",style:
-              const TextStyle(fontSize:20,color:AppColor.white),),
+            Text(
+              textDirection:TextDirection.rtl ,
+              elthakr,
+              style: const TextStyle(fontSize: 15),
             ),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '$count / $max',
+                  style: TextStyle(
+                    color: completed ? Colors.green : null,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 800),
+                  child:completed
+                      ? const Icon(Icons.check_circle,
+                      color: Colors.green)
+                      : ElevatedButton(
+                    onPressed: onTap,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.secondColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text('تسبيح'),
+                  ),
+                )
+
+              ],
+            )
           ],
         ),
-
-        InkWell(
-          onTap:onTap,
-          child: Card(
-            color: AppColor.primaryColor,margin: EdgeInsets.zero,
-            child:Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(elthakr,style:const
-              TextStyle(fontSize: 20,color: AppColor.white),
-                textDirection:TextDirection.rtl,),
-            ),),
-        ),
-
-        const SizedBox(height: 20,)
-      ],
+      ),
     );
   }
 }

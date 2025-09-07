@@ -62,8 +62,8 @@ class ElathakerController extends GetxController{
     return dateResponse==DateFormat('dd-MM').format(DateTime.now());
   }
 
-  onTap(int max,int index){
-    if(max > count[index]){
+  onTap(int index){
+    if(adhkar[index][1] > count[index]){
       count[index] += 1;
       myBox?.put("athakerCount",count);
     }

@@ -14,8 +14,8 @@ class athakerAPController extends GetxController{
     super.onInit();
   }
 
-  onTap(int max,int index){
-    if(max > count[index]){
+  onTap(int index){
+    if(adhkar[index][1] > count[index]){
       count[index] += 1;
     }
     update();

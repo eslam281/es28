@@ -3,6 +3,7 @@ import 'package:es28/core/constant/color.dart';
 import 'package:es28/core/constant/imageasset.dart';
 import 'package:es28/veiw/screen/home.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -10,6 +11,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
+      backgroundColor:context.isDarkMode? AppColor.black:AppColor.white,
       splashIconSize:500,
       splashTransition:SplashTransition.scaleTransition ,
         splash:Image.asset(AppImageAsset.logo,) ,
