@@ -24,37 +24,36 @@ class Times extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               /// Header: Date + Refresh
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade900,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      controller.dateResponse ?? "",
-                      style: const TextStyle(
-                        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold,
+              Card(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        controller.dateResponse ?? "",
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),
+                        textAlign: TextAlign.right,
                       ),
-                      textAlign: TextAlign.right,
-                    ),
 
-                    Text(
-                      getLocalizedLocation(controller.locationList[1]),
-                      style: const TextStyle(
-                        color: AppColor.primaryColor, fontSize: 18, fontWeight: FontWeight.bold,
+                      Text(
+                        getLocalizedLocation(controller.locationList[1]),
+                        style: const TextStyle(
+                          color: AppColor.primaryColor, fontSize: 18, fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.right,
                       ),
-                      textAlign: TextAlign.right,
-                    ),
 
-                    IconButton(
-                      onPressed: controller.reTimes,
-                      icon: const Icon(Icons.refresh, size: 26),
-                      color: controller.isready ? AppColor.secondColor : Colors.grey,
-                    ),
-                  ],
+                      IconButton(
+                        onPressed: controller.reTimes,
+                        icon: const Icon(Icons.refresh, size: 26),
+                        color: controller.isready ? AppColor.secondColor : Colors.grey,
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
@@ -64,13 +63,13 @@ class Times extends StatelessWidget {
               if (controller.data != null)
                 Column(
                   children: [
-                    timeTile("الفجر", controller.data!.fajr),
-                    timeTile("شروق الشمس", controller.data!.sunrise),
-                    timeTile("الظهر", convertF(controller.data!.dhuhr!)),
-                    timeTile("العصر", convertF(controller.data!.asr!)),
-                    timeTile("المغرب", convertF(controller.data!.maghrib!)),
-                    timeTile("العشاء", convertF(controller.data!.isha!)),
-                    timeTile("الثلث الأخير من الليل", controller.data!.lastthird),
+                    timeTile("الفجر", controller.data!.fajr,context),
+                    timeTile("شروق الشمس", controller.data!.sunrise,context),
+                    timeTile("الظهر", convertF(controller.data!.dhuhr!),context),
+                    timeTile("العصر", convertF(controller.data!.asr!),context),
+                    timeTile("المغرب", convertF(controller.data!.maghrib!),context),
+                    timeTile("العشاء", convertF(controller.data!.isha!),context),
+                    timeTile("الثلث الأخير من الليل", controller.data!.lastthird,context),
                   ],
                 ),
 

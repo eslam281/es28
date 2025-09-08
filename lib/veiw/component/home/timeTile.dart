@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
 
-Widget timeTile(String title, String? time) {
+Widget timeTile(String title, String? time,BuildContext context) {
   return Card(
-    color: Colors.grey.shade800,
+    color:context.isDarkMode? Colors.grey.shade800 :Colors.grey.shade200,
     elevation: 2,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     margin: const EdgeInsets.only(bottom: 16),
@@ -15,7 +16,7 @@ Widget timeTile(String title, String? time) {
         children: [
           Text(
             time!,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
+            style: const TextStyle(fontSize: 20),
           ),
           Text(
             title,

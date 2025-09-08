@@ -1,6 +1,4 @@
-import 'package:es28/main.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 
 class athakerAPController extends GetxController{
