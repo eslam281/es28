@@ -6,14 +6,14 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 import '../../main.dart';
+import '../constant/apiLink.dart';
 import 'getlocation.dart';
 Future<String> reverseGeocode() async {
 Position? position;
 
   position = await determinePosition();
   if(position == null) return "";
-  final String url = "https://nominatim.openstreetmap.org/reverse?"
-      "lat=${position.latitude}&lon=${position.longitude}&format=json&accept-language=en";
+  final String url = "${ApiLink.LocationApi}lat=${position.latitude}&lon=${position.longitude}&format=json&accept-language=en";
 
   try {
     final response = await http.get(Uri.parse(url));
@@ -23,7 +23,7 @@ Position? position;
 
      await myBox?.put("location", [data["address"]["country"],data["address"]["state"]]);
 
-     return "https://api.aladhan.com/v1/timingsByCity?city=${data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
+     return "${ApiLink.timesApi}city=${data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
     } else {
       return "";
     }

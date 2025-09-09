@@ -5,6 +5,7 @@ import '../../data/modle/modle.dart';
 import '../../main.dart';
 import '../class/crud.dart';
 import '../class/statusrequest.dart';
+import '../constant/apiLink.dart';
 import '../functions/checkContnection.dart';
 import '../functions/getNameOfLocation.dart';
 import '../functions/handlingdata.dart';
@@ -36,14 +37,14 @@ Future<StatusRequest> getdata(bool isBackground) async{
 
   if(isBackground){
     List locationList = await myBox?.get("location")??["Egypt","Cairo"];
-    timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=${locationList[0]}"
+    timingUrl ="${ApiLink.timesApi}country=${locationList[0]}"
         "&city=${locationList[1]}&method=5#";
   }
   else{
     timingUrl= await reverseGeocode();
   }
   if (timingUrl == ""){
-    timingUrl ="https://api.aladhan.com/v1/timingsByCity?country=Egypt&city=cairo&method=5#";
+    timingUrl ="${ApiLink.timesApi}country=Egypt&city=cairo&method=5#";
     statusRequest = StatusRequest.error;
   }
 
