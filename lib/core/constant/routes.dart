@@ -3,6 +3,7 @@ class AppRoute{
   // home
   static const String home = "/";
   static const String qiblaPage = "/qiblaPage";
+  static const String timesfor30 = "/timesfor30";
   static const String alarm = "/alarm";
   static const String setting = "/setting";
   static const String alarmRing = "/alarmRing";

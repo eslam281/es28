@@ -38,6 +38,13 @@ class CustomDrawer extends StatelessWidget {
               title: 'القبلة',
               onTap: () => Get.toNamed(AppRoute.qiblaPage),
             ),
+
+            /////
+            _drawerTile(
+              icon: Icons.explore,
+              title: 'time30',
+              onTap: () => Get.toNamed(AppRoute.qiblaPage),
+            ),
             ///Alarm
             _drawerTile(
               icon: Icons.alarm,
