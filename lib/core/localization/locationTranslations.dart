@@ -1,6 +1,24 @@
 String getLocalizedLocation(String englishName) {
   return locationTranslations[englishName] ?? englishName;
 }
+String getMonth(String month) {
+  return monthTranslations[month]!;
+}
+Map<String, String> monthTranslations = {
+  "1": "يناير",
+  "2": "فبراير",
+  "3": "مارس",
+  "4": "أبريل",
+  "5": "مايو",
+  "6": "يونيو",
+  "7": "يوليو",
+  "8": "أغسطس",
+  "9": "سبتمبر",
+  "10": "أكتوبر",
+  "11": "نوفمبر",
+  "12": "ديسمبر",
+};
+
 Map<String, String> locationTranslations = {
   // Egypt Governorates
   'Cairo': 'القاهرة',

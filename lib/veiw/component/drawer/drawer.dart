@@ -41,9 +41,9 @@ class CustomDrawer extends StatelessWidget {
 
             /////
             _drawerTile(
-              icon: Icons.explore,
-              title: 'time30',
-              onTap: () => Get.toNamed(AppRoute.qiblaPage),
+              icon: Icons.access_time_filled,
+              title: 'مواقيت الصلاة لشهرل',
+              onTap: () => Get.toNamed(AppRoute.timesfor30),
             ),
             ///Alarm
             _drawerTile(

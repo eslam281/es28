@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 class Crud {
-  Future<Either<StatusRequest, Map>> getData(String linkurl) async {
+  Future<Either<StatusRequest, dynamic>> getData(String linkurl) async {
     try {
         var response = await http.get(Uri.parse(linkurl));
         if (response.statusCode == 200 || response.statusCode == 201) {

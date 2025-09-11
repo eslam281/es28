@@ -27,8 +27,8 @@ class Timesfor30Controller extends GetxController{
 
   @override
   void onInit() {
-    print(DateTime.now().month);
-    if(myBox?.get("timesMonth")!=DateTime.now().month){
+
+    if(myBox?.get("timesMonth")!=DateTime.now().month.toString()){
       gettimes();
     }else{
       getTimesOff();
@@ -78,7 +78,7 @@ class Timesfor30Controller extends GetxController{
     List? datalist;
     if(myBox?.get("timefor30") != null)
      datalist = myBox?.get("timefor30");
-    data = datalist?.map((e) => TimingModel.fromJson(e)).toList();
+    data = datalist?.map<TimingModel>((e) => TimingModel.fromJson(e["timings"])).toList();
     dateResponse =myBox?.get("timesMonth")??"";
   }
 

@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 import '../../data/datasource/time_data.dart';
-import '../../data/modle/modle.dart';
 import '../../main.dart';
 import '../class/crud.dart';
 import '../class/statusrequest.dart';
@@ -33,7 +32,7 @@ class Timesfor30{
  static Future<StatusRequest> getdata() async {
     StatusRequest statusRequest = StatusRequest.onitnial;
     TimeData timeData = TimeData(Crud());
-    List<TimingModel>? data;
+    List? data;
     String? dateResponse;
     late String timingUrl;
 
@@ -52,12 +51,9 @@ class Timesfor30{
     var response = await timeData.getData(timingUrl);
 
     statusRequest = await handlingData(response);
-    List? datalist;
     if (statusRequest == StatusRequest.success) {
-      datalist = response["data"]["timings"];
-      data = datalist?.map((e) => TimingModel.fromJson(e)).toList();
-      dateResponse = response["data"]["date"]["gregorian"]["date"];
-
+      data = response["data"];
+      dateResponse = response["data"][0]["date"]["gregorian"]["month"]["number"].toString();
       myBox?.put("timefor30", data!);
       myBox?.put("timesMonth", dateResponse);
     }
