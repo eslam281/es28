@@ -6,6 +6,6 @@ String convertF (String val){
   late DateTime dateTime;
   time24 = val;
   dateTime =DateFormat("HH:mm").parse(time24);
-  time12 = DateFormat("h:mm").format(dateTime);
+  time12 = DateFormat("hh:mm").format(dateTime);
   return time12;
 }

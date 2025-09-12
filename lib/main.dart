@@ -22,7 +22,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  await setupDailyTask();
+  // await setupDailyTask();
   runApp(const MyApp());
 }
 

@@ -15,6 +15,7 @@ class CustomBottomNavigation extends StatelessWidget {
           onTap: (val) {
             controller.setIndex(val);
           },
+           backgroundColor: context.isDarkMode?AppColor.black:Colors.white,
           currentIndex: controller.index,
           type: BottomNavigationBarType.fixed,
           selectedItemColor: AppColor.secondColor,

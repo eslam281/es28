@@ -18,7 +18,7 @@ class Timesfor30Widget extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("مواقيت الصلاة لشهر كامل"),
+        title: const Text("مواقيت الصلاة لشهر"),
         centerTitle: true,
       ),
       body: GetBuilder<Timesfor30Controller>(builder: (controller) {
@@ -71,7 +71,7 @@ class Timesfor30Widget extends StatelessWidget {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: DataTable(
-                        headingTextStyle:TextStyle(color: AppColor.secondColor,fontSize: 16,fontWeight: FontWeight.bold) ,
+                        headingTextStyle:const TextStyle(color: AppColor.secondColor,fontSize: 16,fontWeight: FontWeight.bold) ,
                         border: TableBorder.all(color: Colors.grey.shade300),
                         columns: const [
                           DataColumn(label: Text("اليوم")),

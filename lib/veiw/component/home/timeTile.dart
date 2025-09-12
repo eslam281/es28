@@ -15,7 +15,7 @@ Widget timeTile(String title, String? time,BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            time!,
+            time!.substring(0, 5),
             style: const TextStyle(fontSize: 20),
           ),
           Text(
