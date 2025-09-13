@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../core/class/statusrequest.dart';
 
 import '../core/functions/timesfor30.dart';
-import '../core/services/time_service.dart';
 import '../core/shared/snackbar.dart';
 import '../data/datasource/time_data.dart';
 import '../data/modle/modle.dart';
@@ -30,6 +29,8 @@ class TimesController extends GetxController{
   void onInit() async{
     if(myBox?.get("timefor30") != null) {
       getTimesOff();
+    }else{
+      await gettimes();
     }
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
@@ -41,12 +42,11 @@ class TimesController extends GetxController{
   getTimesOff(){
     List? datalist;
     int day = DateTime.now().day;
-    if(myBox?.get("timefor30") != null)
+    if(myBox?.get("timefor30") != null){
       datalist = myBox?.get("timefor30");
     data = TimingModel.fromJson(datalist?[day-1]["timings"]);
     dateResponse =datalist?[day-1]["date"]["gregorian"]["date"];
-    print(data?.fajr);
-    print(dateResponse);
+    }
     update();
   }
   reTimes()async{
