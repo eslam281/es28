@@ -41,7 +41,15 @@ class HomePage extends StatelessWidget {
             child: Container(
                 height: double.infinity,
                 padding:  const EdgeInsets.symmetric(horizontal:20,vertical: 5),
-                child: controller.bodyList[controller.index])),
+                child:PageView(
+                  children: controller.bodyList,
+                  onPageChanged: (val){
+                    controller.setIndex(val);
+                  },
+                  controller:controller.pageController,
+                )
+            ),
+        )
       );
     });
   }

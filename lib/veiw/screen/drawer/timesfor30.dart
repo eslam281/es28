@@ -72,7 +72,10 @@ class Timesfor30Widget extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       child: DataTable(
                         headingTextStyle:const TextStyle(color: AppColor.secondColor,fontSize: 16,fontWeight: FontWeight.bold) ,
-                        border: TableBorder.all(color: Colors.grey.shade300),
+                        columnSpacing: 20,
+                        dataRowMinHeight: 30,
+                        dataRowMaxHeight: 40,
+                        dividerThickness: .2,
                         columns: const [
                           DataColumn(label: Text("اليوم")),
                           DataColumn(label: Text("الفجر")),
@@ -88,6 +91,8 @@ class Timesfor30Widget extends StatelessWidget {
                               (index) {
                             final item = controller.data![index];
                             return DataRow(
+                              color: index+1==DateTime.now().day?
+                              WidgetStateProperty.all(AppColor.primaryColor):null,
                               cells: [
                                 DataCell(Text("${index + 1}")),
                                 DataCell(Text(item.fajr?.substring(0, 5) ?? "")),

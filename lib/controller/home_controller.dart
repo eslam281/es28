@@ -11,7 +11,8 @@ abstract class HomeController extends GetxController{
 }
 class HomeControllerImp extends HomeController{
   int index=0;
-  List bodyList=[
+  PageController pageController=PageController();
+  List<Widget> bodyList=[
     const Counter(),
     const Times(),
     const Althakr()
@@ -21,8 +22,6 @@ class HomeControllerImp extends HomeController{
   void onReady()async {
     showDialog();
     await Permission.ignoreBatteryOptimizations.request();
-    // Future.delayed(const Duration(seconds: 10)).then(
-    //       (value) => openManageOverlay());
     super.onReady();
   }
 
@@ -30,6 +29,13 @@ class HomeControllerImp extends HomeController{
     index =val;
     update();
   }
+  void onBottomNavTap(int val) {
+    index = val;
+    pageController.jumpToPage(index);
+
+    update();
+  }
+
   showDialog()async{
      Get.defaultDialog(
          confirm:Container(
@@ -47,4 +53,9 @@ class HomeControllerImp extends HomeController{
     );
   }
 
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 }

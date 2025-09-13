@@ -27,10 +27,11 @@ class TimesController extends GetxController{
 
   @override
   void onInit() async{
-    if(myBox?.get("timefor30") != null) {
-      getTimesOff();
-    }else{
+    if(myBox?.get("timefor30") == null&&
+        myBox?.get("timesMonth")!=DateTime.now().month.toString()) {
       await gettimes();
+    }else{
+      getTimesOff();
     }
     Future.delayed(const Duration(seconds: 3)).then((value) {
       isready =true;
