@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import '../constant/color.dart';
 
 class MyTheme {
@@ -12,6 +13,10 @@ class MyTheme {
     scaffoldBackgroundColor:AppColor.white,
       colorScheme: const ColorScheme.light(
         brightness: Brightness.light,),
+    textTheme: const TextTheme().apply(
+      fontSizeFactor: myBox?.get("textScaler")??1 ,
+      fontFamily: 'Cairo',
+    ),
   );
 
   static ThemeData  darkTheme= ThemeData(

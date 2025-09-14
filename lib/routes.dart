@@ -9,7 +9,7 @@ import 'package:es28/veiw/screen/home/althakr/surat_al_kahf.dart';
 import 'package:es28/veiw/screen/home.dart';
 import 'package:es28/veiw/screen/home/althakr/athkar_Friday.dart';
 import 'package:es28/veiw/screen/home/althakr/athkar_SM.dart';
-import 'package:es28/veiw/screen/home/setting.dart';
+import 'package:es28/veiw/screen/drawer/setting.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? routes =[

@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 
 class ElathakerController extends GetxController{
-
   List count=[];
 
   @override

@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     return GetBuilder<SittingsControllerImp>(
       init: SittingsControllerImp(),
       builder: (context) {
+        final textScaler = TextScaler.linear(myBox?.get("textScaler") ?? 1.0);
         return GetMaterialApp(
           title: 'Hisn Muslim',
           theme: MyTheme.lightTheme,
@@ -43,6 +44,12 @@ class MyApp extends StatelessWidget {
           // home:  const Test(),
           getPages: routes,
           home: const SplashScreen(),
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaler: textScaler),
+              child: child!,
+            );
+          },
         );
       }
     );

@@ -50,8 +50,8 @@ class TimesController extends GetxController{
     }
     update();
   }
-  reTimes()async{
 
+  reTimes()async{
     if(isready){
       await gettimes();
     }
