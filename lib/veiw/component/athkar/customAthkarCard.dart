@@ -7,10 +7,12 @@ class CustomAthkarCard extends StatelessWidget {
   final String elthakr;
   final int max;
   final int count;
+  final double textScaler;
   final bool completed;
   final void Function() onTap;
   const CustomAthkarCard({super.key, required this.elthakr,
-    required this.max, required this.count, required this.onTap, required this.completed});
+    required this.max, required this.count, required this.onTap, required this.completed,
+    required this.textScaler});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class CustomAthkarCard extends StatelessWidget {
             Text(
               textDirection:TextDirection.rtl ,
               elthakr,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),textScaler:TextScaler.linear(textScaler)
             ),
             const SizedBox(height: 12),
             Row(
@@ -40,7 +42,7 @@ class CustomAthkarCard extends StatelessWidget {
                   style: TextStyle(
                     color: completed ? Colors.green : null,
                     fontWeight: FontWeight.bold,
-                  ),
+                  ),textScaler:TextScaler.linear(textScaler)
                 ),
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 800),
@@ -56,7 +58,8 @@ class CustomAthkarCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text('تسبيح'),
+                    child: Text('تسبيح'
+                    ,textScaler:TextScaler.linear(textScaler) ,),
                   ),
                 )
 

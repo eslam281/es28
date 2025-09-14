@@ -26,7 +26,7 @@ class Times extends StatelessWidget {
               /// Header: Date + Refresh
               Card(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -69,7 +69,32 @@ class Times extends StatelessWidget {
                     timeTile("العصر", convertF(controller.data!.asr!),context),
                     timeTile("المغرب", convertF(controller.data!.maghrib!),context),
                     timeTile("العشاء", convertF(controller.data!.isha!),context),
-                    timeTile("الثلث الأخير من الليل", controller.data!.lastthird,context),
+                    Card(
+                      color:context.isDarkMode? Colors.grey.shade800 :Colors.grey.shade200,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      margin: const EdgeInsets.only(bottom: 16),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "الثلث الأخير من الليل",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: AppColor.secondColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              controller.data!.lastthird!.substring(0, 5),
+                              style: const TextStyle(fontSize: 20),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
 

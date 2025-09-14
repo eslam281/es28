@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../controller/athakerAP_controller.dart';
 import '../../../../core/constant/color.dart';
 import '../../../component/athkar/customAthkarCard.dart';
+import '../../../component/chooseFontSize.dart';
 
 class AthkarAP extends StatelessWidget {
   const AthkarAP({super.key});
@@ -28,26 +29,35 @@ class AthkarAP extends StatelessWidget {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
-          child: ListView.builder(
-            itemCount: controller.adhkar.length,
-            itemBuilder: (context, index) => GetBuilder<athakerAPController>(
-              builder: (controller) {
-                bool completed =
-                    controller.count[index] >= controller.adhkar[index][1];
-                return CustomAthkarCard(
-                  elthakr: controller.adhkar[index][0],
-                  count: controller.count[index],
-                  completed: completed,
-                  max: controller.adhkar[index][1],
-                  onTap: () {
-                    controller.onTap(index);
-                  },
-                );
-              },
+        body:  Column(
+          children: [
+            ChooseFontSize(
+              onPressedIncrease:() => controller.changeTextScaler(0.1),
+              onPressedDecrease: () => controller.changeTextScaler(-0.1),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
+              child: ListView.builder(
+                itemCount: controller.adhkar.length,
+                itemBuilder: (context, index) => GetBuilder<athakerAPController>(
+                  builder: (controller) {
+                    bool completed =
+                        controller.count[index] >= controller.adhkar[index][1];
+                    return CustomAthkarCard(
+                      elthakr: controller.adhkar[index][0],
+                      count: controller.count[index],
+                      completed: completed,
+                      max: controller.adhkar[index][1],
+                      onTap: () {
+                        controller.onTap(index);
+                      },
+                      textScaler: controller.textScaler,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         )
     );
   }

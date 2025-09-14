@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/sittings_controller.dart';
 import '../../../core/constant/color.dart';
+import '../../component/chooseFontSize.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
@@ -28,7 +29,7 @@ class Setting extends StatelessWidget {
             ),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: AppColor.secondColor.withOpacity(0.1),
+                backgroundColor: AppColor.secondColor.withAlpha(30),
                 child: Icon(
                   context.isDarkMode ? Icons.light_mode : Icons.dark_mode,
                   color: AppColor.secondColor,
@@ -53,35 +54,10 @@ class Setting extends StatelessWidget {
           const SizedBox(height: 20),
 
           /// حجم النص
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: AppColor.secondColor.withOpacity(0.1),
-                child: const Icon(Icons.text_fields, color: AppColor.secondColor),
-              ),
-              title: const Text(
-                "حجم النص",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              subtitle: const Text("قم بتكبير أو تصغير حجم النص"),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: const Text("-A", style: TextStyle(color: AppColor.secondColor)),
-                    onPressed: () => controller.changeTextScaler(-0.1),
-                  ),
-                  IconButton(
-                    icon: const Text("+A", style: TextStyle(color: AppColor.secondColor)),
-                    onPressed: () => controller.changeTextScaler(0.1),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          ChooseFontSize(
+            onPressedIncrease:() => controller.changeTextScaler(0.1),
+            onPressedDecrease: () => controller.changeTextScaler(-0.1),
+          )
         ],
       ),
     );
