@@ -26,7 +26,7 @@ class athakerAPController extends GetxController{
     update();
   }
   void changeTextScaler(double val){
-    if(textScaler+val<=.8||textScaler+val>=1.91) return;
+    if(textScaler+val<=.8||textScaler+val>=2.91) return;
     textScaler += val;
     print(textScaler);
     update();

@@ -29,15 +29,20 @@ class AthkarSM extends StatelessWidget {
             )
           ],
         ),
-        body: Column(
-          children: [
-            ChooseFontSize(
-              onPressedIncrease:() => controller.changeTextScaler(0.1),
-              onPressedDecrease: () => controller.changeTextScaler(-0.1),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
-              child: ListView.builder(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ChooseFontSize(
+                  onPressedIncrease:() => controller.changeTextScaler(0.1),
+                  onPressedDecrease: () => controller.changeTextScaler(-0.1),
+                ),
+              ),
+              ListView.builder(
+                padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.adhkar.length,
                 itemBuilder: (context, index) => GetBuilder<ElathakerController>(
                   builder: (controller) {
@@ -56,8 +61,8 @@ class AthkarSM extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         )
     );
   }
