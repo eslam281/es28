@@ -10,7 +10,6 @@ import 'package:hive/hive.dart';
 import 'controller/sittings_controller.dart';
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
-import 'core/services/daily_task_service.dart';
 
 Box? myBox;
 void main() async {

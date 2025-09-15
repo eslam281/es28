@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 
 class ElathakerController extends GetxController{
-  double textScaler = myBox?.get("textScaler");
   List count=[];
 
   @override
@@ -73,13 +72,6 @@ class ElathakerController extends GetxController{
   customRefresh(){
     count.fillRange(0, adhkar.length, 0);
     myBox?.put("athakerCount", count);
-    update();
-  }
-
-  void changeTextScaler(double val){
-    if(textScaler+val<=.8||textScaler+val>=2.91) return;
-    textScaler += val;
-    print(textScaler);
     update();
   }
 

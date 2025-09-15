@@ -7,7 +7,6 @@ import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/functions/converTime24_12.dart';
 import '../../../core/localization/locationTranslations.dart';
-import '../../component/home/timeTile.dart';
 
 class Timesfor30Widget extends StatelessWidget {
   const Timesfor30Widget({super.key});
@@ -86,7 +85,12 @@ class Timesfor30Widget extends StatelessWidget {
                             DataColumn(label: Text("العصر")),
                             DataColumn(label: Text("المغرب")),
                             DataColumn(label: Text("العشاء")),
-                            DataColumn(label: Text("الثلث الأخير من الليل")),
+                            DataColumn(label: Column(
+                              children: [
+                                Text("الثلث الأخير"),
+                                Text("من الليل"),
+                              ],)
+                            ),
                           ],
                           rows: List.generate(
                             controller.data!.length,

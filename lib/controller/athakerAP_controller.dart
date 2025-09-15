@@ -4,7 +4,6 @@ import '../main.dart';
 
 
 class athakerAPController extends GetxController{
-  double textScaler = myBox?.get("textScaler");
   List count=[];
 
   @override
@@ -25,12 +24,7 @@ class athakerAPController extends GetxController{
     count.fillRange(0, adhkar.length, 0);
     update();
   }
-  void changeTextScaler(double val){
-    if(textScaler+val<=.8||textScaler+val>=2.91) return;
-    textScaler += val;
-    print(textScaler);
-    update();
-  }
+
 
   List<List<dynamic>> adhkar = [
     ["أستغفر الله", 3],

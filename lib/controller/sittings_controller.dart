@@ -8,6 +8,7 @@ abstract class SittingsController extends GetxController{
 }
 class SittingsControllerImp extends SittingsController{
   double textScaler =myBox?.get("textScaler")??1;
+  double textScalerAthkar = myBox?.get("textScalerAthkar")??myBox?.get("textScaler")??1;
 
   void changeThemeMode()async{
     Get.changeTheme(Get.isDarkMode?
@@ -22,6 +23,13 @@ class SittingsControllerImp extends SittingsController{
     textScaler += val;
     print(textScaler);
     myBox?.put("textScaler", textScaler);
+    update();
+  }
+  void changeTextScalerAthkar(double val){
+    if(textScalerAthkar+val<=.8||textScalerAthkar+val>=2.91) return;
+    textScalerAthkar += val;
+    myBox?.put("textScalerAthkar", textScalerAthkar);
+    print(textScalerAthkar);
     update();
   }
 

@@ -42,7 +42,7 @@ class CustomDrawer extends StatelessWidget {
             /////
             _drawerTile(
               icon: Icons.access_time_filled,
-              title: 'مواقيت الصلاة لشهرل',
+              title: 'مواقيت الصلاة لشهر',
               onTap: () => Get.toNamed(AppRoute.timesfor30),
             ),
             ///Alarm
