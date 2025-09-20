@@ -1,20 +1,27 @@
-# 🧹 Hisn Muslim (Flutter)
+# 🕌 Hisn Muslim (Flutter)
 
 ## 🎯 Purpose
-This project is a **practice project** that applies a mix of MVC and Clean Architecture principles in Flutter.  
-It demonstrates:
-- Layered architecture (Controller, data, view, core).
-- State management with `GetX`.
-- Dependency injection with `GetX`.
-- Local database with `Hive`.
-- REST API  with `http`
+This project is a **cross-platform Islamic mobile application** developed with Flutter.  
+It delivers authentic supplications and prayer reminders while showcasing advanced mobile development concepts.  
+
+The app demonstrates:
+- A mix of **MVC** and **Clean Architecture** principles.
+- **Background services & alarm scheduling** with WorkManager & Android Alarm Manager Plus.
+- **State management** with GetX (including routing & dependency injection).
+- **Offline-first architecture** using Hive local database.
+- Integration with a **REST API** to fetch and update prayer data dynamically.
 
 ---
+
 ## ✨ Features
-- Fetch the month prayer times from the REST API
-- Save the month prayer times locally using Hive
-- Dark/Light theme support
-- Offline mode with cached data
+- 📅 Fetch monthly prayer times from REST API.  
+- 💾 Save and cache prayer times locally with Hive.  
+- ⏰ Daily alarms & notifications, even when the app is closed.  
+- 🌙 Dark/Light theme support.  
+- 📡 Offline mode with cached data.  
+- 🔔 Full-screen alarm UI for Fajr time with Adhan audio playback.  
+
+---
 
 ## 🗂️ Project Structure
 ```
@@ -27,10 +34,11 @@ lib/
 ---
 
 ## ⚙️ Tech Stack
-
-- **State Management**: get (v4.6.6)  
-- **Networking**: http (v1.2.2)
-- **Database**: hvie (v2.2.3)
+- **State Management**: GetX (v4.6.6)  
+- **Database**: Hive (v2.2.3)  
+- **Networking**: http (v1.2.2)  
+- **Background Services**: WorkManager, Android Alarm Manager Plus  
+- **Others**: Cached Network Image, Flutter Local Notifications, Audioplayers  
 ---
 
 ## 🚀 Usage
@@ -41,8 +49,9 @@ flutter run
 ```
 
 ## 📌 Notes
-This project is for educational purposes only (not production).
+This project is for educational purposes, but designed to be close to production-level with background services, notifications, and offline-first support.
 
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
 
