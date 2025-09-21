@@ -23,7 +23,7 @@ Position? position;
 
      await myBox?.put("location", [data["address"]["country"],data["address"]["state"]]);
 
-     return "${ApiLink.timesApi}city=${data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
+     return "${ApiLink.timesApi30}city=${data["address"]["state"]}&country=${data["address"]["country"]}&method=5#";
     } else {
       return "";
     }
