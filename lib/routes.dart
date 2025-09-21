@@ -1,16 +1,18 @@
-import 'package:es28/core/constant/routes.dart';
-import 'package:es28/veiw/screen/drawer/Aboutus.dart';
-import 'package:es28/veiw/screen/drawer/Alarm.dart';
-import 'package:es28/veiw/screen/drawer/Qibla.dart';
-import 'package:es28/veiw/screen/drawer/contact_Us.dart';
-import 'package:es28/veiw/screen/drawer/timesfor30.dart';
-import 'package:es28/veiw/screen/home/althakr/athkar_AP.dart';
-import 'package:es28/veiw/screen/home/althakr/surat_al_kahf.dart';
-import 'package:es28/veiw/screen/home.dart';
-import 'package:es28/veiw/screen/home/althakr/athkar_Friday.dart';
-import 'package:es28/veiw/screen/home/althakr/athkar_SM.dart';
-import 'package:es28/veiw/screen/drawer/setting.dart';
+
+import 'package:es28/view/screen/drawer/Aboutus.dart';
+import 'package:es28/view/screen/drawer/Alarm.dart';
+import 'package:es28/view/screen/drawer/Qibla.dart';
+import 'package:es28/view/screen/drawer/contact_Us.dart';
+import 'package:es28/view/screen/drawer/setting.dart';
+import 'package:es28/view/screen/drawer/timesfor30.dart';
+import 'package:es28/view/screen/home.dart';
+import 'package:es28/view/screen/home/althakr/athkar_AP.dart';
+import 'package:es28/view/screen/home/althakr/athkar_Friday.dart';
+import 'package:es28/view/screen/home/althakr/athkar_SM.dart';
+import 'package:es28/view/screen/home/althakr/surat_al_kahf.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+
+import 'core/constant/routes.dart';
 
 List<GetPage<dynamic>>? routes =[
   GetPage(name:AppRoute.home, page:() => HomePage() ),
