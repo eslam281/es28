@@ -10,12 +10,13 @@ import 'package:hive/hive.dart';
 import 'controller/sittings_controller.dart';
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
+import 'core/services/background_service.dart';
 
 Box? myBox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AndroidAlarmManager.initialize();
-
+  await initializeService();
   myBox = await initalBox("times");
 
   SystemChrome.setPreferredOrientations([

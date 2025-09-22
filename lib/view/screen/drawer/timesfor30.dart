@@ -62,15 +62,15 @@ class Timesfor30Widget extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 /// جدول المواقيت
-                Expanded(
-                  child: controller.data == null
-                      ? const Center(child: Text("لا توجد بيانات"))
-                      : SingleChildScrollView(
-                    scrollDirection: Axis.horizontal, // يسمح بالتمرير لو الجدول كبير
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Expanded(
+                    child: controller.data == null
+                        ? const Center(child: Text("لا توجد بيانات"))
+                        : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal, // يسمح بالتمرير لو الجدول كبير
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
                         child: DataTable(
                           headingTextStyle:const TextStyle(color: AppColor.secondColor,fontSize: 16,fontWeight: FontWeight.bold) ,
                           columnSpacing: 20,
