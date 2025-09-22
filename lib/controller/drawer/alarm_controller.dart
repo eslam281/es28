@@ -34,7 +34,7 @@ class AlarmControllerImp extends AlarmController{
       print("00000000000000000$ison");
       AndroidAlarmManager.oneShotAt(DateTime.now().add(
           const Duration(seconds: 15)),
-          2,alarm,
+          1,alarm,
           rescheduleOnReboot: true,allowWhileIdle: true,alarmClock: true,
           exact: true,wakeup: true
       );
@@ -42,7 +42,6 @@ class AlarmControllerImp extends AlarmController{
       print("00000000000000000$ison");
       AudioPlayer(playerId: "Fajr").stop();
       AndroidAlarmManager.cancel(1);
-      AndroidAlarmManager.cancel(2);
     }
     update();
   }
