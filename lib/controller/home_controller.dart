@@ -21,7 +21,7 @@ class HomeControllerImp extends HomeController{
   @override
   void onReady()async {
     showDialog();
-    await Permission.ignoreBatteryOptimizations.request();
+    // await Permission.ignoreBatteryOptimizations.request();
     super.onReady();
   }
 
