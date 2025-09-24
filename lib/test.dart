@@ -1,8 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'core/constant/color.dart';
+import 'core/services/background_service.dart';
 
-
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 class Test extends StatefulWidget {
   const Test({super.key});
 
@@ -12,6 +16,16 @@ class Test extends StatefulWidget {
 
 class _TestState extends State<Test> {
   @override
+
+
+    @override
+  void initState() {
+   intial();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.black,
@@ -19,30 +33,63 @@ class _TestState extends State<Test> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.alarm, size: 100, color: AppColor.primaryColor),
-            const SizedBox(height: 20),
-            const Text('🕌   حان الآن وقت الفجر', style:
-            TextStyle(color: AppColor.primaryColor, fontSize: 24)),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.secondColor,foregroundColor:AppColor.white),
-              onPressed: () {
-                // إيقاف الصوت
-              },
-              child: const Text("إيقاف"),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.secondColor,foregroundColor:AppColor.white),
-              onPressed: () {
-                // تأجيل لـ 10 دقائق (Snooze)
-              },
-              child: const Text("تأجيل 10 دقائق"),
-            ),
+            IconButton(onPressed: ()async{
+              const androidDetails = AndroidNotificationDetails(
+                'alarm_channel',
+                'Alarms',
+                channelDescription: 'تنبيهات الأذان',
+                importance: Importance.max,
+                priority: Priority.high,
+                autoCancel: false,
+                playSound: false,
+                actions: <AndroidNotificationAction>[
+                  AndroidNotificationAction(
+                    'stop_alarm_action', // id بتاع الـ action
+                    'إيقاف الأذان',
+                    cancelNotification: true,
+                  ),
+                ],
+                // يمكنك وضع ongoing: true إذا رغبت في منع الإزالة (لكن system قد يتجاهل على أنواع معينة)
+                // ongoing: true,
+              );
+
+              await flutterLocalNotificationsPlugin.show(
+                0,
+                '⏰ وقت الفجر',
+                'اضغط لإيقاف التنبيه',
+                const NotificationDetails(android: androidDetails),
+                payload: 'stop_alarm',
+              );
+            }, icon: const Icon(Icons.play_circle))
           ],
         ),
       ),
     );
   }
+}
+intial()async{
+  const AndroidInitializationSettings initializationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  final InitializationSettings initializationSettings = const InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+
+  flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse: (response) async {
+      print('onDidReceiveNotificationResponse: actionId=${response.actionId}, payload=${response.payload}');
+
+      print('will invoke stopAzan from foreground callback');
+
+    },
+    onDidReceiveBackgroundNotificationResponse: notificationTap,
+  );
+}
+@pragma('vm:entry-point')
+void notificationTap(NotificationResponse response) {
+  WidgetsFlutterBinding.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
+  print('*** notificationTapBackground called. actionId=${response.actionId}, payload=${response.payload}');
+
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../view/screen/home/althakr/athkar.dart';
 import '../view/screen/home/counter.dart';

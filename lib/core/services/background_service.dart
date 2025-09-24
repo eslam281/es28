@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'alarm_service.dart';
 
 Future<void> initializeService()async {
   final service =FlutterBackgroundService();
@@ -43,10 +42,11 @@ void onStart (ServiceInstance service){
     flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (response) async {
-        // foreground tap
-        if (response.payload == 'stop_alarm') {
+        print('onDidReceiveNotificationResponse: actionId=${response.actionId}, payload=${response.payload}');
+
+          print('will invoke stopAzan from foreground callback');
           service.invoke('stopAzan');
-        }
+
       },
       onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
     );
@@ -71,9 +71,16 @@ void onStart (ServiceInstance service){
         channelDescription: 'تنبيهات الأذان',
         importance: Importance.max,
         priority: Priority.high,
-        fullScreenIntent: true,
         autoCancel: false,
         playSound: false,
+        fullScreenIntent: true,
+        actions: <AndroidNotificationAction>[
+        AndroidNotificationAction(
+          'stop_alarm_action', // id بتاع الـ action
+          'إيقاف الأذان',
+          cancelNotification: true,
+        ),
+      ],
         // يمكنك وضع ongoing: true إذا رغبت في منع الإزالة (لكن system قد يتجاهل على أنواع معينة)
         // ongoing: true,
       );
@@ -88,7 +95,7 @@ void onStart (ServiceInstance service){
     });
 
     service.on('stopAzan').listen((event) async {
-      print("Service: stopAzan received");
+      print("Service: stopAzan received at ${DateTime.now()} -- event: $event");
 
       try {
         await player.stop();
@@ -124,7 +131,13 @@ void onStart (ServiceInstance service){
 }
 
 @pragma('vm:entry-point')
-void notificationTapBackground(NotificationResponse response)async {
-  FlutterBackgroundService flutterBackgroundService = FlutterBackgroundService();
-  flutterBackgroundService.invoke('stopAzan');
+void notificationTapBackground(NotificationResponse response) {
+  WidgetsFlutterBinding.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
+  try {
+    final service = FlutterBackgroundService();
+    service.invoke('stopAzan');
+  } catch (e, st) {
+    print('*** notificationTapBackground invoke error: $e\n$st');
+  }
 }
