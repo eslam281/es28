@@ -42,13 +42,13 @@ class TimesController extends GetxController{
   }
 
   getTimesOff(){
-    List? datalist;
-    int day = DateTime.now().day;
+    final List? datalist;
+    final int day = DateTime.now().day;
     if(myBox?.get("timefor30") != null){
       datalist = myBox?.get("timefor30");
     data = TimingModel.fromJson(datalist?[day-1]["timings"]);
     dateResponse =datalist?[day-1]["date"]["gregorian"]["date"];
-      myBox?.put("time",datalist?[day-1]["timings"]);
+      // myBox?.put("time",datalist?[day-1]["timings"]);
     }
     update();
   }

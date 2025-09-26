@@ -1,14 +1,13 @@
 
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:es28/routes.dart';
-import 'package:es28/test.dart';
 import 'package:es28/view/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import 'controller/sittings_controller.dart';
+import 'controller/drawer/sittings_controller.dart';
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
 import 'core/services/background_service.dart';

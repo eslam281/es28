@@ -51,7 +51,8 @@ class ElathakerController extends GetxController{
 
 
   bool checkTime(String name) {
-    final String time = myBox?.get("time")[name] ?? "";
+    final int day = DateTime.now().day;
+    final String time = myBox?.get("timefor30")[day-1]["timings"][name] ?? "";
     final String currentTime = DateFormat('HH:mm').format(DateTime.now());
     return currentTime.compareTo(time) > 0;
   }

@@ -6,12 +6,7 @@ import '../functions/getOfFajr.dart';
 @pragma('vm:entry-point')
 void alarm()async{
    FlutterBackgroundService flutterBackgroundService = await FlutterBackgroundService();
-   // flutterBackgroundService.invoke('setAsForeground');
    flutterBackgroundService.invoke('playAzan');
-
-   // await playAzanWithNotification().then((value) {
-   //   flutterBackgroundService.invoke('setAsForeground');
-   // } ,);
 
    DateTime nextFajr =await getDataOfFajr();
 

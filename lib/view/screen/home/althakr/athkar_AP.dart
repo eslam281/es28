@@ -1,4 +1,4 @@
-import 'package:es28/controller/sittings_controller.dart';
+import 'package:es28/controller/drawer/sittings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

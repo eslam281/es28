@@ -1,8 +1,4 @@
-
-
-
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -23,7 +19,7 @@ class AlarmControllerImp extends AlarmController{
   void onReady() async{
     await Permission.scheduleExactAlarm.request();
     await Permission.notification.request();
-    // await Permission.ignoreBatteryOptimizations.request();
+    await Permission.ignoreBatteryOptimizations.request();
 
     super.onReady();
   }
@@ -40,7 +36,6 @@ class AlarmControllerImp extends AlarmController{
       );
     }else{
       print("00000000000000000$ison");
-      AudioPlayer(playerId: "Fajr").stop();
       AndroidAlarmManager.cancel(1);
     }
     update();

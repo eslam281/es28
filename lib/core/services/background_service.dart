@@ -27,6 +27,7 @@ Future<bool>onIosBackground(ServiceInstance service)async{
 @pragma('vm:entry-point')
 void onStart (ServiceInstance service){
   DartPluginRegistrant.ensureInitialized();
+
   if(service is AndroidServiceInstance){
     ////////////
     final player = AudioPlayer(playerId: "Fajr");
@@ -42,29 +43,19 @@ void onStart (ServiceInstance service){
     flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (response) async {
-        print('onDidReceiveNotificationResponse: actionId=${response.actionId}, payload=${response.payload}');
-
-          print('will invoke stopAzan from foreground callback');
           service.invoke('stopAzan');
-
       },
       onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
     );
     /////////
     service.on('playAzan').listen((event) async {
       print("Service: playAzan received");
-
-      // 1) اجعل الخدمة foreground مع notification مستمر
-      await service.setForegroundNotificationInfo(
-        title: "Hisn Muslim",
-        content: "تنبيه الفجر يعمل الآن",
-      );
       service.setAsForegroundService();
 
-      // 2) شغّل الصوت
-      await player.play(AssetSource('audio/Abdul_Basit_Abdul_Samad.mp3'));
+      await player.play(AssetSource('audio/Abdul_Basit_Abdul_Samad.mp3')).then((value) {
+          service.invoke('setAsForeground');
+        },);
 
-      // 3) اعرض نوتيفيكيشن قابل للإزالة (مع action لإيقاف الأذان)
       const androidDetails = AndroidNotificationDetails(
         'alarm_channel',
         'Alarms',
@@ -73,6 +64,10 @@ void onStart (ServiceInstance service){
         priority: Priority.high,
         autoCancel: false,
         playSound: false,
+        enableLights:true ,
+        enableVibration: true,
+        visibility:NotificationVisibility.public ,
+        ongoing: true,
         fullScreenIntent: true,
         actions: <AndroidNotificationAction>[
         AndroidNotificationAction(
@@ -81,14 +76,12 @@ void onStart (ServiceInstance service){
           cancelNotification: true,
         ),
       ],
-        // يمكنك وضع ongoing: true إذا رغبت في منع الإزالة (لكن system قد يتجاهل على أنواع معينة)
-        // ongoing: true,
       );
 
       await flutterLocalNotificationsPlugin.show(
         0,
         '⏰ وقت الفجر',
-        'اضغط لإيقاف التنبيه',
+        null,
         const NotificationDetails(android: androidDetails),
         payload: 'stop_alarm',
       );
