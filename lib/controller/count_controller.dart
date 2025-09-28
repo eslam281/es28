@@ -8,7 +8,7 @@ abstract class CountController extends GetxController {}
 
 class CountControllerImp extends CountController {
   int i = 0;
-  String counter = "ادخل الذكر ";
+  String counterName = "ادخل الذكر ";
 
   late TextEditingController textcontroll;
 
@@ -19,8 +19,8 @@ class CountControllerImp extends CountController {
     if (myBox!.get("i") != null)
       i = myBox!.get("i")!;
 
-    if(myBox!.get("counter")!= null)
-      counter = myBox!.get("counter")!;
+    if(myBox!.get("counterName")!= null)
+      counterName = myBox!.get("counterName")!;
 
     super.onInit();
   }
@@ -38,8 +38,8 @@ class CountControllerImp extends CountController {
   }
 
   void setCounter(String? val,BuildContext context) {
-    counter = val!;
-    myBox?.put("counter", counter);
+    counterName = val!;
+    myBox?.put("counterName", counterName);
     textcontroll.clear();
     FocusScope.of(context).unfocus();
     update();

@@ -12,6 +12,7 @@ class AppRoute{
   static const String athkar_SM = "/athkar_SM";
   static const String athkarAP = "/athkarAP";
   static const String athkarFriday = "/AthkarFriday";
+  static const String prayElnaby = "/prayElnaby";
   static const String surat_Al_Kahf = "/surat_Al_Kahf";
 
 }

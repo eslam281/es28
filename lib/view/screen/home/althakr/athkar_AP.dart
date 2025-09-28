@@ -2,7 +2,7 @@ import 'package:es28/controller/drawer/sittings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/athakerAP_controller.dart';
+import '../../../../controller/althakr/athakerAP_controller.dart';
 import '../../../../core/constant/color.dart';
 import '../../../component/athkar/customAthkarCard.dart';
 import '../../../component/chooseFontSize.dart';

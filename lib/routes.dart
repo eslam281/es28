@@ -7,9 +7,10 @@ import 'package:es28/view/screen/drawer/setting.dart';
 import 'package:es28/view/screen/drawer/timesfor30.dart';
 import 'package:es28/view/screen/home.dart';
 import 'package:es28/view/screen/home/althakr/athkar_AP.dart';
-import 'package:es28/view/screen/home/althakr/athkar_Friday.dart';
+import 'package:es28/view/screen/home/althakr/friday/athkar_Friday.dart';
 import 'package:es28/view/screen/home/althakr/athkar_SM.dart';
-import 'package:es28/view/screen/home/althakr/surat_al_kahf.dart';
+import 'package:es28/view/screen/home/althakr/friday/pray_elnaby.dart';
+import 'package:es28/view/screen/home/althakr/friday/surat_al_kahf.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import 'core/constant/routes.dart';
@@ -25,5 +26,6 @@ List<GetPage<dynamic>>? routes =[
   GetPage(name:AppRoute.athkar_SM, page:() => const AthkarSM() ),
   GetPage(name:AppRoute.athkarAP, page:() => const AthkarAP() ),
   GetPage(name:AppRoute.athkarFriday, page:() => const AthkarFriday() ),
+  GetPage(name:AppRoute.prayElnaby, page:() => const PrayElnaby() ),
   GetPage(name:AppRoute.surat_Al_Kahf, page:() => const Surat_Al_Kahf() ),
 ];

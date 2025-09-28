@@ -68,7 +68,7 @@ class Counter extends StatelessWidget {
 
             const SizedBox(height: 30,),
 
-            Text("${controller.counter}",
+            Text("${controller.counterName}",
               style: const TextStyle(fontSize: 30,
                   // color: AppColor.white
               ),
