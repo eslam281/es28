@@ -2,9 +2,11 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
 import '../functions/getOfFajr.dart';
+import 'background_service.dart';
 
 @pragma('vm:entry-point')
 void alarm()async{
+  await initializeService();
    FlutterBackgroundService flutterBackgroundService = await FlutterBackgroundService();
    flutterBackgroundService.invoke('playAzan');
 

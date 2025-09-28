@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../../../controller/drawer/surat_al_kahf_controller.dart';
+import '../../../../../controller/althakr/surat_al_kahf_controller.dart';
 import '../../../../../core/constant/color.dart';
 
 class Surat_Al_Kahf extends StatelessWidget {

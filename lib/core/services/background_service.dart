@@ -5,6 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 
 Future<void> initializeService()async {
@@ -49,11 +50,12 @@ void onStart (ServiceInstance service){
     );
     /////////
     service.on('playAzan').listen((event) async {
+      WakelockPlus.enable();
       print("Service: playAzan received");
       service.setAsForegroundService();
 
       await player.play(AssetSource('audio/Abdul_Basit_Abdul_Samad.mp3')).then((value) {
-          service.invoke('setAsForeground');
+          service.invoke('stopAzan');
         },);
 
       const androidDetails = AndroidNotificationDetails(
@@ -98,8 +100,9 @@ void onStart (ServiceInstance service){
       }
 
       // الغي النوتيفيكيشن المحلية
-      final fln = FlutterLocalNotificationsPlugin();
-      await fln.cancel(0);
+      FlutterLocalNotificationsPlugin().cancel(0);
+
+      WakelockPlus.disable();
 
       // ارجع الخدمة للخلفية أو قفلها:
       service.setAsBackgroundService();
@@ -107,14 +110,6 @@ void onStart (ServiceInstance service){
       service.stopSelf();
     });
 
-    service.on('setAsForeground').listen((event)async {
-      await service.setForegroundNotificationInfo(
-          title: "Hisn Muslim",
-          content: "Running in background",
-        );
-        service.setAsForegroundService();
-        print("setAsForegroundService=======================================================");
-      },);
 
     service.on('stopService').listen((event) {
       service.stopSelf();
