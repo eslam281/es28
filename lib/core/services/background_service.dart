@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 
 
 Future<void> initializeService()async {
@@ -28,6 +28,7 @@ Future<bool>onIosBackground(ServiceInstance service)async{
 @pragma('vm:entry-point')
 void onStart (ServiceInstance service){
   DartPluginRegistrant.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   if(service is AndroidServiceInstance){
     ////////////
@@ -50,7 +51,6 @@ void onStart (ServiceInstance service){
     );
     /////////
     service.on('playAzan').listen((event) async {
-      WakelockPlus.enable();
       print("Service: playAzan received");
       service.setAsForegroundService();
 
@@ -100,14 +100,12 @@ void onStart (ServiceInstance service){
       }
 
       // الغي النوتيفيكيشن المحلية
-      FlutterLocalNotificationsPlugin().cancel(0);
-
-      WakelockPlus.disable();
+     await FlutterLocalNotificationsPlugin().cancel(0);
 
       // ارجع الخدمة للخلفية أو قفلها:
       service.setAsBackgroundService();
       // أو لو عايز توقف الخدمة نهائيًا:
-      service.stopSelf();
+      await service.stopSelf();
     });
 
 
