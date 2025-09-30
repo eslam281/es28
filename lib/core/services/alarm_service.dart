@@ -11,8 +11,8 @@ void alarm()async{
    DateTime nextFajr =await getDataOfFajr();
 
   await AndroidAlarmManager.oneShotAt(nextFajr, 1,
-    alarm, wakeup: true, exact: true,alarmClock: true,
-    allowWhileIdle: true, rescheduleOnReboot: true,
+    alarm, wakeup: true, exact: true,
+      alarmClock: true,allowWhileIdle: true
   );
   print(" AndroidAlarmManager.oneShotAt 00000000000000000000000000000000");
 }

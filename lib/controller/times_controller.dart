@@ -27,7 +27,7 @@ class TimesController extends GetxController{
 
   @override
   void onInit() async{
-    if(myBox?.get("timefor30") == null&&
+    if(myBox?.get("timefor30") == null||
         myBox?.get("timesMonth")!=DateTime.now().month.toString())
     {
       await gettimes();

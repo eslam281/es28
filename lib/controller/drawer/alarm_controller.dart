@@ -2,6 +2,7 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../core/functions/getOfFajr.dart';
 import '../../core/services/alarm_service.dart';
 import '../../main.dart';
 
@@ -29,12 +30,17 @@ class AlarmControllerImp extends AlarmController{
     myBox?.put("ison", ison);
     if(ison==true){
       print("00000000000000000$ison");
-      AndroidAlarmManager.oneShotAt(DateTime.now().add(
-          const Duration(seconds: 15)),
-          1,alarm,
-          rescheduleOnReboot: true,allowWhileIdle: true,alarmClock: true,
-          exact: true,wakeup: true
+      DateTime nextFajr =await getDataOfFajr();
+
+      await AndroidAlarmManager.oneShotAt(nextFajr, 1,
+        alarm, wakeup: true, exact: true,
+          alarmClock: true,allowWhileIdle: true
       );
+      // AndroidAlarmManager.oneShotAt(DateTime.now().add(const Duration(seconds: 15)),
+      //     1,alarm,
+      //     alarmClock: true,
+      //     exact: true,wakeup: true
+      // );
     }else{
       print("00000000000000000$ison");
       AndroidAlarmManager.cancel(1);
