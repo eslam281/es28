@@ -5,6 +5,7 @@ import 'package:es28/main.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../core/class/statusrequest.dart';
 
 import '../core/functions/timesfor30.dart';
@@ -42,13 +43,18 @@ class TimesController extends GetxController{
   }
 
   getTimesOff(){
-    final List? datalist;
+    List dataList = [];
     final int day = DateTime.now().day;
-    if(myBox?.get("timefor30") != null){
-      datalist = myBox?.get("timefor30");
-    data = TimingModel.fromJson(datalist?[day-1]["timings"]);
-    dateResponse =datalist?[day-1]["date"]["gregorian"]["date"];
-      // myBox?.put("time",datalist?[day-1]["timings"]);
+    final int nextDay = DateTime.now().add(const Duration(days: 1)).day;
+
+    if(myBox?.get("timefor30") != null && myBox?.get("timesMonth")==DateTime.now().month.toString()){
+      dataList = myBox?.get("timefor30");
+      int index = day-1;
+      if(checkTime('Isha') && day <nextDay){
+        index = day;
+      }
+      data = TimingModel.fromJson(dataList[index]["timings"]);
+      dateResponse =dataList[index]["date"]["gregorian"]["date"];
     }
     update();
   }
@@ -83,6 +89,12 @@ class TimesController extends GetxController{
     locationList = await myBox?.get("location")??["","Cairo"];
     statusRequest =StatusRequest.success;
     update();
+  }
+  bool checkTime(String name) {
+    final int day = DateTime.now().day;
+    final String time = myBox?.get("timefor30")[day-1]["timings"][name] ?? "";
+    final String currentTime = DateFormat('HH:mm').format(DateTime.now());
+    return currentTime.compareTo(time) > 0;
   }
 }
 /*

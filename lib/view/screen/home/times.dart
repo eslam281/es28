@@ -2,6 +2,7 @@ import 'package:es28/core/class/handlingdataview.dart';
 import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../controller/times_controller.dart';
 import '../../../core/functions/converTime24_12.dart';
@@ -60,7 +61,7 @@ class Times extends StatelessWidget {
               const SizedBox(height: 30),
 
               /// Prayer Times
-              if (controller.data != null)
+              (controller.data != null)?
                 Column(
                   children: [
                     timeTile("الفجر", controller.data!.fajr,context),
@@ -96,7 +97,25 @@ class Times extends StatelessWidget {
                       ),
                     )
                   ],
+                ):
+              Center(child: SizedBox(
+                width: 200.0,
+                height: 100.0,
+                child: Shimmer.fromColors(
+                  baseColor: Colors.red,
+                  highlightColor: Colors.yellow,
+                  child: const Text(
+                    'يرجى تحديث مواقيت الصلاه للوقت الحالي لهذا الشهر',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 40.0,
+                      fontWeight:
+                      FontWeight.bold,
+                    ),
+                  ),
                 ),
+              ))
+              ,
 
               const SizedBox(height: 30),
             ],

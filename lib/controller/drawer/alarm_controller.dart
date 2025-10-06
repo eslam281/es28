@@ -20,8 +20,8 @@ class AlarmControllerImp extends AlarmController{
   void onReady() async{
     await Permission.scheduleExactAlarm.request();
     await Permission.notification.request();
-    if( !await Permission.ignoreBatteryOptimizations.isGranted)
-    await Permission.ignoreBatteryOptimizations.request();
+    // if( !await Permission.ignoreBatteryOptimizations.isGranted)
+    // await Permission.ignoreBatteryOptimizations.request();
 
     super.onReady();
   }
