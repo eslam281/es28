@@ -46,11 +46,11 @@ class CustomDrawer extends StatelessWidget {
               onTap: () => Get.toNamed(AppRoute.timesfor30),
             ),
             ///Alarm
-            _drawerTile(
-              icon: Icons.alarm,
-              title: 'المنبه',
-              onTap: () => Get.toNamed(AppRoute.alarm),
-            ),
+            // _drawerTile(
+            //   icon: Icons.alarm,
+            //   title: 'المنبه',
+            //   onTap: () => Get.toNamed(AppRoute.alarm),
+            // ),
             ////Setting
             _drawerTile(
               icon: Icons.settings,

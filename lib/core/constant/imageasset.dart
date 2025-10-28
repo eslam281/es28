@@ -2,6 +2,7 @@ class AppImageAsset{
   static const String rootImages="assets/images";
   static const String rootLottie="assets/lottie";
   static const String surat_Al_Kahf="assets/suratalkahf";
+  static const String background="$rootImages/background";
 
   static const String logo="$rootImages/537600-00.png";
 
@@ -11,7 +12,19 @@ class AppImageAsset{
   static const String athkar_AP="$rootImages/p-mqyydh002.jpg";
   static const String saibh="$rootImages/saibh.png";
 
+  //////// Splash screen background
+  static const String dawn="$background/dawn.jpg";
+  static const String sunrise="$background/sunrise.jpg";
+  static const String sunrise2="$background/sunrise2.jpg";
+  static const String morning="$background/morning.jfif";
+  static const String morning2="$background/morning2.jpg";
+  static const String evening="$background/evening.jfif";
+  static const String evening2="$background/evening2.jpg";
+  static const String night="$background/night.jpg";
+  static const String night2="$background/night2.jpg";
 
+
+  ///// Lottie Images
   static const String loading  = "$rootLottie/loading.json";
   static const String offline  = "$rootLottie/offline.json";
   static const String noData  = "$rootLottie/Animation - 1738062509128.json";

@@ -15,7 +15,7 @@ class ElathakerController extends GetxController{
   void intialData() async{
     count.length = adhkar.length;
     count.fillRange(0, adhkar.length, 0);
-    if (myBox?.get("time") != null) {
+    if (myBox?.get("timefor30") != null) {
 
       if(!checkTime('Asr') &&checkTime('Fajr') && (myBox?.get("athakertime") == 1||!await checkDate())) {
         count.fillRange(0, adhkar.length, 0);

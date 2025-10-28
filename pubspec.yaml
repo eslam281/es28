@@ -95,6 +95,7 @@ flutter:
   assets:
     - assets/audio/
     - assets/images/
+    - assets/images/background/
     - assets/lottie/
     - assets/suratalkahf/
   #   - images/a_dot_ham.jpeg

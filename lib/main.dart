@@ -15,7 +15,7 @@ import 'core/services/background_service.dart';
 Box? myBox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AndroidAlarmManager.initialize();
+  // await AndroidAlarmManager.initialize();
   await initializeService();
   myBox = await initalBox("times");
 
