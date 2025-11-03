@@ -21,7 +21,6 @@ class TimesController extends GetxController{
 
   bool isready = false;
   late Timer rebuild ;
-  Position? position;
   List locationList =  myBox?.get("location")??["","Cairo"];
 
   String? dateResponse;

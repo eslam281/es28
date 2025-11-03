@@ -8,6 +8,7 @@ import '../../../core/constant/color.dart';
 import '../../../core/functions/converTime24_12.dart';
 import '../../../core/localization/locationTranslations.dart';
 import '../../../core/shared/shimmerReload.dart';
+import '../../component/home/times_card.dart';
 
 class Timesfor30Widget extends StatelessWidget {
   const Timesfor30Widget({super.key});
@@ -29,35 +30,11 @@ class Timesfor30Widget extends StatelessWidget {
             child: Column(
               children: [
                 /// Header: التاريخ + الموقع + تحديث
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(getMonth(controller.dateResponse!)??"",
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          getLocalizedLocation(controller.locationList[1]),
-                          style: const TextStyle(
-                            color: AppColor.primaryColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: controller.reTimes,
-                          icon: const Icon(Icons.refresh, size: 26),
-                          color: controller.isready ? AppColor.secondColor : Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ),
+                TimesCard(
+                    textDate: getMonth(controller.dateResponse!)??"",
+                    textLocation: getLocalizedLocation(controller.locationList[1]),
+                    isReady: controller.isready,
+                    reTimes: controller.reTimes
                 ),
 
                 const SizedBox(height: 20),
