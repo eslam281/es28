@@ -1,8 +1,8 @@
 String getLocalizedLocation(String englishName) {
   return locationTranslations[englishName] ?? englishName;
 }
-String getMonth(String month) {
-  return monthTranslations[month]!;
+String? getMonth(String month) {
+  return monthTranslations[month];
 }
 Map<String, String> monthTranslations = {
   "1": "يناير",

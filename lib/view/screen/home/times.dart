@@ -2,12 +2,13 @@ import 'package:es28/core/class/handlingdataview.dart';
 import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../controller/times_controller.dart';
 import '../../../core/functions/converTime24_12.dart';
 import '../../../core/localization/locationTranslations.dart';
+import '../../../core/shared/shimmerReload.dart';
 import '../../component/home/timeTile.dart';
+import '../../component/home/times_card.dart';
 
 class Times extends StatelessWidget {
   const Times({super.key});
@@ -25,37 +26,11 @@ class Times extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               /// Header: Date + Refresh
-              Card(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        controller.dateResponse ?? "",
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),
-                        textAlign: TextAlign.right,
-                      ),
-
-                      Text(
-                        getLocalizedLocation(controller.locationList[1]),
-                        style: const TextStyle(
-                          color: AppColor.primaryColor, fontSize: 18, fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-
-                      IconButton(
-                        onPressed: controller.reTimes,
-                        icon: const Icon(Icons.refresh, size: 26),
-                        color: controller.isready ? AppColor.secondColor : Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
+              TimesCard(
+                textDate: controller.dateResponse ?? "",
+                textLocation: getLocalizedLocation(controller.locationList[1]),
+                isReady: controller.isready,
+                reTimes: controller.reTimes,
               ),
 
               const SizedBox(height: 30),
@@ -98,25 +73,8 @@ class Times extends StatelessWidget {
                     )
                   ],
                 ):
-              Center(child: SizedBox(
-                width: 200.0,
-                height: 100.0,
-                child: Shimmer.fromColors(
-                  baseColor: Colors.red,
-                  highlightColor: Colors.yellow,
-                  child: const Text(
-                    'يرجى تحديث مواقيت الصلاه للوقت الحالي لهذا الشهر',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40.0,
-                      fontWeight:
-                      FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ))
+              const ShimmerReload()
               ,
-
               const SizedBox(height: 30),
             ],
           ),

@@ -7,6 +7,7 @@ import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/functions/converTime24_12.dart';
 import '../../../core/localization/locationTranslations.dart';
+import '../../../core/shared/shimmerReload.dart';
 
 class Timesfor30Widget extends StatelessWidget {
   const Timesfor30Widget({super.key});
@@ -38,7 +39,7 @@ class Timesfor30Widget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(getMonth(controller.dateResponse!),
+                        Text(getMonth(controller.dateResponse!)??"",
                           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         Text(
@@ -66,7 +67,7 @@ class Timesfor30Widget extends StatelessWidget {
                   textDirection: TextDirection.rtl,
                   child: Expanded(
                     child: controller.data == null
-                        ? const Center(child: Text("لا توجد بيانات"))
+                        ? const ShimmerReload()
                         : SingleChildScrollView(
                       scrollDirection: Axis.horizontal, // يسمح بالتمرير لو الجدول كبير
                       child: SingleChildScrollView(

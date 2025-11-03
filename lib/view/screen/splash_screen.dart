@@ -46,9 +46,10 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor:context.isDarkMode? AppColor.black:AppColor.white,
       splashIconSize: double.infinity,
       splashTransition:SplashTransition.scaleTransition ,
-        splash:Image.asset(image,fit:BoxFit.fill,) ,
+        splash:Image.asset(image,fit:BoxFit.fill,filterQuality:FilterQuality.high,) ,
         nextScreen: HomePage(),
-      duration: 2000,curve: Curves.easeInToLinear ,
+        duration: 2000,
+      // curve: Curves.easeInToLinear ,
     );
   }
 }
