@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/constant/color.dart';
 import '../../main.dart';
 
 abstract class SittingsController extends GetxController{
@@ -15,6 +16,13 @@ class SittingsControllerImp extends SittingsController{
     ThemeData.light(): ThemeData.dark());
     await myBox?.put("theme", Get.isDarkMode?1:2);
     print(myBox?.get("theme"));
+    update();
+    // Get.appUpdate();
+  }
+  void changeColor()async{
+    AppColor.primaryColor=Color(0xff00000);
+    await myBox?.put("primaryColor", "0xff00000");
+    print(AppColor.primaryColor);
     update();
     // Get.appUpdate();
   }

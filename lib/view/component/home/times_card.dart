@@ -37,7 +37,7 @@ class TimesCard extends StatelessWidget {
             ),
             Text(
               textLocation,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColor.primaryColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
