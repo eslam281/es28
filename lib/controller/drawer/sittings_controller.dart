@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/constant/color.dart';
 import '../../main.dart';
 
 abstract class SittingsController extends GetxController{
@@ -19,13 +18,17 @@ class SittingsControllerImp extends SittingsController{
     update();
     // Get.appUpdate();
   }
-  void changeColor()async{
-    AppColor.primaryColor=Color(0xff00000);
-    await myBox?.put("primaryColor", "0xff00000");
-    print(AppColor.primaryColor);
-    update();
-    // Get.appUpdate();
-  }
+  // void changeColor()async{
+  //   // print(AppColor.primaryColor);
+  //   print("================");
+  //   AppColor.primaryColor= const Color(4294967295);
+  //   await myBox?.put("primaryColor", 4294967295);
+  //   print(myBox?.get("primaryColor"));
+  //   print("================");
+  //   print(AppColor.primaryColor);
+  //   // Get.appUpdate();
+  //   update();
+  // }
   void changeTextScaler(double val){
     if(textScaler+val<=.8||textScaler+val>=1.42) return;
     textScaler += val;

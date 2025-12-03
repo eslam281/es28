@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:es28/core/class/crud.dart';
 import 'package:es28/main.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../core/class/statusrequest.dart';

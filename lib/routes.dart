@@ -1,8 +1,8 @@
 
 import 'package:es28/view/screen/drawer/Aboutus.dart';
-import 'package:es28/view/screen/drawer/Alarm.dart';
 import 'package:es28/view/screen/drawer/Qibla.dart';
 import 'package:es28/view/screen/drawer/contact_Us.dart';
+import 'package:es28/view/screen/drawer/praying_stats.dart';
 import 'package:es28/view/screen/drawer/setting.dart';
 import 'package:es28/view/screen/drawer/timesfor30.dart';
 import 'package:es28/view/screen/home.dart';
@@ -19,6 +19,7 @@ List<GetPage<dynamic>>? routes =[
   GetPage(name:AppRoute.home, page:() => HomePage() ),
   GetPage(name:AppRoute.qiblaPage, page:() => const QiblaPage() ),
   GetPage(name:AppRoute.timesfor30, page:() => const Timesfor30Widget() ),
+  GetPage(name:AppRoute.prayingStats, page:() => const PrayingStats() ),
   // GetPage(name:AppRoute.alarm, page:() => const Alarm() ),
   GetPage(name:AppRoute.setting, page:() => const Setting() ),
   GetPage(name:AppRoute.about_us, page:() => const About_us() ),

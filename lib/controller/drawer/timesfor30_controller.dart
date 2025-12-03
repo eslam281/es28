@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../../core/class/crud.dart';
@@ -27,7 +26,8 @@ class Timesfor30Controller extends GetxController{
   @override
   void onInit() {
 
-    if(myBox?.get("timesMonth")!=DateTime.now().month.toString()){
+    if(myBox?.get("timefor30") == null||
+    myBox?.get("timesMonth")!=DateTime.now().month.toString()){
       gettimes();
     }else{
       getTimesOff();
@@ -80,6 +80,5 @@ class Timesfor30Controller extends GetxController{
     data = datalist?.map<TimingModel>((e) => TimingModel.fromJson(e["timings"])).toList();
     dateResponse =myBox?.get("timesMonth")??"";
   }
-
 
 }

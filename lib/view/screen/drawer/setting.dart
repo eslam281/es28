@@ -50,31 +50,32 @@ class Setting extends StatelessWidget {
               onTap: () => controller.changeThemeMode(),
             ),
           ),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: AppColor.secondColor.withAlpha(30),
-                child: Icon(
-                  context.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                  color: AppColor.secondColor,
-                ),
-              ),
-              title: const Text(
-                "الوضع الليلي",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              subtitle: Text(
-                context.isDarkMode ? "الوضع الحالي: داكن" : "الوضع الحالي: فاتح",
-              ),
-              trailing: IconButton(
-                  onPressed: () => controller.changeColor,
-                  icon: Icon(Icons.color_lens)),
-              onTap: ()  => controller.changeColor,
-            ),
-          ),
+
+          // Card(
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(16),
+          //   ),
+          //   child: ListTile(
+          //     leading: CircleAvatar(
+          //       backgroundColor: AppColor.secondColor.withAlpha(30),
+          //       child: Icon(
+          //         context.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+          //         color: AppColor.secondColor,
+          //       ),
+          //     ),
+          //     title: const Text(
+          //       "الوضع الليلي",
+          //       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          //     ),
+          //     subtitle: Text(
+          //       context.isDarkMode ? "الوضع الحالي: داكن" : "الوضع الحالي: فاتح",
+          //     ),
+          //     trailing: IconButton(
+          //         onPressed: () => controller.changeColor(),
+          //         icon: const Icon(Icons.color_lens)),
+          //     onTap:()=> controller.changeColor(),
+          //   ),
+          // ),
 
           const SizedBox(height: 20),
 

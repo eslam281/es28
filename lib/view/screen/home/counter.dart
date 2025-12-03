@@ -81,7 +81,7 @@ class Counter extends StatelessWidget {
             const SizedBox(height: 35,),
 
             CustomButton(onPressed:controller.Addi),
-          const SizedBox(height: 30,),
+          const SizedBox(height: 40,),
           ],),
       );
     }

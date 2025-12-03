@@ -1,5 +1,4 @@
 
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:es28/routes.dart';
 import 'package:es28/view/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
