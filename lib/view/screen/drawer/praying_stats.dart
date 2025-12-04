@@ -32,7 +32,22 @@ class PrayingStats extends StatelessWidget {
                       primaryXAxis: const NumericAxis(
                         title: AxisTitle(text: "يوم"),
                       ),
+                      primaryYAxis: NumericAxis(
+                        axisLabelFormatter: (args) {
+                         return ChartAxisLabel(
+                             minutesToTimeLabel(args.value.toInt())
+                             , args.textStyle);
+                        },
+                      ),
+
+                      tooltipBehavior: TooltipBehavior(enable: true),
+                      onTooltipRender: (TooltipArgs args) {
+                        final minutes = args.dataPoints![args.pointIndex!.toInt()].y.toInt();
+                        args.text = "اليوم ${args.pointIndex! + 1}\n"
+                            "الوقت ${minutesToTimeLabel(minutes)}";
+                      },
                       legend: const Legend(isVisible: true),
+
                       series:  <CartesianSeries>[
                         LineSeries<PrayerTimePoint, int>(
                           name: controller.timeName[index],
