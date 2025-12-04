@@ -17,42 +17,34 @@ class PrayingStats extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Stats"),
       ),
-      body: GetBuilder<PrayingStatsController>(
-        builder: (controller) {
-          if (controller.timings == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              children: [
-                SfCartesianChart(
-                    primaryXAxis: const NumericAxis(
-                      title: AxisTitle(text: "يوم"),
-                    ),
-                    primaryYAxis: const NumericAxis(
-                      title: AxisTitle(text: "دقائق من منتصف الليل"),
-                    ),
-                    legend: const Legend(isVisible: true),
-                    series:  <CartesianSeries>[
-                      // Fajr
-                      LineSeries<PrayerTimePoint, int>(
-                        name: 'Fajr',
-                        color: AppColor.primaryColor,
-                        dataSource: List.generate(controller.timings!.length, (index) {
-                          return PrayerTimePoint(
-                            index + 1,
-                            convertTimeToMinutes(controller.timings![index].fajr!),
-                          );
-                        }),
-                        xValueMapper: (data, _) => data.dayIndex,
-                        yValueMapper: (data, _) => data.minutes,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GetBuilder<PrayingStatsController>(
+          builder: (controller) {
+            if (controller.timings == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.timeName.length,
+              itemBuilder: (context, index) =>
+                  SfCartesianChart(
+                      primaryXAxis: const NumericAxis(
+                        title: AxisTitle(text: "يوم"),
                       ),
-                    ])
-              ],
-            ),
-          );
-        }
+                      legend: const Legend(isVisible: true),
+                      series:  <CartesianSeries>[
+                        LineSeries<PrayerTimePoint, int>(
+                          name: controller.timeName[index],
+                          color: AppColor.primaryColor,
+                          dataSource: controller.listDataSource(index),
+                          xValueMapper: (data, _) => data.dayIndex,
+                          yValueMapper: (data, _) => data.minutes,
+                        ),
+                      ]),
+            );
+          }
+        ),
       ),
     );
   }

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/class/crud.dart';
+import '../../core/class/prayerTimePoint.dart';
 import '../../core/class/statusrequest.dart';
+import '../../core/functions/StringToTime.dart';
 import '../../core/functions/timesfor30.dart';
 import '../../core/shared/snackbar.dart';
 import '../../data/datasource/time_data.dart';
@@ -14,6 +16,13 @@ import '../../main.dart';
 class PrayingStatsController extends GetxController{
 
   List<TimingModel>? timings;
+  List<String> timeName =[
+    "الفجر",
+    "الظهر",
+    "العصر",
+    "المغرب",
+    "العشاء"
+  ];
   String? dateResponse;
 
   @override
@@ -37,5 +46,21 @@ class PrayingStatsController extends GetxController{
     timings = dataList?.map<TimingModel>((e) => TimingModel.fromJson(e["timings"])).toList();
     dateResponse =myBox?.get("timesMonth")??"";
   }
+  List<PrayerTimePoint> listDataSource(time){
+    List<PrayerTimePoint> dataList = [];
 
+    for (int i = 0; i < timings!.length; i++) {
+      List Times =[
+        timings?[i].fajr,
+        timings?[i].dhuhr,
+        timings?[i].asr,
+        timings?[i].maghrib,
+        timings?[i].isha,
+      ];
+      dataList.add(
+      PrayerTimePoint(i+ 1, convertTimeToMinutes(Times[time]),)
+      );
+    }
+    return dataList;
+  }
 }
