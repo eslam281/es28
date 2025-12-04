@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:es28/core/constant/color.dart';
 import 'package:es28/core/constant/imageasset.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +38,7 @@ class HomePage extends StatelessWidget {
         body: PopScope(
             canPop: false,
             onPopInvokedWithResult: (didPop, result) {
-              return alertExitApp();
+              return alertApp("خروج",exit(0));
             },
             child: Container(
                 height: double.infinity,

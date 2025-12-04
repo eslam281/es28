@@ -21,8 +21,7 @@ class PrayingStatsController extends GetxController{
 
     if(myBox?.get("timefor30") == null ||
         myBox?.get("timesMonth")!=DateTime.now().month.toString()){
-
-      CustomSnackBar("خطأ","asd");
+      CustomSnackBar("خطأ","يرجى تنزيل أوقات الصلاة أولاً من صفحة الأوقات.");
     }else{
       getTimesOff();
 
@@ -32,10 +31,10 @@ class PrayingStatsController extends GetxController{
 
 
   getTimesOff(){
-    List? datalist;
+    List? dataList;
     if(myBox?.get("timefor30") != null)
-      datalist = myBox?.get("timefor30");
-    timings = datalist?.map<TimingModel>((e) => TimingModel.fromJson(e["timings"])).toList();
+      dataList = myBox?.get("timefor30");
+    timings = dataList?.map<TimingModel>((e) => TimingModel.fromJson(e["timings"])).toList();
     dateResponse =myBox?.get("timesMonth")??"";
   }
 

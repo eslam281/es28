@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../controller/drawer/PrayingStats_controller.dart';
+import '../../../core/class/prayerTimePoint.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/functions/StringToTime.dart';
 
@@ -55,10 +56,4 @@ class PrayingStats extends StatelessWidget {
       ),
     );
   }
-}
-class PrayerTimePoint {
-  final int dayIndex;
-  final int minutes;
-
-  PrayerTimePoint(this.dayIndex, this.minutes);
 }
