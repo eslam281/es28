@@ -12,53 +12,67 @@ class PrayingStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PrayingStatsController());
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Stats"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GetBuilder<PrayingStatsController>(
-          builder: (controller) {
-            if (controller.timings == null) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: controller.timeName.length,
-              itemBuilder: (context, index) =>
-                  SfCartesianChart(
-                      primaryXAxis: const NumericAxis(
-                        title: AxisTitle(text: "يوم"),
-                      ),
-                      primaryYAxis: NumericAxis(
-                        axisLabelFormatter: (args) {
-                         return ChartAxisLabel(
-                             minutesToTimeLabel(args.value.toInt())
-                             , args.textStyle);
-                        },
-                      ),
+    final controller = Get.put(PrayingStatsController());
 
-                      tooltipBehavior: TooltipBehavior(enable: true),
-                      onTooltipRender: (TooltipArgs args) {
-                        final minutes = args.dataPoints![args.pointIndex!.toInt()].y.toInt();
-                        args.text = "اليوم ${args.pointIndex! + 1}\n"
-                            "الوقت ${minutesToTimeLabel(minutes)}";
+    return DefaultTabController(
+      length: controller.timeName.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Stats"),
+          bottom: TabBar(
+            isScrollable: true,
+            labelColor: AppColor.primaryColor,
+            unselectedLabelColor: Colors.grey[600],
+            indicatorColor: AppColor.primaryColor,
+            tabs: controller.timeName.map((t) => Tab(text: t)).toList(),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GetBuilder<PrayingStatsController>(
+            builder: (controller) {
+              if (controller.timings == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              return TabBarView(
+                children: List.generate(
+                  controller.timeName.length,
+                      (index) => SfCartesianChart(
+                    primaryXAxis: const NumericAxis(
+                      title: AxisTitle(text: "يوم"),
+                    ),
+                    primaryYAxis: NumericAxis(
+                      axisLabelFormatter: (args) {
+                        return ChartAxisLabel(
+                          minutesToTimeLabel(args.value.toInt()),
+                          args.textStyle,
+                        );
                       },
-                      legend: const Legend(isVisible: true),
+                    ),
+                    tooltipBehavior: TooltipBehavior(enable: true),
+                    onTooltipRender: (TooltipArgs args) {
+                      final minutes = args
+                          .dataPoints![args.pointIndex!.toInt()].y.toInt();
+                      args.text = "اليوم ${args.pointIndex! + 1}\n"
+                          "الوقت ${minutesToTimeLabel(minutes)}";
+                    },
+                    legend: const Legend(isVisible: true),
 
-                      series:  <CartesianSeries>[
-                        LineSeries<PrayerTimePoint, int>(
-                          name: controller.timeName[index],
-                          color: AppColor.primaryColor,
-                          dataSource: controller.listDataSource(index),
-                          xValueMapper: (data, _) => data.dayIndex,
-                          yValueMapper: (data, _) => data.minutes,
-                        ),
-                      ]),
-            );
-          }
+                    series: <CartesianSeries>[
+                      LineSeries<PrayerTimePoint, int>(
+                        name: controller.timeName[index],
+                        color: AppColor.primaryColor,
+                        dataSource: controller.listDataSource(index),
+                        xValueMapper: (data, _) => data.dayIndex,
+                        yValueMapper: (data, _) => data.minutes,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
