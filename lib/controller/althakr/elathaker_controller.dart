@@ -4,28 +4,30 @@ import 'package:intl/intl.dart';
 
 
 class ElathakerController extends GetxController{
+ late List<List<dynamic>> athkar;
   List count=[];
 
   @override
   void onInit() {
+    athkar = myBox?.get("athkar")??_athkarBase;
     intialData();
     super.onInit();
   }
 
   void intialData() async{
-    count.length = adhkar.length;
-    count.fillRange(0, adhkar.length, 0);
+    count.length = athkar.length;
+    count.fillRange(0, athkar.length, 0);
     if (myBox?.get("timefor30") != null) {
 
       if(!checkTime('Asr') &&checkTime('Fajr') && (myBox?.get("athakertime") == 1||!await checkDate())) {
-        count.fillRange(0, adhkar.length, 0);
+        count.fillRange(0, athkar.length, 0);
         myBox?.put("athakerCount", count);
         myBox?.put("athakertime", 2);
 
         await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
 
       } else  if (checkTime('Asr') && (myBox?.get("athakertime") == 2||!await checkDate())) {
-        count.fillRange(0, adhkar.length, 0);
+        count.fillRange(0, athkar.length, 0);
         myBox?.put("athakerCount", count);
         myBox?.put("athakertime", 1);
 
@@ -36,13 +38,13 @@ class ElathakerController extends GetxController{
 
 
       } else {
-        count.fillRange(0, adhkar.length, 0);
+        count.fillRange(0, athkar.length, 0);
       }
     } else {
       if (myBox?.get("athakerCount") != null ) {
         count = myBox?.get("athakerCount");
       } else {
-        count.fillRange(0, adhkar.length, 0);
+        count.fillRange(0, athkar.length, 0);
         await myBox?.put("elathakerdate", DateFormat('dd-MM').format(DateTime.now()));
       }
     }
@@ -63,7 +65,7 @@ class ElathakerController extends GetxController{
   }
 
   onTap(int index){
-    if(adhkar[index][1] > count[index]){
+    if(athkar[index][1] > count[index]){
       count[index] += 1;
       myBox?.put("athakerCount",count);
     }
@@ -71,12 +73,30 @@ class ElathakerController extends GetxController{
   }
 
   customRefresh(){
-    count.fillRange(0, adhkar.length, 0);
+    count.fillRange(0, athkar.length, 0);
     myBox?.put("athakerCount", count);
     update();
   }
 
-  List<List<dynamic>> adhkar = [
+  add(String text, int count){
+    athkar.add([text, count]);
+    myBox?.put("athkar", athkar);
+    update();
+  }
+  delete(int index) {
+    athkar.removeAt(index);
+    myBox?.put("athkar", athkar);
+    update();
+  }
+  edit(int index, String text, int count) {
+    athkar[index][0] = text;
+    athkar[index][1] = count;
+    myBox?.put("athkar", athkar);
+    update();
+  }
+
+
+  List<List<dynamic>> _athkarBase = [
     ["قراءة آية الكرسي: {الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤده حفظهما وهو العلي العظيم} (البقرة:255)", 1],
     ["سورة الإخلاص، الفلق، والناس", 3],
     ["أصبحنا وأصبح الملك لله والحمد لله لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير ربِ اسألك خير ما في هذا اليوم وخير ما بعده واعوذ بك من شر ما في هذا اليوم وشر ما بعده ربِّ اعوذ بك من الكسل وسوء الكبر ربِّ اعوذ بك من عذاب في النار وعذاب في القبر.", 1],

@@ -30,6 +30,11 @@ class AthkarSM extends StatelessWidget {
           ],
         ),
 
+        floatingActionButton:FloatingActionButton(
+          onPressed: () {  },
+          child: const Icon(Icons.add,color: AppColor.primaryColor,),
+        ),
+
         body: GetBuilder<SittingsControllerImp>(
           builder: (sittingsControllerImp) {
             return SingleChildScrollView(
@@ -78,20 +83,23 @@ class AthkarSM extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.adhkar.length,
+                    itemCount: controller.athkar.length,
                     itemBuilder: (context, index) => GetBuilder<ElathakerController>(
                       builder: (controller) {
                         bool completed =
-                            controller.count[index] >= controller.adhkar[index][1];
+                            controller.count[index] >= controller.athkar[index][1];
                         return CustomAthkarCard(
-                          elthakr: controller.adhkar[index][0],
+                          elthakr: controller.athkar[index][0],
                           count: controller.count[index],
                           completed: completed,
-                          max: controller.adhkar[index][1],
+                          max: controller.athkar[index][1],
+                          textScaler: sittingsControllerImp.textScalerAthkar,
                           onTap: () {
                             controller.onTap(index);
                           },
-                          textScaler: sittingsControllerImp.textScalerAthkar,
+                          edit: () {
+
+                          },
                         );
                       },
                     ),

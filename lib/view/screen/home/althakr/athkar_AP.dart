@@ -86,10 +86,13 @@ class AthkarAP extends StatelessWidget {
                         count: controller.count[index],
                         completed: completed,
                         max: controller.adhkar[index][1],
+                        textScaler: sittingsControllerImp.textScalerAthkar,
                         onTap: () {
                           controller.onTap(index);
                         },
-                        textScaler: sittingsControllerImp.textScalerAthkar,
+                        edit: () {
+
+                        },
                       );
                     },
                   ),
