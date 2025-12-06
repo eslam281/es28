@@ -5,7 +5,6 @@ import '../../../../controller/althakr/elathaker_controller.dart';
 import '../../../../controller/drawer/sittings_controller.dart';
 import '../../../../core/constant/color.dart';
 import '../../../component/athkar/customAthkarCard.dart';
-import '../../../component/chooseFontSize.dart';
 
 class AthkarSM extends StatelessWidget {
   const AthkarSM({super.key});
