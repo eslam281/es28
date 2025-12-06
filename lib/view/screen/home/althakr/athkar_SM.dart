@@ -30,18 +30,51 @@ class AthkarSM extends StatelessWidget {
             )
           ],
         ),
+
         body: GetBuilder<SittingsControllerImp>(
           builder: (sittingsControllerImp) {
             return SingleChildScrollView(
+
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ChooseFontSize(
-                            onPressedIncrease:() => sittingsControllerImp.changeTextScalerAthkar(0.1),
-                            onPressedDecrease: () => sittingsControllerImp.changeTextScalerAthkar(-0.1),
-                          )
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                        children: [
+                           CircleAvatar(
+                              backgroundColor: AppColor.secondColor.withAlpha(30),
+                              child: IconButton(
+                                icon: Icon(
+                                  context.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                                  color: AppColor.secondColor,
+                                ),
+                                onPressed:() => sittingsControllerImp.changeThemeMode() ,
+                              ),
+                            ),
+                          Row(children: [
+                            CircleAvatar(
+                              backgroundColor: AppColor.secondColor.withAlpha(30),
+                              child: const Icon(Icons.text_fields, color: AppColor.secondColor),
+                            ),
+                            IconButton(
+                              icon: const Text("-A", style: TextStyle(color: AppColor.secondColor)),
+                              onPressed:() => sittingsControllerImp.changeTextScalerAthkar(0.1),
+                            ),
+                            IconButton(
+                              icon: const Text("+A", style: TextStyle(color: AppColor.secondColor)),
+                              onPressed: () => sittingsControllerImp.changeTextScalerAthkar(-0.1),
+                            ),
+                          ],)
+                        ],
+                      ),
+                    ),
                   ),
+
                   ListView.builder(
                     padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
                     shrinkWrap: true,

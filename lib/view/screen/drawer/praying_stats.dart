@@ -63,6 +63,7 @@ class PrayingStats extends StatelessWidget {
                       LineSeries<PrayerTimePoint, int>(
                         name: controller.timeName[index],
                         color: AppColor.primaryColor,
+                        width:6,
                         dataSource: controller.listDataSource(index),
                         xValueMapper: (data, _) => data.dayIndex,
                         yValueMapper: (data, _) => data.minutes,
