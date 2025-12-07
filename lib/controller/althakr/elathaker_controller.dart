@@ -9,7 +9,8 @@ class ElathakerController extends GetxController{
 
   @override
   void onInit() {
-    athkar = myBox?.get("athkar")??_athkarBase;
+    athkar = myBox?.get("athkar").
+    map<List<dynamic>>((e) => List<dynamic>.from(e)).toList()??_athkarBase;
     intialData();
     super.onInit();
   }
@@ -85,6 +86,7 @@ class ElathakerController extends GetxController{
   }
   delete(int index) {
     athkar.removeAt(index);
+    count.removeAt(index);
     myBox?.put("athkar", athkar);
     update();
   }
@@ -92,6 +94,14 @@ class ElathakerController extends GetxController{
     athkar[index][0] = text;
     athkar[index][1] = count;
     myBox?.put("athkar", athkar);
+    update();
+  }
+  restore(){
+    athkar =_athkarBase;
+    count.length = athkar.length;
+    count.fillRange(0, athkar.length, 0);
+    myBox?.put("athkar", athkar);
+    Get.back();
     update();
   }
 

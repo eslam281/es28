@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../controller/althakr/elathaker_controller.dart';
 import '../../../../controller/drawer/sittings_controller.dart';
 import '../../../../core/constant/color.dart';
+import '../../../../core/functions/alertexitapp.dart';
 import '../../../component/athkar/customAthkarCard.dart';
 
 class AthkarSM extends StatelessWidget {
@@ -31,8 +32,9 @@ class AthkarSM extends StatelessWidget {
         ),
 
         floatingActionButton:FloatingActionButton(
+          backgroundColor: AppColor.secondColor,
           onPressed: () {  },
-          child: const Icon(Icons.add,color: AppColor.primaryColor,),
+          child: const Icon(Icons.add),
         ),
 
         body: GetBuilder<SittingsControllerImp>(
@@ -60,6 +62,18 @@ class AthkarSM extends StatelessWidget {
                                 onPressed:() => sittingsControllerImp.changeThemeMode() ,
                               ),
                             ),
+                          CircleAvatar(
+                              backgroundColor: AppColor.secondColor.withAlpha(30),
+                              child: IconButton(
+                                icon: Icon(Icons.restore_page_outlined,
+                                  color: AppColor.secondColor,
+                                ),
+                                onPressed:() {
+                                  alertApp("do want to restore all data",
+                                          () => controller.restore());
+                                  } ,
+                              ),
+                            ),
                           Row(children: [
                             CircleAvatar(
                               backgroundColor: AppColor.secondColor.withAlpha(30),
@@ -78,33 +92,34 @@ class AthkarSM extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  ListView.builder(
-                    padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
+                  GetBuilder<ElathakerController>(
+                  builder: (controller) => ListView.builder(
+                    padding: const EdgeInsets.only(
+                        left: 20, bottom: 30, right: 20, top: 10),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.athkar.length,
-                    itemBuilder: (context, index) => GetBuilder<ElathakerController>(
-                      builder: (controller) {
-                        bool completed =
-                            controller.count[index] >= controller.athkar[index][1];
-                        return CustomAthkarCard(
-                          elthakr: controller.athkar[index][0],
-                          count: controller.count[index],
-                          completed: completed,
-                          max: controller.athkar[index][1],
-                          textScaler: sittingsControllerImp.textScalerAthkar,
-                          onTap: () {
-                            controller.onTap(index);
-                          },
-                          edit: () {
-
-                          },
-                        );
-                      },
-                    ),
+                    itemBuilder: (context, index) {
+                      bool completed = controller.count[index] >=
+                          controller.athkar[index][1];
+                      return CustomAthkarCard(
+                        elthakr: controller.athkar[index][0],
+                        count: controller.count[index],
+                        completed: completed,
+                        max: controller.athkar[index][1],
+                        textScaler: sittingsControllerImp.textScalerAthkar,
+                        onTap: () {
+                          controller.onTap(index);
+                        },
+                        edit: () {},
+                        delete: () {
+                          controller.delete(index);
+                        },
+                      );
+                    },
                   ),
-                ],
+                )
+              ],
               ),
             );
           }

@@ -93,6 +93,9 @@ class AthkarAP extends StatelessWidget {
                         edit: () {
 
                         },
+                        delete: () {
+
+                        },
                       );
                     },
                   ),
