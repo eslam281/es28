@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-alertApp(String acceptText,void Function() onPressed){
+alertApp(String middleText,String acceptText,void Function() onPressed){
 
   return Get.defaultDialog(
-    title:"تنبيه",middleText:"هل تريد الخروج من التطبيق",
+    title:"تنبيه",middleText:middleText,
     confirm: Container(
       margin:const EdgeInsets.only(left: 10),
       child: MaterialButton(onPressed:onPressed ,

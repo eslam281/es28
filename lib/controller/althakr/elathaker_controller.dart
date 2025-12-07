@@ -52,7 +52,6 @@ class ElathakerController extends GetxController{
     update();
   }
 
-
   bool checkTime(String name) {
     final int day = DateTime.now().day;
     final String time = myBox?.get("timefor30")[day-1]["timings"][name] ?? "";
@@ -79,8 +78,9 @@ class ElathakerController extends GetxController{
     update();
   }
 
-  add(String text, int count){
-    athkar.add([text, count]);
+  add(String text, int itemCount){
+    athkar.add([text, itemCount]);
+    count.add(0);
     myBox?.put("athkar", athkar);
     update();
   }

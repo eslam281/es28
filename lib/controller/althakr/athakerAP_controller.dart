@@ -25,6 +25,7 @@ class athakerAPController extends GetxController{
   }
 
 
+
   List<List<dynamic>> adhkar = [
     ["أستغفر الله", 3],
     ["اللهم أنت السلام، ومنك السلام، تباركت يا ذا الجلال والإكرام", 1],

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../../controller/althakr/elathaker_controller.dart';
 import '../../../../controller/drawer/sittings_controller.dart';
 import '../../../../core/constant/color.dart';
-import '../../../../core/functions/alertexitapp.dart';
 import '../../../component/athkar/customAthkarCard.dart';
+import '../../../component/athkar/customTopPage.dart';
 
 class AthkarSM extends StatelessWidget {
   const AthkarSM({super.key});
@@ -43,55 +43,13 @@ class AthkarSM extends StatelessWidget {
 
               child: Column(
                 children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment:MainAxisAlignment.spaceBetween ,
-                        children: [
-                           CircleAvatar(
-                              backgroundColor: AppColor.secondColor.withAlpha(30),
-                              child: IconButton(
-                                icon: Icon(
-                                  context.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                                  color: AppColor.secondColor,
-                                ),
-                                onPressed:() => sittingsControllerImp.changeThemeMode() ,
-                              ),
-                            ),
-                          CircleAvatar(
-                              backgroundColor: AppColor.secondColor.withAlpha(30),
-                              child: IconButton(
-                                icon: Icon(Icons.restore_page_outlined,
-                                  color: AppColor.secondColor,
-                                ),
-                                onPressed:() {
-                                  alertApp("do want to restore all data",
-                                          () => controller.restore());
-                                  } ,
-                              ),
-                            ),
-                          Row(children: [
-                            CircleAvatar(
-                              backgroundColor: AppColor.secondColor.withAlpha(30),
-                              child: const Icon(Icons.text_fields, color: AppColor.secondColor),
-                            ),
-                            IconButton(
-                              icon: const Text("-A", style: TextStyle(color: AppColor.secondColor)),
-                              onPressed:() => sittingsControllerImp.changeTextScalerAthkar(0.1),
-                            ),
-                            IconButton(
-                              icon: const Text("+A", style: TextStyle(color: AppColor.secondColor)),
-                              onPressed: () => sittingsControllerImp.changeTextScalerAthkar(-0.1),
-                            ),
-                          ],)
-                        ],
-                      ),
-                    ),
+                  CustomTopPage(
+                    changeThemeMode:() => sittingsControllerImp.changeThemeMode() ,
+                    restore:() => controller.restore() ,
+                    increaseTextSize:() => sittingsControllerImp.changeTextScalerAthkar(0.1) ,
+                    decreaseTextSize:() => sittingsControllerImp.changeTextScalerAthkar(-0.1) ,
                   ),
+
                   GetBuilder<ElathakerController>(
                   builder: (controller) => ListView.builder(
                     padding: const EdgeInsets.only(

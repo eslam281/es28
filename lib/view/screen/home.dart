@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
         body: PopScope(
             canPop: false,
             onPopInvokedWithResult: (didPop, result) {
-              return alertApp("خروج",exit(0));
+              return alertApp("هل تريد الخروج من التطبيق","خروج",exit(0));
             },
             child: Container(
                 height: double.infinity,

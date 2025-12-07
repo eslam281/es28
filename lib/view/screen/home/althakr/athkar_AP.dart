@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../controller/althakr/athakerAP_controller.dart';
 import '../../../../core/constant/color.dart';
 import '../../../component/athkar/customAthkarCard.dart';
+import '../../../component/athkar/customTopPage.dart';
 import '../../../component/chooseFontSize.dart';
 
 class AthkarAP extends StatelessWidget {
@@ -35,42 +36,13 @@ class AthkarAP extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment:MainAxisAlignment.spaceBetween ,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: AppColor.secondColor.withAlpha(30),
-                          child: IconButton(
-                            icon: Icon(
-                              context.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                              color: AppColor.secondColor,
-                            ),
-                            onPressed:() => sittingsControllerImp.changeThemeMode() ,
-                          ),
-                        ),
-                        Row(children: [
-                          CircleAvatar(
-                            backgroundColor: AppColor.secondColor.withAlpha(30),
-                            child: const Icon(Icons.text_fields, color: AppColor.secondColor),
-                          ),
-                          IconButton(
-                            icon: const Text("-A", style: TextStyle(color: AppColor.secondColor)),
-                            onPressed:() => sittingsControllerImp.changeTextScalerAthkar(0.1),
-                          ),
-                          IconButton(
-                            icon: const Text("+A", style: TextStyle(color: AppColor.secondColor)),
-                            onPressed: () => sittingsControllerImp.changeTextScalerAthkar(-0.1),
-                          ),
-                        ],)
-                      ],
-                    ),
-                  ),
+                CustomTopPage(
+                  changeThemeMode:() => sittingsControllerImp.changeThemeMode() ,
+                  restore:() {
+
+                  } ,
+                  increaseTextSize:() => sittingsControllerImp.changeTextScalerAthkar(0.1) ,
+                  decreaseTextSize:() => sittingsControllerImp.changeTextScalerAthkar(-0.1) ,
                 ),
                 ListView.builder(
                   padding: const EdgeInsets.only(left: 20, bottom: 30,right: 20,top:10),
