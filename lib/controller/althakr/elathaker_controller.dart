@@ -9,8 +9,11 @@ class ElathakerController extends GetxController{
 
   @override
   void onInit() {
-    athkar = myBox?.get("athkar").
-    map<List<dynamic>>((e) => List<dynamic>.from(e)).toList()??_athkarBase;
+    if (myBox?.get("athkar") != null)
+    athkar = myBox?.get("athkar").map<List<dynamic>>((e) => List<dynamic>.from(e)).toList();
+    else
+      athkar = _athkarBase;
+
     intialData();
     super.onInit();
   }

@@ -14,9 +14,7 @@ class SittingsControllerImp extends SittingsController{
     Get.changeTheme(Get.isDarkMode?
     ThemeData.light(): ThemeData.dark());
     await myBox?.put("theme", Get.isDarkMode?1:2);
-    print(myBox?.get("theme"));
     update();
-    // Get.appUpdate();
   }
   // void changeColor()async{
   //   // print(AppColor.primaryColor);
@@ -32,15 +30,14 @@ class SittingsControllerImp extends SittingsController{
   void changeTextScaler(double val){
     if(textScaler+val<=.8||textScaler+val>=1.42) return;
     textScaler += val;
-    print(textScaler);
     myBox?.put("textScaler", textScaler);
     update();
   }
+
   void changeTextScalerAthkar(double val){
     if(textScalerAthkar+val<=.8||textScalerAthkar+val>=2.91) return;
     textScalerAthkar += val;
     myBox?.put("textScalerAthkar", textScalerAthkar);
-    print(textScalerAthkar);
     update();
   }
 

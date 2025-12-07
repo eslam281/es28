@@ -1,32 +1,67 @@
 import 'package:get/get.dart';
 
+import '../../main.dart';
+
 
 
 class athakerAPController extends GetxController{
+  late List<List<dynamic>> athkar;
   List count=[];
 
   @override
   void onInit() {
-    count.length = adhkar.length;
-    count.fillRange(0, adhkar.length,0);
+    if (myBox?.get("athkarAP") != null)
+      athkar = myBox?.get("athkarAP").map<List<dynamic>>((e) => List<dynamic>.from(e)).toList();
+    else
+      athkar = _athkarBase;
+    count.length = athkar.length;
+    count.fillRange(0, athkar.length,0);
     super.onInit();
   }
 
   onTap(int index){
-    if(adhkar[index][1] > count[index]){
+    if(athkar[index][1] > count[index]){
       count[index] += 1;
     }
     update();
   }
 
   customRefresh(){
-    count.fillRange(0, adhkar.length, 0);
+    count.fillRange(0, athkar.length, 0);
     update();
   }
 
+  add(String text, int itemCount){
+    athkar.add([text, itemCount]);
+    count.add(0);
+    myBox?.put("athkarAP", athkar);
+    update();
+    Get.back();
+  }
+  delete(int index) {
+    athkar.removeAt(index);
+    count.removeAt(index);
+    myBox?.put("athkarAP", athkar);
+    update();
+    Get.back();
+  }
+  edit(int index, String text, int count) {
+    athkar[index][0] = text;
+    athkar[index][1] = count;
+    myBox?.put("athkarAP", athkar);
+    update();
+    Get.back();
+  }
+  restore(){
+    athkar =_athkarBase;
+    count.length = athkar.length;
+    count.fillRange(0, athkar.length, 0);
+    myBox?.put("athkarAP", athkar);
+    Get.back();
+    update();
+  }
 
-
-  List<List<dynamic>> adhkar = [
+  List<List<dynamic>> _athkarBase = [
     ["أستغفر الله", 3],
     ["اللهم أنت السلام، ومنك السلام، تباركت يا ذا الجلال والإكرام", 1],
     ["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، لا حول ولا قوة إلا بالله، لا إله إلا الله، ولا نعبد إلا إياه، له النعمة وله الفضل، وله الثناء الحسن، لا إله إلا الله مخلصين له الدين ولو كره الكافرون", 1],

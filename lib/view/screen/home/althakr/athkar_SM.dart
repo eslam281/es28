@@ -34,7 +34,7 @@ class AthkarSM extends StatelessWidget {
         floatingActionButton:FloatingActionButton(
           backgroundColor: AppColor.secondColor,
           onPressed: () {
-            Get.to(const ElathakerEditPage());
+            Get.to( ElathakerEditPage(controller: controller));
             },
           child: const Icon(Icons.add),
         ),
@@ -71,7 +71,7 @@ class AthkarSM extends StatelessWidget {
                           controller.onTap(index);
                         },
                         edit: () {
-                          Get.to(ElathakerEditPage(index: index,));
+                          Get.to(ElathakerEditPage(index: index,controller: controller));
                         },
                         delete: () {
                           controller.delete(index);
