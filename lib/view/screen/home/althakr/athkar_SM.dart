@@ -1,3 +1,4 @@
+import 'package:es28/controller/althakr/elathakerEditPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +16,7 @@ class AthkarSM extends StatelessWidget {
     ElathakerController controller = Get.put(ElathakerController());
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
+          elevation: 0, centerTitle: true,
           title: const Text(
             'الأذكار اليومية',
             style: TextStyle( fontWeight: FontWeight.bold),
@@ -33,14 +33,15 @@ class AthkarSM extends StatelessWidget {
 
         floatingActionButton:FloatingActionButton(
           backgroundColor: AppColor.secondColor,
-          onPressed: () {  },
+          onPressed: () {
+            Get.to(const ElathakerEditPage());
+            },
           child: const Icon(Icons.add),
         ),
 
         body: GetBuilder<SittingsControllerImp>(
           builder: (sittingsControllerImp) {
             return SingleChildScrollView(
-
               child: Column(
                 children: [
                   CustomTopPage(
@@ -69,7 +70,9 @@ class AthkarSM extends StatelessWidget {
                         onTap: () {
                           controller.onTap(index);
                         },
-                        edit: () {},
+                        edit: () {
+                          Get.to(ElathakerEditPage(index: index,));
+                        },
                         delete: () {
                           controller.delete(index);
                         },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
+import '../../../core/functions/alertexitapp.dart';
 
 class CustomAthkarCard extends StatelessWidget {
   final String elthakr;
@@ -38,7 +39,9 @@ class CustomAthkarCard extends StatelessWidget {
                   icon: const Icon(Icons.edit_outlined, color: AppColor.secondColor),
                 ),
                 IconButton(
-                  onPressed: delete,
+                  onPressed:() {
+                    alertApp("هل تريد حذف هذا الذكر؟","حذف",delete);
+                  } ,
                   icon: const Icon(Icons.delete_forever, color: AppColor.secondColor),
                 ),
                 const Spacer(),

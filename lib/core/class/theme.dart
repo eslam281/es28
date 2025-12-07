@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../main.dart';
 import '../constant/color.dart';
@@ -8,7 +9,7 @@ class MyTheme {
 
   static ThemeData  lightTheme= ThemeData(
       appBarTheme: const AppBarTheme(titleTextStyle:TextStyle(color:AppColor.black) ,
-  elevation: 0,color:AppColor.white,
+  elevation: 0,color:AppColor.white,surfaceTintColor:AppColor.white ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.white,
       colorScheme: const ColorScheme.light(
@@ -20,8 +21,9 @@ class MyTheme {
   );
 
   static ThemeData  darkTheme= ThemeData(
-      appBarTheme: const AppBarTheme(color:AppColor.black,elevation: 0
-  ,iconTheme:IconThemeData(color:AppColor.secondColor)),
+      appBarTheme: const AppBarTheme(color:AppColor.black,elevation: 0,
+          surfaceTintColor:AppColor.black ,
+  iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.black,
       colorScheme: const ColorScheme.dark(
           brightness: Brightness.dark ),

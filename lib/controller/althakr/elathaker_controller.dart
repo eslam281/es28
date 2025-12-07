@@ -83,18 +83,21 @@ class ElathakerController extends GetxController{
     count.add(0);
     myBox?.put("athkar", athkar);
     update();
+    Get.back();
   }
   delete(int index) {
     athkar.removeAt(index);
     count.removeAt(index);
     myBox?.put("athkar", athkar);
     update();
+    Get.back();
   }
   edit(int index, String text, int count) {
     athkar[index][0] = text;
     athkar[index][1] = count;
     myBox?.put("athkar", athkar);
     update();
+    Get.back();
   }
   restore(){
     athkar =_athkarBase;
