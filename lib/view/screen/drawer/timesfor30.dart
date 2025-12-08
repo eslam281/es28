@@ -50,7 +50,7 @@ class Timesfor30Widget extends StatelessWidget {
                       child: Column(
                         children: [
                           DataTable(
-                            headingTextStyle: const TextStyle(
+                            headingTextStyle: TextStyle(
                               color: AppColor.secondColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,

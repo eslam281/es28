@@ -8,7 +8,7 @@ import '../constant/color.dart';
 class MyTheme {
 
   static ThemeData  lightTheme= ThemeData(
-      appBarTheme: const AppBarTheme(titleTextStyle:TextStyle(color:AppColor.black) ,
+      appBarTheme: AppBarTheme(titleTextStyle:const TextStyle(color:AppColor.black) ,
   elevation: 0,color:AppColor.white,surfaceTintColor:AppColor.white ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.white,
@@ -21,7 +21,7 @@ class MyTheme {
   );
 
   static ThemeData  darkTheme= ThemeData(
-      appBarTheme: const AppBarTheme(color:AppColor.black,elevation: 0,
+      appBarTheme: AppBarTheme(color:AppColor.black,elevation: 0,
           surfaceTintColor:AppColor.black ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.black,

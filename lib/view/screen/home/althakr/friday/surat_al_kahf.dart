@@ -13,17 +13,24 @@ class Surat_Al_Kahf extends StatelessWidget {
     SuratAlKahfController controller = Get.put(SuratAlKahfController());
     return Scaffold(
       appBar:AppBar(
-        iconTheme:const IconThemeData(color:AppColor.white),toolbarHeight: 35,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
+        iconTheme:IconThemeData(color:context.isDarkMode?AppColor.white:AppColor.black),
+          toolbarHeight: 35,
+          systemOverlayStyle:context.isDarkMode? SystemUiOverlayStyle.dark:
+          SystemUiOverlayStyle.light,
           surfaceTintColor:const Color(0xFF5E4840)),
-      body:Container(
-        child:ListView.builder(itemCount:controller.images.length,
-            itemBuilder: (context, index) =>
-                Center(
-                  child: Image.asset(controller.images[index],
-                     fit:BoxFit.fitWidth,),
-                )
-          ,),
+      body:InteractiveViewer(
+        minScale: 1,
+        maxScale: 1.24,
+        child: Container(
+          padding: const EdgeInsets.only(top: 8),
+          child:ListView.builder(itemCount:controller.images.length,
+              itemBuilder: (context, index) =>
+                  Center(
+                    child: Image.asset(controller.images[index],
+                       fit:BoxFit.fitWidth,),
+                  )
+            ,),
+        ),
       ),
     );
   }

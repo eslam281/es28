@@ -23,7 +23,7 @@ class AthkarSM extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.refresh, color: AppColor.secondColor),
+              icon: Icon(Icons.refresh, color: AppColor.secondColor),
               onPressed: () => controller.customRefresh(),
               padding: const EdgeInsets.only(right: 20),
               tooltip: 'تحديث الأذكار',

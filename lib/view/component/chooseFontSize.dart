@@ -16,7 +16,7 @@ class ChooseFontSize extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: AppColor.secondColor.withAlpha(30),
-          child: const Icon(Icons.text_fields, color: AppColor.secondColor),
+          child: Icon(Icons.text_fields, color: AppColor.secondColor),
         ),
         title: const Text(
           "حجم النص",
@@ -27,11 +27,11 @@ class ChooseFontSize extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              icon: const Text("-A", style: TextStyle(color: AppColor.secondColor)),
+              icon: Text("-A", style: TextStyle(color: AppColor.secondColor)),
               onPressed: onPressedDecrease,
             ),
             IconButton(
-              icon: const Text("+A", style: TextStyle(color: AppColor.secondColor)),
+              icon: Text("+A", style: TextStyle(color: AppColor.secondColor)),
               onPressed: onPressedIncrease,
             ),
           ],

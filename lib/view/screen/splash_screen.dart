@@ -28,15 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
       image = AppImageAsset.dawn;
 
     } else  if (hour >= 6 && hour <= 7) {
-      image = index ==0? AppImageAsset.sunrise:AppImageAsset.sunrise2;
+      image = AppImageAsset.sunrise[index];
 
     } else  if (hour >= 8 && hour <= 13) {
-      image = index ==0? AppImageAsset.morning:AppImageAsset.morning2;
+      image = AppImageAsset.morning[index];
 
     } else if (hour >= 14 && hour <= 18) {
-      image =index ==0? AppImageAsset.evening :AppImageAsset.evening2;
+      image = AppImageAsset.evening[index];
     } else {
-      image =index ==0? AppImageAsset.night : AppImageAsset.night2;
+      image = AppImageAsset.night[index];
     }
     super.initState();
   }

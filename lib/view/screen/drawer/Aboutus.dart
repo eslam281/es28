@@ -21,7 +21,7 @@ class About_us extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Text(
+              Text(
                 'إسلام سيد عبد العزيز',
                 style: TextStyle(
                   fontSize: 24,

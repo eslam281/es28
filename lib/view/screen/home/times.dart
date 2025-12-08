@@ -54,7 +54,7 @@ class Times extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                         child: Column(
                           children: [
-                            const Text(
+                            Text(
                               "الثلث الأخير من الليل",
                               style: TextStyle(
                                 fontSize: 20,

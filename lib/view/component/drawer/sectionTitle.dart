@@ -6,7 +6,7 @@ import '../../../core/constant/color.dart';
 Widget sectionTitle(String text) {
   return Text(
     text,
-    style: const TextStyle(
+    style: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: AppColor.secondColor,

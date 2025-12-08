@@ -1,15 +1,9 @@
-import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/class/crud.dart';
 import '../../core/class/prayerTimePoint.dart';
-import '../../core/class/statusrequest.dart';
 import '../../core/functions/StringToTime.dart';
-import '../../core/functions/timesfor30.dart';
 import '../../core/shared/snackbar.dart';
-import '../../data/datasource/time_data.dart';
 import '../../data/modle/modle.dart';
 import '../../main.dart';
 

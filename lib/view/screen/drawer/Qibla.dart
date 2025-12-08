@@ -18,7 +18,7 @@ class QiblaPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('اتجاه القبلة')
           ,centerTitle: true,titleTextStyle:const TextStyle(fontSize:25),
-          iconTheme: const IconThemeData(color: AppColor.secondColor),),
+          iconTheme: IconThemeData(color: AppColor.secondColor),),
       body: Stack(fit: StackFit.expand,
         children: [
           Container(),

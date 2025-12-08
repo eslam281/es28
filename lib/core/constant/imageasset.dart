@@ -14,14 +14,23 @@ class AppImageAsset{
 
   //////// Splash screen background
   static const String dawn="$background/dawn.jpg";
-  static const String sunrise="$background/sunrise.jpg";
-  static const String sunrise2="$background/sunrise2.jpg";
-  static const String morning="$background/morning.jfif";
-  static const String morning2="$background/morning2.jpg";
-  static const String evening="$background/evening.jfif";
-  static const String evening2="$background/evening2.jpg";
-  static const String night="$background/night.jpg";
-  static const String night2="$background/night2.jpg";
+
+  static const List<String> sunrise=[
+    "$background/sunrise.jpg",
+    "$background/sunrise2.jpg"
+  ];
+  static const List<String> morning=[
+    "$background/morning.jpg",
+    "$background/morning2.jpg"
+  ];
+  static const List<String> evening=[
+    "$background/evening.jpg",
+    "$background/evening2.jpg"
+  ];
+  static const List<String> night=[
+    "$background/night.jpg",
+    "$background/night2.jpg"
+  ];
 
 
   ///// Lottie Images

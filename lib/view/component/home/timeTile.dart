@@ -20,7 +20,7 @@ Widget timeTile(String title, String? time,BuildContext context) {
           ),
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               color: AppColor.secondColor,
               fontWeight: FontWeight.bold,

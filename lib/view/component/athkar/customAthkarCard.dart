@@ -36,13 +36,13 @@ class CustomAthkarCard extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: edit,
-                  icon: const Icon(Icons.edit_outlined, color: AppColor.secondColor),
+                  icon: Icon(Icons.edit_outlined, color: AppColor.secondColor),
                 ),
                 IconButton(
                   onPressed:() {
                     alertApp("هل تريد حذف هذا الذكر؟","حذف",delete);
                   } ,
-                  icon: const Icon(Icons.delete_forever, color: AppColor.secondColor),
+                  icon: Icon(Icons.delete_forever, color: AppColor.secondColor),
                 ),
                 const Spacer(),
               ],

@@ -16,49 +16,47 @@ class Contact_Us extends StatelessWidget {
           'تواصل معنا',
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: AppColor.secondColor),
+        iconTheme: IconThemeData(color: AppColor.secondColor),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              /// Section Title
-              sectionTitle('معلومات التواصل'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            /// Section Title
+            sectionTitle('معلومات التواصل'),
 
-              const SizedBox(height: 30),
+            const SizedBox(height: 30),
 
-              // Email
-              linkTile(
-                context,
-                title: '📧 aslamsydbdalzyzbry@gmail.com',
-                url: "mailto:aslamsydbdalzyzbry@gmail.com",
-                icon: Icons.email,
-              ),
+            // Email
+            linkTile(
+              context,
+              title: '📧 aslamsydbdalzyzbry@gmail.com',
+              url: "mailto:aslamsydbdalzyzbry@gmail.com",
+              icon: Icons.email,
+            ),
 
-              const SizedBox(height: 30),
+            const SizedBox(height: 30),
 
-              // GitHub
-              linkTile(
-                context,
-                title: 'GitHub',
-                url: 'https://github.com/eslam281',
-                icon: Icons.code,
-              ),
+            // GitHub
+            linkTile(
+              context,
+              title: 'GitHub',
+              url: 'https://github.com/eslam281',
+              icon: Icons.code,
+            ),
 
-              const SizedBox(height: 30),
+            const SizedBox(height: 30),
 
-              // LinkedIn
-              linkTile(
-                context,
-                title: 'LinkedIn',
-                url: 'https://linkedin.com/in/islam-sayed-a2a8b4259',
-                icon: Icons.business_center,
-              ),
+            // LinkedIn
+            linkTile(
+              context,
+              title: 'LinkedIn',
+              url: 'https://linkedin.com/in/islam-sayed-a2a8b4259',
+              icon: Icons.business_center,
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
     );

@@ -8,6 +8,6 @@ class Appleading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(onPressed:() => Navigator.of(context).pop(),
-        icon: const Icon(Icons.arrow_back,color:AppColor.secondColor,));
+        icon: Icon(Icons.arrow_back,color:AppColor.secondColor,));
   }
 }
