@@ -18,12 +18,11 @@ class PrayingStats extends StatelessWidget {
       length: controller.timeName.length,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Stats"),
           bottom: TabBar(
             isScrollable: true,
-            labelColor: AppColor.primaryColor,
+            labelColor: AppColor.secondColor,
             unselectedLabelColor: Colors.grey[600],
-            indicatorColor: AppColor.primaryColor,
+            indicatorColor: AppColor.secondColor,
             tabs: controller.timeName.map((t) => Tab(text: t)).toList(),
           ),
         ),
@@ -62,7 +61,7 @@ class PrayingStats extends StatelessWidget {
                     series: <CartesianSeries>[
                       LineSeries<PrayerTimePoint, int>(
                         name: controller.timeName[index],
-                        color: AppColor.primaryColor,
+                        color: AppColor.secondColor,
                         width:6,
                         dataSource: controller.listDataSource(index),
                         xValueMapper: (data, _) => data.dayIndex,

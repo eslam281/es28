@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/althakr/athakerAP_controller.dart';
-import '../../../../controller/althakr/elathakerEditPage.dart';
+import 'elathakerEditPage.dart';
 import '../../../../core/constant/color.dart';
 import '../../../component/athkar/customAthkarCard.dart';
 import '../../../component/athkar/customTopPage.dart';

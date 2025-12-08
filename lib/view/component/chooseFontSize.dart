@@ -27,11 +27,11 @@ class ChooseFontSize extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              icon: Text("-A", style: TextStyle(color: AppColor.secondColor)),
+              icon: Text("-ض", style: TextStyle(color: AppColor.secondColor)),
               onPressed: onPressedDecrease,
             ),
             IconButton(
-              icon: Text("+A", style: TextStyle(color: AppColor.secondColor)),
+              icon: Text("+ض", style: TextStyle(color: AppColor.secondColor)),
               onPressed: onPressedIncrease,
             ),
           ],

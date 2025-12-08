@@ -9,13 +9,12 @@ import 'package:hive/hive.dart';
 import 'controller/drawer/sittings_controller.dart';
 import 'core/class/theme.dart';
 import 'core/functions/initBox.dart';
-import 'core/services/background_service.dart';
 
 Box? myBox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await AndroidAlarmManager.initialize();
-  await initializeService();
+  // await initializeService();
   myBox = await initalBox("times");
 
   SystemChrome.setPreferredOrientations([
@@ -40,7 +39,6 @@ class MyApp extends StatelessWidget {
           theme: MyTheme.lightTheme,
           darkTheme: MyTheme.darkTheme,
           themeMode: ThemeMode.values[myBox?.get("theme")??0],
-          // home:  const Test(),
           getPages: routes,
           // home: const Test(),
           home: const SplashScreen(),

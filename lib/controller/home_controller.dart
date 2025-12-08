@@ -1,3 +1,4 @@
+import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +42,7 @@ class HomeControllerImp extends HomeController{
            margin:const EdgeInsets.only(right: 10),
            child: MaterialButton(onPressed: (){
              Get.back();
-           },color:Colors.green
+           },color:AppColor.secondColor
              ,shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(15)),
              child: const Text("حسنا",style:TextStyle(fontSize: 17,fontFamily:"sans")),),
          ),

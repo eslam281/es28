@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../main.dart';
 
 class AppColor {
   static const List <Color>listSecondColor =[
      Color(0xff1ac468),
-     Color(0xff00c6cf)
+     Color(0xff00c6cf),
+    Color(0xffd0e511)
   ];
   static const Color grey = Color(0xffc0c0c0);
-  static const Color  primaryColor=Color(0xff005a2b);
 
   static Color get secondColor =>
       listSecondColor[myBox?.get("secondColorIndex") ?? 0];

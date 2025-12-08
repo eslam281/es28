@@ -52,7 +52,6 @@ class Timesfor30{
 
     statusRequest = await handlingData(response);
     if (statusRequest == StatusRequest.success) {
-      print( response["data"]);
       data = response["data"];
       dateResponse = response["data"][0]["date"]["gregorian"]["month"]["number"].toString();
       myBox?.put("timefor30", data!);

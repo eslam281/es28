@@ -1,4 +1,4 @@
-import 'package:es28/controller/althakr/elathakerEditPage.dart';
+import 'package:es28/view/screen/home/althakr/elathakerEditPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

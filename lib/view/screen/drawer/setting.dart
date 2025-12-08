@@ -52,6 +52,8 @@ class Setting extends StatelessWidget {
                 ),
               ),
 
+              const SizedBox(height: 20),
+
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -64,13 +66,13 @@ class Setting extends StatelessWidget {
                     ),
                   ),
                   title: const Text(
-                    "الوضع الليلي",
+                    "تغيير اللون",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
 
                   trailing: IconButton(
                       onPressed: () => controller.changeColor(),
-                      icon: const Icon(Icons.color_lens)),
+                      icon: const Icon(Icons.colorize)),
                   onTap:()=> controller.changeColor(),
                 ),
               ),

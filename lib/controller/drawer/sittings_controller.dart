@@ -18,10 +18,10 @@ class SittingsControllerImp extends SittingsController{
   }
   void changeColor()async{
     int index= myBox?.get("secondColorIndex")??0;
-    index = ++index % 2;
+    index = ++index % 3;
     await myBox?.put("secondColorIndex", index);
-    Get.forceAppUpdate();
     update();
+    Get.forceAppUpdate();
   }
   void changeTextScaler(double val){
     if(textScaler+val<=.8||textScaler+val>=1.42) return;

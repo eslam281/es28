@@ -108,7 +108,7 @@ class Timesfor30Widget extends StatelessWidget {
                                     final item = controller.data![index];
                                     return DataRow(
                                       color: index+1==DateTime.now().day?
-                                      WidgetStateProperty.all(AppColor.primaryColor):null,
+                                      WidgetStateProperty.all(AppColor.secondColor):null,
                                       cells: [
                                         DataCell(SizedBox(width: 30, child: Text("${index + 1}"),),),
                                         DataCell(SizedBox(width: 70, child: Center(child: Text(item.fajr?.substring(0, 5) ?? "")))),

@@ -52,11 +52,11 @@ class CustomTopPage extends StatelessWidget {
                   child: Icon(Icons.text_fields, color: AppColor.secondColor),
                 ),
                 IconButton(
-                  icon: Text("-A", style: TextStyle(color: AppColor.secondColor)),
+                  icon: Text("-ض", style: TextStyle(color: AppColor.secondColor)),
                   onPressed:() => increaseTextSize(),
                 ),
                 IconButton(
-                  icon: Text("+A", style: TextStyle(color: AppColor.secondColor)),
+                  icon: Text("+ض", style: TextStyle(color: AppColor.secondColor)),
                   onPressed: () => decreaseTextSize(),
                 ),
               ],)

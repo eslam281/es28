@@ -1,13 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../main.dart';
 import '../constant/color.dart';
 
 class MyTheme {
 
-  static ThemeData  lightTheme= ThemeData(
+  static ThemeData get lightTheme => ThemeData(
       appBarTheme: AppBarTheme(titleTextStyle:const TextStyle(color:AppColor.black) ,
   elevation: 0,color:AppColor.white,surfaceTintColor:AppColor.white ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
@@ -19,8 +18,7 @@ class MyTheme {
       fontFamily: 'Cairo',
     ),
   );
-
-  static ThemeData  darkTheme= ThemeData(
+  static ThemeData get darkTheme => ThemeData(
       appBarTheme: AppBarTheme(color:AppColor.black,elevation: 0,
           surfaceTintColor:AppColor.black ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
