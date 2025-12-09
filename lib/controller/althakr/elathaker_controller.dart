@@ -103,7 +103,7 @@ class ElathakerController extends GetxController{
     Get.back();
   }
   restore(){
-    athkar =_athkarBase;
+    athkar = List.from(_athkarBase);
     count.length = athkar.length;
     count.fillRange(0, athkar.length, 0);
     myBox?.put("athkar", athkar);

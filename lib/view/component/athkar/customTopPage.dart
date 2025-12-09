@@ -53,11 +53,11 @@ class CustomTopPage extends StatelessWidget {
                 ),
                 IconButton(
                   icon: Text("-ض", style: TextStyle(color: AppColor.secondColor)),
-                  onPressed:() => increaseTextSize(),
+                  onPressed:() => decreaseTextSize(),
                 ),
                 IconButton(
                   icon: Text("+ض", style: TextStyle(color: AppColor.secondColor)),
-                  onPressed: () => decreaseTextSize(),
+                  onPressed: () => increaseTextSize(),
                 ),
               ],)
             ],
