@@ -22,21 +22,23 @@ class PrayingStatsController extends GetxController{
   @override
   void onInit() {
 
-    if(myBox?.get("timefor30") == null ||
-        myBox?.get("timesMonth")!=DateTime.now().month.toString()){
-      CustomSnackBar("خطأ","يرجى تنزيل أوقات الصلاة أولاً من صفحة الأوقات.");
-    }else{
+    if(myBox?.get("timefor30") != null &&
+        myBox?.get("timesMonth")==DateTime.now().month.toString()){
       getTimesOff();
-
     }
     super.onInit();
   }
-
+  onReady(){
+    if(myBox?.get("timefor30") == null ||
+        myBox?.get("timesMonth")!=DateTime.now().month.toString()){
+      CustomSnackBar("خطأ","يرجى تنزيل أوقات الصلاة أولاً من صفحة الأوقات.");
+    }
+  }
 
   getTimesOff(){
     List? dataList;
-    if(myBox?.get("timefor30") != null)
-      dataList = myBox?.get("timefor30");
+
+     dataList = myBox?.get("timefor30");
     timings = dataList?.map<TimingModel>((e) => TimingModel.fromJson(e["timings"])).toList();
     dateResponse =myBox?.get("timesMonth")??"";
   }

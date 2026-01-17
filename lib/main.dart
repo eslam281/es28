@@ -21,6 +21,7 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
   // await setupDailyTask();
+  Get.put(SittingsControllerImp());
   runApp(const MyApp());
 }
 
@@ -29,9 +30,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<SittingsControllerImp>(
-      init: SittingsControllerImp(),
       builder: (context) {
         final textScaler = TextScaler.linear(myBox?.get("textScaler") ?? 1.0);
         return GetMaterialApp(
