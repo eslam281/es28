@@ -44,7 +44,7 @@ class Setting extends StatelessWidget {
                     context.isDarkMode ? "الوضع الحالي: داكن" : "الوضع الحالي: فاتح",
                   ),
                   trailing: Switch(
-                    activeColor: AppColor.secondColor,
+                    activeThumbColor: AppColor.secondColor,
                     value: context.isDarkMode,
                     onChanged: (_) => controller.changeThemeMode(),
                   ),

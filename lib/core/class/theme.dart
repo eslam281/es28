@@ -8,7 +8,7 @@ class MyTheme {
 
   static ThemeData get lightTheme => ThemeData(
       appBarTheme: AppBarTheme(titleTextStyle:const TextStyle(color:AppColor.black) ,
-  elevation: 0,color:AppColor.white,surfaceTintColor:AppColor.white ,
+  elevation: 0,backgroundColor:AppColor.white,surfaceTintColor:AppColor.white ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.white,
       colorScheme: const ColorScheme.light(
@@ -19,7 +19,7 @@ class MyTheme {
     ),
   );
   static ThemeData get darkTheme => ThemeData(
-      appBarTheme: AppBarTheme(color:AppColor.black,elevation: 0,
+      appBarTheme: AppBarTheme(backgroundColor:AppColor.black,elevation: 0,
           surfaceTintColor:AppColor.black ,
   iconTheme:IconThemeData(color:AppColor.secondColor)),
     scaffoldBackgroundColor:AppColor.black,
