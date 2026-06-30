@@ -24,7 +24,7 @@ class SittingsControllerImp extends SittingsController{
     Get.forceAppUpdate();
   }
   void changeTextScaler(double val){
-    if(textScaler+val<=.8||textScaler+val>=1.42) return;
+    if(textScaler+val<=.8||textScaler+val>=1.72) return;
     textScaler += val;
     myBox?.put("textScaler", textScaler);
     update();

@@ -113,82 +113,88 @@ class Counter extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 50),
-                // Glowing Counter Circle
+                const SizedBox(height: 100),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    // Outer Glow
-                    Container(
-                      width: 240,
-                      height: 240,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColor.secondColor.withAlpha(40),
-                            blurRadius: 50,
-                            spreadRadius: 10,
-                          )
-                        ],
-                      ),
-                    ),
-                    // Progress Indicator
-                    SizedBox(
-                      width: 210,
-                      height: 210,
-                      child: CircularProgressIndicator(
-                        value: 1.0,
-                        strokeWidth: 12,
-                        color: AppColor.secondColor.withAlpha(50),
-                      ),
-                    ),
-                    // Inner Circle
-                    Container(
-                      width: 180,
-                      height: 180,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: context.isDarkMode
-                            ? Colors.black
-                            : Colors.white,
-                        border: Border.all(
-                          color: AppColor.secondColor.withAlpha(100),
-                          width: 2,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withAlpha(20),
-                            blurRadius: 10,
-                          )
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
-                          "${controller.i}",
-                          style: TextStyle(
-                            fontSize: 70,
-                            fontWeight: FontWeight.w900,
-                            color: AppColor.secondColor,
-                            fontFamily: 'monospace',
-                            shadows: [
-                              Shadow(
-                                color: AppColor.secondColor.withAlpha(100),
-                                blurRadius: 10,
+                    // Glowing Counter Circle
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Outer Glow
+                        Container(
+                          width: 240,
+                          height: 240,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColor.secondColor.withAlpha(40),
+                                blurRadius: 50,
+                                spreadRadius: 10,
                               )
                             ],
                           ),
                         ),
-                      ),
+                        // Progress Indicator
+                        SizedBox(
+                          width: 210,
+                          height: 210,
+                          child: CircularProgressIndicator(
+                            value: 1.0,
+                            strokeWidth: 12,
+                            color: AppColor.secondColor.withAlpha(50),
+                          ),
+                        ),
+                        // Inner Circle
+                        Container(
+                          width: 180,
+                          height: 180,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: context.isDarkMode
+                                ? Colors.black
+                                : Colors.white,
+                            border: Border.all(
+                              color: AppColor.secondColor.withAlpha(100),
+                              width: 2,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(20),
+                                blurRadius: 10,
+                              )
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              "${controller.i}",
+                              style: TextStyle(
+                                fontSize: 70,
+                                fontWeight: FontWeight.w900,
+                                color: AppColor.secondColor,
+                                fontFamily: 'monospace',
+                                shadows: [
+                                  Shadow(
+                                    color: AppColor.secondColor.withAlpha(100),
+                                    blurRadius: 10,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                    
+                    // Animated Custom Button Container
+                    Transform.scale(
+                      scale: 1.2,
+                      child: CustomButton(onPressed: controller.Addi),
+                    ),
+                    ]
                 ),
-                const SizedBox(height: 60),
-                // Animated Custom Button Container
-                Transform.scale(
-                  scale: 1.1,
-                  child: CustomButton(onPressed: controller.Addi),
-                ),
+
                 const SizedBox(height: 30),
                 Text(
                   "انقر للذكر والاستغفار",

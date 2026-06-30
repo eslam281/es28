@@ -37,12 +37,16 @@ class HomePage extends StatelessWidget {
               color: AppColor.secondColor,
             ),
           ),
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(Icons.menu_open_rounded, size: 30),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
+          actions: [
+            Builder(
+              builder: (context) => IconButton(
+                icon: Icon(Icons.menu_open_rounded,
+                    size: 32, color: AppColor.secondColor),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+              ),
             ),
-          ),
+            const SizedBox(width: 10),
+          ],
           automaticallyImplyLeading: false,
         ),
         endDrawer: const CustomDrawer(),
