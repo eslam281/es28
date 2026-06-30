@@ -1,5 +1,4 @@
 import 'package:es28/core/class/handlingdataview.dart';
-import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,63 +19,111 @@ class Times extends StatelessWidget {
     return GetBuilder<TimesController>(builder: (controller) {
       return HandlingDataView(
         statusRequest: controller.statusRequest,
-        widget: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              /// Header: Date + Refresh
-              TimesCard(
-                textDate: controller.dateResponse ?? "",
-                textLocation: getLocalizedLocation(controller.locationList[1]),
-                isReady: controller.isready,
-                reTimes: controller.reTimes,
-              ),
+        widget: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: context.isDarkMode
+                  ? [Colors.black, Colors.grey.shade900]
+                  : [Colors.white, Colors.grey.shade100],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                /// Header: Date + Refresh
+                TimesCard(
+                  textDate: controller.dateResponse ?? "",
+                  textLocation: getLocalizedLocation(controller.locationList[1]),
+                  isReady: controller.isready,
+                  reTimes: controller.reTimes,
+                ),
 
-              const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-              /// Prayer Times
-              (controller.data != null)?
-                Column(
-                  children: [
-                    timeTile("الفجر", controller.data!.fajr,context),
-                    timeTile("شروق الشمس", controller.data!.sunrise,context),
-                    timeTile("الظهر", convertF(controller.data!.dhuhr!),context),
-                    timeTile("العصر", convertF(controller.data!.asr!),context),
-                    timeTile("المغرب", convertF(controller.data!.maghrib!),context),
-                    timeTile("العشاء", convertF(controller.data!.isha!),context),
-                    Card(
-                      color:context.isDarkMode? Colors.grey.shade800 :Colors.grey.shade200,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      margin: const EdgeInsets.only(bottom: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                        child: Column(
-                          children: [
-                            Text(
-                              "الثلث الأخير من الليل",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: AppColor.secondColor,
-                                fontWeight: FontWeight.bold,
+                /// Prayer Times
+                (controller.data != null)
+                    ? Column(
+                        children: [
+                          timeTile("الفجر", controller.data!.fajr, context),
+                          timeTile("شروق الشمس", controller.data!.sunrise, context),
+                          timeTile("الظهر", convertF(controller.data!.dhuhr!), context),
+                          timeTile("العصر", convertF(controller.data!.asr!), context),
+                          timeTile("المغرب", convertF(controller.data!.maghrib!), context),
+                          timeTile("العشاء", convertF(controller.data!.isha!), context),
+                          
+                          // Modern Bottom Card for Night Third
+                          Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.indigo.shade800,
+                                  Colors.deepPurple.shade900,
+                                ],
                               ),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.indigo.withAlpha(100),
+                                  blurRadius: 15,
+                                  offset: const Offset(0, 5),
+                                )
+                              ],
                             ),
-                            Text(
-                              controller.data!.lastthird!.substring(0, 5),
-                              style: const TextStyle(fontSize: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "الثلث الأخير",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "من الليل",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white70,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withAlpha(40),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Text(
+                                    controller.data!.lastthird!.substring(0, 5),
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w900,
+                                      fontFamily: 'monospace',
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ):
-              const ShimmerReload()
-              ,
-              const SizedBox(height: 30),
-            ],
+                          ),
+                        ],
+                      )
+                    : const ShimmerReload(),
+                const SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       );

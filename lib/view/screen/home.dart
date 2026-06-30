@@ -20,38 +20,47 @@ class HomePage extends StatelessWidget {
 
     return GetBuilder<HomeControllerImp>(builder: (controller) {
       return Scaffold(
-        floatingActionButton:(controller.index == 0)?
-          const CustomFloatingActionButton():null,
-
+        extendBody: true, // Allow body to extend behind the navigation bar
+        floatingActionButton: (controller.index == 0)
+            ? const CustomFloatingActionButton()
+            : null,
         appBar: AppBar(
-          centerTitle:true,
-          title:Padding(
-            padding: const EdgeInsets.only(top:10),
-            child: Image.asset(AppImageAsset.titleimage,
-              width: 220,height: 130,color:AppColor.secondColor,),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          centerTitle: true,
+          title: Hero(
+            tag: 'logo',
+            child: Image.asset(
+              AppImageAsset.titleimage,
+              width: 180,
+              color: AppColor.secondColor,
+            ),
           ),
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu_open_rounded, size: 30),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+            ),
+          ),
+          automaticallyImplyLeading: false,
         ),
         endDrawer: const CustomDrawer(),
-
-        bottomNavigationBar:const CustomBottomNavigation() ,
-
+        bottomNavigationBar: const CustomBottomNavigation(),
         body: PopScope(
-            canPop: false,
-            onPopInvokedWithResult: (didPop, result) {
-              return alertApp("هل تريد الخروج من التطبيق","خروج",exit(0));
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            return alertApp("هل تريد الخروج من التطبيق", "خروج", exit(0));
+          },
+          child: PageView(
+            physics: const BouncingScrollPhysics(),
+            children: controller.bodyList,
+            onPageChanged: (val) {
+              controller.setIndex(val);
             },
-            child: Container(
-                height: double.infinity,
-                padding:  const EdgeInsets.symmetric(horizontal:20,vertical: 5),
-                child:PageView(
-                  children: controller.bodyList,
-                  onPageChanged: (val){
-                    controller.setIndex(val);
-                  },
-                  controller:controller.pageController,
-                )
-            ),
-        )
+            controller: controller.pageController,
+          ),
+        ),
       );
     });
   }
