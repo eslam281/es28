@@ -50,24 +50,19 @@ class PrayElnabyControllerImp extends PrayElnabyController {
     myBox?.put("iPrayElnaby", i);
     update();
   }
-  List<SelectedListItem> itemsDropdown = [
-    SelectedListItem(
-      name: "+",
+  List<SelectedListItem<String>> itemsDropdown = [
+    SelectedListItem<String>(data: "+",
     ),
-    SelectedListItem(
-      name:
+    SelectedListItem<String>(data:
       "اللَّهُمَّ ‌صَلِّ ‌عَلَى ‌مُحَمَّدٍ ‌وَعَلَى ‌آلِ ‌مُحَمَّدٍ، ‌كما ‌صليت ‌على ‌إبراهيم، وعلى آل إبراهيم، إنك حميد مجيد، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كما باركت على إبراهيم وعلى آل إبراهيم، إنك حميد مجيد",
     ),
-    SelectedListItem(
-      name:
+    SelectedListItem<String>(data:
       "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ النَّبِيِّ الْأُمِّيِّ، وَعَلَى آلِهِ وَسَلِّمْ تَسْلِيمًا",
     ),
-    SelectedListItem(
-      name:
+    SelectedListItem<String>(data:
       "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ، كَمَا صَلَّيْتَ عَلَى آلِ إِبْرَاهِيمَ، وَبَارِكْ عَلَى مُحَمَّدٍ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ، كَمَا بَارَكْتَ عَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ",
     ),
-    SelectedListItem(
-      name:
+    SelectedListItem<String>(data:
       "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِهِ فِي الْأَوَّلِينَ، وَصَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِهِ فِي الْآخِرِينَ، وَصَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِهِ فِي الْمَلَإِ الْأَعْلَى إِلَى يَوْمِ الدِّينِ",
     ),
   ];

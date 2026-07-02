@@ -48,7 +48,6 @@ class _SplashScreenState extends State<SplashScreen> {
       splashTransition:SplashTransition.scaleTransition ,
         splash:Image.asset(image,fit:BoxFit.fill,filterQuality:FilterQuality.high,) ,
         nextScreen: HomePage(),
-        duration: 15000,
       // curve: Curves.easeInToLinear ,
     );
   }

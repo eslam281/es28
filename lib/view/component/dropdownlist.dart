@@ -1,4 +1,3 @@
-
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:es28/core/constant/color.dart';
@@ -9,9 +8,9 @@ class AppTextField extends StatefulWidget {
   final String title;
   final String hint;
   final bool isCitySelected;
-  final List<SelectedListItem>? cities;
+  final List<SelectedListItem<String>>? cities;
 
-   AppTextField({
+  const AppTextField({
     required this.textEditingController,
     required this.title,
     required this.hint,
@@ -19,54 +18,35 @@ class AppTextField extends StatefulWidget {
     this.cities,
     super.key,
   });
-   String getthaker(){
+
+  String getthaker() {
     return textEditingController.text;
   }
-
 
   @override
   _AppTextFieldState createState() => _AppTextFieldState();
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-
   /// This is on text changed method which will display on city text field on changed.
-  void onTextFieldTap()async {
-    DropDownState(
-      DropDown(
+  void onTextFieldTap() async {
+    DropDownState<String>(
+      dropDown: DropDown<String>(
         isDismissible: true,
-        bottomSheetTitle:  Text(
+        bottomSheetTitle: Text(
           widget.title,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20.0,
           ),
         ),
-        submitButtonChild: const Text(
-          'Done',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        clearButtonChild: const Text(
-          'Clear',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         data: widget.cities ?? [],
-        selectedItems: (List<dynamic> selectedList) {
-
-          List<String> list = [];
+        onSelected: (List<SelectedListItem<String>> selectedList) {
           for (var item in selectedList) {
-            if (item is SelectedListItem &&item.name != "+" ) {
-              list.add(item.name);
-              widget.textEditingController.text= item.name;
+            if (item.data != "+") {
+              widget.textEditingController.text = item.data;
             }
           }
-
         },
         enableMultipleSelection: false,
       ),
@@ -82,27 +62,32 @@ class _AppTextFieldState extends State<AppTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(widget.title,style: const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),),
+        Text(
+          widget.title,
+          style: const TextStyle(
+              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         const SizedBox(
           height: 5.0,
         ),
         TextFormField(
           controller: widget.textEditingController,
           cursorColor: AppColor.secondColor,
-          keyboardType:TextInputType.name,
+          keyboardType: TextInputType.name,
           textDirection: TextDirection.rtl,
           onTap: widget.isCitySelected
               ? () {
-            FocusScope.of(context).unfocus();
-            onTextFieldTap();
-          }
+                  FocusScope.of(context).unfocus();
+                  onTextFieldTap();
+                }
               : null,
           decoration: InputDecoration(
             filled: true,
-            suffixIcon:Icon(Icons.arrow_drop_down,color: AppColor.secondColor),
+            suffixIcon: Icon(Icons.arrow_drop_down, color: AppColor.secondColor),
             fillColor: AppColor.grey,
             contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-            hintText: widget.hint,hintStyle: const TextStyle(color:AppColor.black),
+            hintText: widget.hint,
+            hintStyle: const TextStyle(color: AppColor.black),
             hintTextDirection: TextDirection.rtl,
             border: const OutlineInputBorder(
               borderSide: BorderSide(

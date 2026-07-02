@@ -50,13 +50,18 @@ class CountControllerImp extends CountController {
     myBox?.put("i", i);
     update();
   }
-  List<SelectedListItem> itemsDropdown = [
-    SelectedListItem(name: "+",),
-    SelectedListItem(name: "أَسْـتَغْفِرُ الله",),
-    SelectedListItem(name: "سبحان الله"),
-    SelectedListItem(name: "الحمد الله"),
-    SelectedListItem(name: "الله اكبر",),
-    SelectedListItem(name: "لا إلهَ إلاّ اللّهُ وَحْـدَهُ لا شريكَ لهُ، لهُ الملكُ ولهُ الحَمْد، وهُوَ على كُلّ شَيءٍ قَـدير",),
-    SelectedListItem(name: "اللَّهُمَّ ‌صَلِّ ‌عَلَى ‌مُحَمَّدٍ ‌وَعَلَى ‌آلِ ‌مُحَمَّدٍ، ‌كما ‌صليت ‌على ‌إبراهيم، وعلى آل إبراهيم، إنك حميد مجيد، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كما باركت على إبراهيم وعلى آل إبراهيم، إنك حميد مجيد",),
+  List<SelectedListItem<String>> itemsDropdown = [
+    SelectedListItem<String>(data: "+"),
+    SelectedListItem<String>(data: "أَسْـتَغْفِرُ الله"),
+    SelectedListItem<String>(data: "سبحان الله"),
+    SelectedListItem<String>(data: "الحمد الله"),
+    SelectedListItem<String>(data: "الله اكبر"),
+    SelectedListItem<String>(
+      data: "لا إلهَ إلاّ اللّهُ وَحْـدَهُ لا شريكَ لهُ، لهُ الملكُ ولهُ الحَمْد، وهُوَ على كُلّ شَيءٍ قَـدير",
+    ),
+    SelectedListItem<String>(
+      data:
+          "اللَّهُمَّ ‌صَلِّ ‌عَلَى ‌مُحَمَّدٍ ‌وَعَلَى ‌آلِ ‌مُحَمَّدٍ، ‌كما ‌صليت ‌على ‌إبراهيم، وعلى آل إبراهيم، إنك حميد مجيد، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كما باركت على إبراهيم وعلى آل إبراهيم، إنك حميد مجيد",
+    ),
   ];
 }

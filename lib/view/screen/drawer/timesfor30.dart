@@ -71,7 +71,7 @@ class Timesfor30Widget extends StatelessWidget {
                       child: controller.data == null
                           ? const ShimmerReload()
                           : ListView.builder(
-                              physics: const BouncingScrollPhysics(),
+                              // physics: const BouncingScrollPhysics(),
                               itemCount: controller.data!.length,
                               itemBuilder: (context, index) {
                                 final item = controller.data![index];
@@ -119,6 +119,9 @@ class Timesfor30Widget extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
+        color: isToday
+            ? AppColor.secondColor.withAlpha(40)
+            : (context.isDarkMode ? Colors.white.withAlpha(15) : Colors.black.withAlpha(10)),
         border: isToday ? Border.all(color: AppColor.secondColor, width: 2) : null,
         boxShadow: isToday
             ? [
@@ -130,32 +133,20 @@ class Timesfor30Widget extends StatelessWidget {
               ]
             : [],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-            decoration: BoxDecoration(
-              color: isToday
-                  ? AppColor.secondColor.withAlpha(30)
-                  : (context.isDarkMode ? Colors.white.withAlpha(10) : Colors.black.withAlpha(5)),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _DataCell(item.lastthird?.substring(0, 5) ?? "--:--", flex: 2, isBold: isToday),
-                _DataCell(convertF(item.isha!).substring(0, 5), flex: 2, isBold: isToday),
-                _DataCell(convertF(item.maghrib!).substring(0, 5), flex: 2, isBold: isToday),
-                _DataCell(convertF(item.asr!).substring(0, 5), flex: 2, isBold: isToday),
-                _DataCell(convertF(item.dhuhr!).substring(0, 5), flex: 2, isBold: isToday),
-                _DataCell(item.sunrise?.substring(0, 5) ?? "--:--", flex: 2, isBold: isToday),
-                _DataCell(item.fajr?.substring(0, 5) ?? "--:--", flex: 2, isBold: isToday),
-                _DataCell("$day", flex: 1, isBold: isToday),
-              ],
-            ),
-          ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _DataCell(item.lastthird?.substring(0, 5) ?? "--:--", flex: 2, isBold: isToday),
+            _DataCell(convertF(item.isha!).substring(0, 5), flex: 2, isBold: isToday),
+            _DataCell(convertF(item.maghrib!).substring(0, 5), flex: 2, isBold: isToday),
+            _DataCell(convertF(item.asr!).substring(0, 5), flex: 2, isBold: isToday),
+            _DataCell(convertF(item.dhuhr!).substring(0, 5), flex: 2, isBold: isToday),
+            _DataCell(item.sunrise?.substring(0, 5) ?? "--:--", flex: 2, isBold: isToday),
+            _DataCell(item.fajr?.substring(0, 5) ?? "--:--", flex: 2, isBold: isToday),
+            _DataCell("$day", flex: 1, isBold: isToday),
+          ],
         ),
       ),
     );
