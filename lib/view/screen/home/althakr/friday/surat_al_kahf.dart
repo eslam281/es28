@@ -12,24 +12,57 @@ class Surat_Al_Kahf extends StatelessWidget {
   Widget build(BuildContext context) {
     SuratAlKahfController controller = Get.put(SuratAlKahfController());
     return Scaffold(
-      appBar:AppBar(
-        iconTheme:IconThemeData(color:context.isDarkMode?AppColor.white:AppColor.black),
-          toolbarHeight: 35,
-          systemOverlayStyle:context.isDarkMode? SystemUiOverlayStyle.dark:
-          SystemUiOverlayStyle.light,
-          surfaceTintColor:const Color(0xFF5E4840)),
-      body:InteractiveViewer(
-        minScale: 1,
-        maxScale: 1.24,
-        child: Container(
-          padding: const EdgeInsets.only(top: 8),
-          child:ListView.builder(itemCount:controller.images.length,
-              itemBuilder: (context, index) =>
-                  Center(
-                    child: Image.asset(controller.images[index],
-                       fit:BoxFit.fitWidth,),
-                  )
-            ,),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text("سورة الكهف", style: TextStyle(fontWeight: FontWeight.w900)),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+            color: context.isDarkMode ? AppColor.white : AppColor.black),
+        systemOverlayStyle:
+            context.isDarkMode ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: context.isDarkMode
+                ? [Colors.black, Colors.grey.shade900, Colors.black]
+                : [Colors.white, Colors.grey.shade100, Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: InteractiveViewer(
+            minScale: 1,
+            maxScale: 2.0,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: controller.images.length,
+              itemBuilder: (context, index) => Container(
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(20),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    )
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    controller.images[index],
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

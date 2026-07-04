@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../main.dart';
+import '../../core/constant/color.dart';
 
 abstract class SittingsController extends GetxController{
 
@@ -16,9 +17,15 @@ class SittingsControllerImp extends SittingsController{
     await myBox?.put("theme", Get.isDarkMode?1:2);
     update();
   }
-  void changeColor()async{
-    int index= myBox?.get("secondColorIndex")??0;
-    index = ++index % 3;
+  void changeColor() async {
+    int index = myBox?.get("secondColorIndex") ?? 0;
+    index = ++index % AppColor.listSecondColor.length;
+    await myBox?.put("secondColorIndex", index);
+    update();
+    Get.forceAppUpdate();
+  }
+
+  void selectColor(int index) async {
     await myBox?.put("secondColorIndex", index);
     update();
     Get.forceAppUpdate();

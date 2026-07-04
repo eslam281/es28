@@ -53,8 +53,9 @@ class HomePage extends StatelessWidget {
         bottomNavigationBar: const CustomBottomNavigation(),
         body: PopScope(
           canPop: false,
-          onPopInvokedWithResult: (didPop, result) {
-            return alertApp("هل تريد الخروج من التطبيق", "خروج", exit(0));
+          onPopInvokedWithResult: (didPop, result){
+            if (didPop) return;
+            return alertApp("هل تريد الخروج من التطبيق", "خروج",() => exit(0));
           },
           child: PageView(
             physics: const BouncingScrollPhysics(),

@@ -35,7 +35,7 @@ Future determinePosition() async {
   try {
     Position position = await Geolocator.getCurrentPosition(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation, // Force GPS
+        accuracy: LocationAccuracy.high, // Force GPS
       ),
     );
     return position;
