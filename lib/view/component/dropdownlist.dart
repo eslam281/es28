@@ -2,6 +2,7 @@ import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:es28/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppTextField extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -9,6 +10,7 @@ class AppTextField extends StatefulWidget {
   final String hint;
   final bool isCitySelected;
   final List<SelectedListItem<String>>? cities;
+  final Function(String)? onDelete; // Added onDelete callback
 
   const AppTextField({
     required this.textEditingController,
@@ -16,6 +18,7 @@ class AppTextField extends StatefulWidget {
     required this.hint,
     required this.isCitySelected,
     this.cities,
+    this.onDelete,
     super.key,
   });
 
@@ -41,9 +44,51 @@ class _AppTextFieldState extends State<AppTextField> {
           ),
         ),
         data: widget.cities ?? [],
+        listItemBuilder: (index, item) {
+          return GestureDetector(
+            onLongPress: () {
+              if (widget.onDelete != null && item.data != "+") {
+                Get.defaultDialog(
+                  title: "حذف الذكر",
+                  middleText: "هل تريد حذف هذا الذكر من قائمتك؟",
+                  confirm: TextButton(
+                    onPressed: () {
+                      widget.onDelete!(item.data);
+                      Get.back(); // Close dialog
+                      Get.back(); // Close dropdown
+                    },
+                    child: const Text("حذف", style: TextStyle(color: Colors.red)),
+                  ),
+                  cancel: TextButton(
+                    onPressed: () => Get.back(),
+                    child: const Text("إلغاء"),
+                  ),
+                );
+              }
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.grey.withAlpha(50),
+                    width: 0.5,
+                  ),
+                ),
+              ),
+              child: Text(
+                item.data,
+                textDirection: TextDirection.rtl,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+          );
+        },
         onSelected: (List<SelectedListItem<String>> selectedList) {
           for (var item in selectedList) {
-            if (item.data != "+") {
+            if (item.data == "+") {
+              widget.textEditingController.clear();
+            } else {
               widget.textEditingController.text = item.data;
             }
           }

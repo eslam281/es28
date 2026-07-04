@@ -53,6 +53,7 @@ class Counter extends StatelessWidget {
                             hint: "اختر الذكر المطلوب",
                             isCitySelected: true,
                             cities: controller.itemsDropdown,
+                            onDelete: (thikr) => controller.deleteCustomThikr(thikr),
                           ),
                           const SizedBox(height: 20),
                           GestureDetector(
