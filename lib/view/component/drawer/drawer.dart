@@ -36,15 +36,15 @@ class CustomDrawer extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(10),
+
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
                   ),
                   child: Image.asset(
                     AppImageAsset.logo,
-                    width: 70,
-                    height: 70,
+                    width: 100,
+                    height: 100,
                   ),
                 ),
                 const SizedBox(height: 15),

@@ -4,7 +4,7 @@ class AppImageAsset{
   static const String surat_Al_Kahf="assets/suratalkahf";
   static const String background="$rootImages/background";
 
-  static const String logo="$rootImages/537600-00.png";
+  static const String logo="$rootImages/logo.png";
 
   static const String titleimage="$rootImages/othman008.png";
   static const String qibla="$rootImages/qibla.jpg";
