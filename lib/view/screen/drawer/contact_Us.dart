@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constant/color.dart';
 import '../../component/drawer/linkTile.dart';
 
@@ -79,6 +80,13 @@ class Contact_Us extends StatelessWidget {
                   icon: Icons.business_center_rounded,
                   url: 'https://linkedin.com/in/islam-sayed-a2a8b4259',
                 ),
+                // _buildContactCard(
+                //   context,
+                //   title: 'Google play',
+                //   subtitle: 'Eslam28_1',
+                //   icon: Icons.business_center_rounded,
+                //   url: 'https://play.google.com/store/apps/developer?id=Eslam28_1',
+                // ),
               ],
             ),
           ),
@@ -102,10 +110,22 @@ class Contact_Us extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => linkTile(context, title: title, url: url, icon: icon), // Note: using linkTile's logic indirectly or wrapping it
-              // Actually, linkTile in the project might just be a function or a widget. 
-              // Based on imports, I should probably use it or replicate its behavior.
-              // Let's assume linkTile handles the launchUrl logic.
+              onTap: () async {
+                final uri = Uri.parse(url);
+                try {
+                  // launchUrl نفسها بترجع true لو فتحت بنجاح
+                  final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  if (!launched) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('تعذر فتح الرابط')),
+                    );
+                  }
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('حدث خطأ أثناء فتح الرابط')),
+                  );
+                }
+              },
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Row(
