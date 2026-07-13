@@ -2,18 +2,18 @@ import 'package:es28/view/screen/home/althakr/elathakerEditPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/althakr/elathaker_controller.dart';
-import '../../../../controller/drawer/sittings_controller.dart';
-import '../../../../core/constant/color.dart';
-import '../../../component/athkar/customAthkarCard.dart';
-import '../../../component/athkar/customTopPage.dart';
+import '../../../../../controller/althakr/athkar_M_controller.dart';
+import '../../../../../controller/drawer/sittings_controller.dart';
+import '../../../../../core/constant/color.dart';
+import '../../../../component/athkar/customAthkarCard.dart';
+import '../../../../component/athkar/customTopPage.dart';
 
-class AthkarSM extends StatelessWidget {
-  const AthkarSM({super.key});
+class AthkarM extends StatelessWidget {
+  const AthkarM({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ElathakerController controller = Get.put(ElathakerController());
+    AthkarMController controller = Get.put(AthkarMController());
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -21,7 +21,7 @@ class AthkarSM extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.transparent,
           title: const Text(
-            'الأذكار اليومية',
+            'أذكار الصباح',
             style: TextStyle(fontWeight: FontWeight.w900),
           ),
           actions: [
@@ -76,7 +76,7 @@ class AthkarSM extends StatelessWidget {
                       decreaseTextSize: () =>
                           sittingsControllerImp.changeTextScalerAthkar(-0.1),
                     ),
-                    GetBuilder<ElathakerController>(
+                    GetBuilder<AthkarMController>(
                       builder: (controller) => ListView.builder(
                         padding:
                             const EdgeInsets.only(left: 20, bottom: 100, right: 20, top: 10),

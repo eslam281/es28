@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -138,7 +137,7 @@ class CustomAthkarCard extends StatelessWidget {
                         ),
                         child: Text(
                           completed ? 'تـم' : 'تسبيح',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,

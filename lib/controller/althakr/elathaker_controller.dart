@@ -1,137 +1,137 @@
-import 'package:es28/main.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-
-
-class ElathakerController extends GetxController{
- late List<List<dynamic>> athkar;
-  List count=[];
-
-  @override
-  void onInit() {
-    if (myBox?.get("athkar") != null)
-    athkar = myBox?.get("athkar").map<List<dynamic>>((e) => List<dynamic>.from(e)).toList();
-    else
-      athkar = _athkarBase;
-
-    intialData();
-    super.onInit();
-  }
-
-  void intialData() async{
-    count.length = athkar.length;
-    count.fillRange(0, athkar.length, 0);
-    if (myBox?.get("timefor30") != null) {
-
-      if(!checkTime('Asr') &&checkTime('Fajr') && (myBox?.get("athakertime") == 1||!await checkDate())) {
-        count.fillRange(0, athkar.length, 0);
-        myBox?.put("athakerCount", count);
-        myBox?.put("athakertime", 2);
-
-        await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
-
-      } else  if (checkTime('Asr') && (myBox?.get("athakertime") == 2||!await checkDate())) {
-        count.fillRange(0, athkar.length, 0);
-        myBox?.put("athakerCount", count);
-        myBox?.put("athakertime", 1);
-
-        await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
-
-      } else if (myBox?.get("athakerCount") != null ) {
-        count = myBox?.get("athakerCount");
-
-
-      } else {
-        count.fillRange(0, athkar.length, 0);
-      }
-    } else {
-      if (myBox?.get("athakerCount") != null ) {
-        count = myBox?.get("athakerCount");
-      } else {
-        count.fillRange(0, athkar.length, 0);
-        await myBox?.put("elathakerdate", DateFormat('dd-MM').format(DateTime.now()));
-      }
-    }
-    update();
-  }
-
-  bool checkTime(String name) {
-    final int day = DateTime.now().day;
-    final String time = myBox?.get("timefor30")[day-1]["timings"][name] ?? "";
-    final String currentTime = DateFormat('HH:mm').format(DateTime.now());
-    return currentTime.compareTo(time) > 0;
-  }
-  Future<bool> checkDate()async{
-    String? dateResponse;
-    dateResponse =await myBox?.get("elathakerdate")??"";
-    return dateResponse==DateFormat('dd-MM').format(DateTime.now());
-  }
-
-  onTap(int index){
-    if(athkar[index][1] > count[index]){
-      count[index] += 1;
-      myBox?.put("athakerCount",count);
-    }
-    update();
-  }
-
-  customRefresh(){
-    count.fillRange(0, athkar.length, 0);
-    myBox?.put("athakerCount", count);
-    update();
-  }
-
-  add(String text, int itemCount){
-    athkar.add([text, itemCount]);
-    count.add(0);
-    myBox?.put("athkar", athkar);
-    update();
-    Get.back();
-  }
-  delete(int index) {
-    athkar.removeAt(index);
-    count.removeAt(index);
-    myBox?.put("athkar", athkar);
-    update();
-    Get.back();
-  }
-  edit(int index, String text, int count) {
-    athkar[index][0] = text;
-    athkar[index][1] = count;
-    myBox?.put("athkar", athkar);
-    update();
-    Get.back();
-  }
-  restore(){
-    athkar = List.from(_athkarBase);
-    count.length = athkar.length;
-    count.fillRange(0, athkar.length, 0);
-    myBox?.put("athkar", athkar);
-    Get.back();
-    update();
-  }
-
-
-  List<List<dynamic>> _athkarBase = [
-    ["قراءة آية الكرسي: {الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤده حفظهما وهو العلي العظيم} (البقرة:255)", 1],
-    ["سورة الإخلاص، الفلق، والناس", 3],
-    ["أصبحنا وأصبح الملك لله والحمد لله لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير ربِ اسألك خير ما في هذا اليوم وخير ما بعده واعوذ بك من شر ما في هذا اليوم وشر ما بعده ربِّ اعوذ بك من الكسل وسوء الكبر ربِّ اعوذ بك من عذاب في النار وعذاب في القبر.", 1],
-    ["اللهم إني أسألك خير هذا اليوم وخير ما بعده وأعوذ بك من شر هذا اليوم وشر ما بعده. اللهم أنت ربي، لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي وأبوء بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت", 1],
-    ["اللهم أنت ربي لا إله إلا أنت خلقتني وأنا عبدك وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت, من قالها عشر مرات حين يمسي فمات من ليلته دخل الجنة.", 10],
-    ["بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم", 3],
-    ["رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا ورسولًا", 3],
-    ["حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم", 7],
-    ["اللهم إني أعوذ بك من الهم والحزن، وأعوذ بك من العجز والكسل، وأعوذ بك من الجبن والبخل، وأعوذ بك من غلبة الدين وقهر الرجال.", 1],
-    ["اللهم إني أسألك العفو والعافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية: في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي وأعوذ بعظمتك أن أُغتال من تحتي", 1],
-    ["اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يديَّ ومن خلفي، وعن يميني وعن شمالي، ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.", 1],
-    ["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد، وهو على كل شيء قدير", 10],
-    ["سبحان الله وبحمده", 100],
-    ["أعوذ بكلمات الله التامات من شر ما خلق", 3],
-    ["اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.", 1],
-    ["اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت", 3],
-    ["اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت", 3],
-    ["اللهم بك أصبحنا وبك أمسينا، وبك نحيا وبك نموت، وإليك النشور.", 1],
-    ["اللهم إني أعوذ بك من شر نفسي، ومن شر كل دابة أنت آخذ بناصيتها، إن ربي على صراط مستقيم.", 1],
-    ["اللهم صل وسلم على نبينا محمد", 10],
-  ];
-}
+// import 'package:es28/main.dart';
+// import 'package:get/get.dart';
+// import 'package:intl/intl.dart';
+//
+//
+// class ElathakerController extends GetxController{
+//  late List<List<dynamic>> athkar;
+//   List count=[];
+//
+//   @override
+//   void onInit() {
+//     if (myBox?.get("athkar") != null)
+//     athkar = myBox?.get("athkar").map<List<dynamic>>((e) => List<dynamic>.from(e)).toList();
+//     else
+//       athkar = _athkarBase;
+//
+//     intialData();
+//     super.onInit();
+//   }
+//
+//   void intialData() async{
+//     count.length = athkar.length;
+//     count.fillRange(0, athkar.length, 0);
+//     if (myBox?.get("timefor30") != null) {
+//
+//       if(!checkTime('Asr') &&checkTime('Fajr') && (myBox?.get("athakertime") == 1||!await checkDate())) {
+//         count.fillRange(0, athkar.length, 0);
+//         myBox?.put("athakerCount", count);
+//         myBox?.put("athakertime", 2);
+//
+//         await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
+//
+//       } else  if (checkTime('Asr') && (myBox?.get("athakertime") == 2||!await checkDate())) {
+//         count.fillRange(0, athkar.length, 0);
+//         myBox?.put("athakerCount", count);
+//         myBox?.put("athakertime", 1);
+//
+//         await myBox?.put("elathakerdate",DateFormat('dd-MM').format(DateTime.now()));
+//
+//       } else if (myBox?.get("athakerCount") != null ) {
+//         count = myBox?.get("athakerCount");
+//
+//
+//       } else {
+//         count.fillRange(0, athkar.length, 0);
+//       }
+//     } else {
+//       if (myBox?.get("athakerCount") != null ) {
+//         count = myBox?.get("athakerCount");
+//       } else {
+//         count.fillRange(0, athkar.length, 0);
+//         await myBox?.put("elathakerdate", DateFormat('dd-MM').format(DateTime.now()));
+//       }
+//     }
+//     update();
+//   }
+//
+//   bool checkTime(String name) {
+//     final int day = DateTime.now().day;
+//     final String time = myBox?.get("timefor30")[day-1]["timings"][name] ?? "";
+//     final String currentTime = DateFormat('HH:mm').format(DateTime.now());
+//     return currentTime.compareTo(time) > 0;
+//   }
+//   Future<bool> checkDate()async{
+//     String? dateResponse;
+//     dateResponse =await myBox?.get("elathakerdate")??"";
+//     return dateResponse==DateFormat('dd-MM').format(DateTime.now());
+//   }
+//
+//   onTap(int index){
+//     if(athkar[index][1] > count[index]){
+//       count[index] += 1;
+//       myBox?.put("athakerCount",count);
+//     }
+//     update();
+//   }
+//
+//   customRefresh(){
+//     count.fillRange(0, athkar.length, 0);
+//     myBox?.put("athakerCount", count);
+//     update();
+//   }
+//
+//   add(String text, int itemCount){
+//     athkar.add([text, itemCount]);
+//     count.add(0);
+//     myBox?.put("athkar", athkar);
+//     update();
+//     Get.back();
+//   }
+//   delete(int index) {
+//     athkar.removeAt(index);
+//     count.removeAt(index);
+//     myBox?.put("athkar", athkar);
+//     update();
+//     Get.back();
+//   }
+//   edit(int index, String text, int count) {
+//     athkar[index][0] = text;
+//     athkar[index][1] = count;
+//     myBox?.put("athkar", athkar);
+//     update();
+//     Get.back();
+//   }
+//   restore(){
+//     athkar = List.from(_athkarBase);
+//     count.length = athkar.length;
+//     count.fillRange(0, athkar.length, 0);
+//     myBox?.put("athkar", athkar);
+//     Get.back();
+//     update();
+//   }
+//
+//
+//   List<List<dynamic>> _athkarBase = [
+//     ["قراءة آية الكرسي: {الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤده حفظهما وهو العلي العظيم} (البقرة:255)", 1],
+//     ["سورة الإخلاص، الفلق، والناس", 3],
+//     ["أصبحنا وأصبح الملك لله والحمد لله لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير ربِ اسألك خير ما في هذا اليوم وخير ما بعده واعوذ بك من شر ما في هذا اليوم وشر ما بعده ربِّ اعوذ بك من الكسل وسوء الكبر ربِّ اعوذ بك من عذاب في النار وعذاب في القبر.", 1],
+//     ["اللهم إني أسألك خير هذا اليوم وخير ما بعده وأعوذ بك من شر هذا اليوم وشر ما بعده. اللهم أنت ربي، لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي وأبوء بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت", 1],
+//     ["اللهم أنت ربي لا إله إلا أنت خلقتني وأنا عبدك وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت, من قالها عشر مرات حين يمسي فمات من ليلته دخل الجنة.", 10],
+//     ["بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم", 3],
+//     ["رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا ورسولًا", 3],
+//     ["حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم", 7],
+//     ["اللهم إني أعوذ بك من الهم والحزن، وأعوذ بك من العجز والكسل، وأعوذ بك من الجبن والبخل، وأعوذ بك من غلبة الدين وقهر الرجال.", 1],
+//     ["اللهم إني أسألك العفو والعافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية: في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي وأعوذ بعظمتك أن أُغتال من تحتي", 1],
+//     ["اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يديَّ ومن خلفي، وعن يميني وعن شمالي، ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.", 1],
+//     ["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد، وهو على كل شيء قدير", 10],
+//     ["سبحان الله وبحمده", 100],
+//     ["أعوذ بكلمات الله التامات من شر ما خلق", 3],
+//     ["اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.", 1],
+//     ["اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت", 3],
+//     ["اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت", 3],
+//     ["اللهم بك أصبحنا وبك أمسينا، وبك نحيا وبك نموت، وإليك النشور.", 1],
+//     ["اللهم إني أعوذ بك من شر نفسي، ومن شر كل دابة أنت آخذ بناصيتها، إن ربي على صراط مستقيم.", 1],
+//     ["اللهم صل وسلم على نبينا محمد", 10],
+//   ];
+// }

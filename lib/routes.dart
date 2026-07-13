@@ -8,7 +8,9 @@ import 'package:es28/view/screen/drawer/timesfor30.dart';
 import 'package:es28/view/screen/home.dart';
 import 'package:es28/view/screen/home/althakr/athkar_AP.dart';
 import 'package:es28/view/screen/home/althakr/friday/athkar_Friday.dart';
-import 'package:es28/view/screen/home/althakr/athkar_SM.dart';
+import 'package:es28/view/screen/home/althakr/athkar_SM/athkar_M.dart';
+import 'package:es28/view/screen/home/althakr/athkar_SM/athkar_S.dart';
+import 'package:es28/view/screen/home/althakr/athkar_SM/athkar_SM_selection.dart';
 import 'package:es28/view/screen/home/althakr/friday/pray_elnaby.dart';
 import 'package:es28/view/screen/home/althakr/friday/surat_al_kahf.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -24,7 +26,9 @@ List<GetPage<dynamic>>? routes =[
   GetPage(name:AppRoute.setting, page:() => const Setting() ),
   GetPage(name:AppRoute.about_us, page:() => const About_us() ),
   GetPage(name:AppRoute.contact_us, page:() => const Contact_Us() ),
-  GetPage(name:AppRoute.athkar_SM, page:() => const AthkarSM() ),
+  GetPage(name:AppRoute.athkar_SM, page:() => const AthkarSMSelection() ),
+  GetPage(name:AppRoute.athkar_M, page:() => const AthkarM() ),
+  GetPage(name:AppRoute.athkar_S, page:() => const AthkarS() ),
   GetPage(name:AppRoute.athkarAP, page:() => const AthkarAP() ),
   GetPage(name:AppRoute.athkarFriday, page:() => const AthkarFriday() ),
   GetPage(name:AppRoute.prayElnaby, page:() => const PrayElnaby() ),

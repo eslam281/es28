@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constant/color.dart';
-import '../../component/drawer/linkTile.dart';
 
 class Contact_Us extends StatelessWidget {
   const Contact_Us({super.key});

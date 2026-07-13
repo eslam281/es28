@@ -10,10 +10,15 @@ import '../view/screen/home/times.dart';
 abstract class HomeController extends GetxController {}
 
 class HomeControllerImp extends HomeController {
-  int index = 0;
-  PageController pageController = PageController();
+  int index = 2;
+  late PageController pageController ;
   List<Widget> bodyList = [const Counter(), const Times(), const Althakr()];
 
+  @override
+  void onInit() {
+    pageController = PageController(initialPage: 2);
+    super.onInit();
+  }
   @override
   void onReady() async {
     showDialog();
